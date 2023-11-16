@@ -1,77 +1,33 @@
-[link to original repo](https://github.com/msu-denver/project-3-final-motaverse/)
-# Requirements 
+# Overview
 
-A successful project must meet the following requirements: 
+Use this section to outline the vision for the product to be developed, including a use case diagram that shows the main user interactions with the product, in order to provide readers with an overview of the project.
 
-* The software must be a web app written in Python with the possibility of creating and authenticating users.
-* Scrum must be used as the software development methodology. **JIRA**
-* The project must have a vision statement that describes what the purpose of the software is, the type of problem it tries to solve, and the target audience.
-* A use case diagram must be constructed to provide a high-level view of possible user interactions with the system.
-* At least six user stories must be described in detail, including their acceptance criteria and point estimates. 
-* User stories must be referred to as US#1, US#2, etc. 
-* At least one of the user stories, not related to user creation or authentication, must be detailed by a sequence diagram. 
-* A class diagram must be built with the main classes used in the project and their associations. 
-* A GitHub repository must be created for the project. 
-* The GitHub repository must follow this file structure:
-```
-README.md
-Dockerfile
-requirements.txt
-src/
-tests/
-```
+# Design
 
-* All team members and the [instructor](https://github.com/thyagomota) must be added as collaborators to the project's GitHub repository. 
-* There should be two long-lived branches on this project: **main** (for the stable release) and **dev** for the (unstable release). 
-* The stable release is the one that is usually updated at the end of each sprint and have the user stories that were considered to be done. 
-* The unstable release is the one that has one or more updates during sprints. 
-* The **main** branch must be protected and require a code review before a pull request approval. 
-* All source code must have a consistent header comment with a brief description and its author. 
-* Code written for this project must comply to PEP8 code style standard. 
-* Code will be inspected for best practices of commenting, naming, formatting, function decomposition, OOP, error handling, etc. 
-* At least one white-box and one black-box test, none of them related to user creation or authentication, must be provided. 
-* Test coverage report must be generated using Python's **coverage**. 
-* The final product must be deployed using docker containerization technology. 
-* All requirements needed for the project must be frozen into **requirements.txt**. 
+## User Stories
 
-# Rubric
+Describe the user stories designed for the project, including clear acceptance criteria and point estimate for each of them. User stories must be consistent with the use case diagram. Refer to the user stories using US#1, US#2, etc. At least one of the user stories, not related to user creation or authentication, must be detailed by a sequence diagram. 
 
-+5 Project's README file: mission statement
+## Model 
 
-+5 Project's README file: use case diagram 
+At a minimum, this section should have a class diagram that succinctly describes the main classes designed for this project, as well as their associations.
 
-+10 Project's README file: user stories (~ 6 x 1.5)
+# Development Process 
 
-+5 Project's README file: sequence diagram 
+This section should be used to describe how the scrum methodology was used in this project. As a suggestion, include the following table to summarize how the sprints occurred during the development of this project.
 
-+5 Project's README file: class diagram 
+|Sprint#|Goals|Start|End|Done|Observations|
+|---|---|---|---|---|---|
+|1|US#1, US#2, ...|mm/dd/23|mm/dd/23|US#1|...|
 
-+5 GitHub repository organization
+Use the observations column to report problems encountered during a sprint and/or to reflect on how the team has continuously improved its work.
 
-+20 Project's README file and Jira Project: evidences of using scrum. 
+Feel free to use your own format for this section, as long as you are able to communicate what has been described here.
 
-+5 Code inspection: PEP8 compliance 
+# Testing 
 
-+10 Code inspection: comments, naming, functions, formatting, OOP best practices, error handling, etc.
+Share in this section the results of the tests performed to attest to the quality of the developed product, including the coverage of the tests in relation to the written code. There is no minimum code coverage expectation for your tests, other than expecting "some" coverage through at least one white-box and one black-box test.
 
-+10 Code execution: white-box and black-box testing
+# Deployment 
 
-+5 Project's README file: test coverage report using Python's **coverage**
-
-+5 Project's README file: deployment instructions
-
-+15 team/self evaluation
-
-Deductions: 
-
--10 user creation not available/working
-
--10 user authentication not available/working 
-
--5 for each user story not completed 
-
--5 **main** branch does not have consistent commits 
-
--5 **dev** branch does not have consistent commmits
-
--5 deployment does not work
+The final product must demonstrate the integrity of at least 5 of the 6 planned user stories. The final product must be packaged in the form of a docker image. In this section, describe the steps needed to generate that image so that others can deploy the product themselves. All files required for the deployment must be available, including the docker file, source/binary code, external package requirements, data files, images, etc. Instructions on how to create a container from the docker image with parameters such as port mapping, environment variables settings, etc., must be described (if needed). 
