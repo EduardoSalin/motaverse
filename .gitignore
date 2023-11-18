@@ -1,0 +1,4 @@
+.venv
+.git
+src/app/__pycache__
+/instance

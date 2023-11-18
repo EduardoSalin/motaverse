@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block main %}
+    <form action="" method="POST" novalidate>
+        {{ form.hidden_tag() }}
+        <p>{{ form.id.label }} <br> {{ form.id(size=15) }}</p>
+        <p>{{ form.email.label }} <br> {{ form.email(size=30) }}</p>
+        <p>{{ form.company.label }} <br> {{ form.company(size=30) }}</p>
+        <p>{{ form.address.label }} <br> {{ form.address(size=30) }}</p>
+        <p>{{ form.phone_number.label }} <br> {{ form.phone_number(size=15) }}</p>
+        <p>{{ form.website.label }} <br> {{ form.website(size=30) }}</p>
+        <p>{{ form.passwd.label }} <br> {{ form.passwd(size=30) }}</p>
+        <p>{{ form.passwd_confirm.label }} <br> {{ form.passwd_confirm(size=30) }}</p>
+        <p>{{ form.submit() }}</p>
+    </form>
+{% endblock %}

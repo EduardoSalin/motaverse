@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+
+{% block main %}
+<div class="wrapper">
+  
+    <!--I think this part should remain the same, so every page looks similar-->
+
+    <header class="header">
+        <ul class="navigation">
+            <!-- Navigation buttons -->
+          <li><a href="#">motaverse</a></li>
+          <li><a href="#">My Profile</a></li>
+          <li><a href="#">About</a></li>
+          <li><button onclick="simple_action('{{ url_for('admin_signout') }}')">Logout</button></li>
+        </ul>
+      </header>
+
+
+  <!-- This is the left side of the screen-->
+
+  <aside class="aside left-side">
+
+
+
+  </aside>
+    
+  <!--
+    center section
+    need to find a way to display the posts
+  -->
+  <article class="main"><!--beginning of the middle section -->
+    
+    <h1>Posts</h1><!--header middle section -->
+    <ul class="post-container">
+        
+      <li class="post-item"><!-- if you want the outlined box use this-->
+
+        <!-- the box will change size depending on the contents in it-->
+
+      </li>      <!-- end of box -->
+
+
+      <!-- more boxes if you want them-->
+
+      <li class="post-item">
+
+
+      </li>
+
+      
+    </ul><!-- end of container -->
+
+
+  </article><!--end of the middle section -->
+  
+    
+    <!-- 
+  Right side of the screen
+    -->
+    <aside class="aside aside-2">
+      
+      <!-- Put something here or leave it empty -->
+        
+      </aside>
+    
+  <!-- Footer, not really needed-->
+    
+    <footer class="footer">
+      Motaverse tm
+    </footer>
+    
+    
+</div>
+
+<script type="text/javascript">
+    function simple_action(target) {
+        window.location = target
+    }
+
+    function confirmed_action(target) {
+        if (confirm('Are you sure?')) {
+            window.location = target
+        }
+    }
+</script>
+{% endblock %}
