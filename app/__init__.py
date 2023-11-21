@@ -10,7 +10,8 @@ static_folder: path to the static folder
 app = Flask(
     "Authentication Web App", 
     template_folder=os.path.join(os.path.dirname(__file__), 'templates'), 
-    static_folder= 'src/app/static')
+    static_folder='src/app/static'
+)
 
     
 app.config['SECRET_KEY'] = 'the quick brown dog'
@@ -24,7 +25,7 @@ login_manager = LoginManager()
 login_manager.init_app(app)
 
 
-from app.models import User,Admin
+from app.models import User, Admin
 
 with app.app_context():
     db.create_all()
@@ -33,8 +34,8 @@ with app.app_context():
 # Add you user data here
 admins_to_add = [
     {'id': 'tmota', 'passwd': '1', 'name': 'Thaygo Mota', 'email': 'tmota@example.com', 'title': 'Admin'},
-    {'id': 'e', 'passwd': '1', 'name': 'ES', 'email': 'email@example.com', 'title': 'Admin'}
-    #{'id': '', 'passwd': '', 'name': '', 'email': 'email@example.com', 'title': 'Admin'}
+    {'id': 'e', 'passwd': '1', 'name': 'ES', 'email': 'email@example.com', 'title': 'Admin'},
+    {'id': 'b', 'passwd': '1', 'name': 'BL', 'email': 'brady@example.com', 'title': 'Admin'}
     #{'id': '', 'passwd': '', 'name': '', 'email': 'email@example.com', 'title': 'Admin'}
     #{'id': '', 'passwd': '', 'name': '', 'email': 'email@example.com', 'title': 'Admin'}
     #{'id': '', 'passwd': '', 'name': '', 'email': 'email@example.com', 'title': 'Admin'}
