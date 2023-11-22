@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="pics/motavese.png" alt="motavese" width="200"/>
+    <img src="pics/motaverse.png" alt="motavese" width="200"/>
 </p>
 
 # Overview
