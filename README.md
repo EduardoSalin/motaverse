@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="pics/pic1.png" alt="motavese" width="200"/>
+    <img src="pics/motavese.png" alt="motavese" width="200"/>
 </p>
 
 # Overview
@@ -12,7 +12,10 @@ Use this section to outline the vision for the product to be developed, includin
 * Where dreams come true
 ## Use case Diagram
 <p align="center">
-    <img src="pics/UseCase.png" alt="Use Case Diagram"/>
+    <img src="pics/Post_UCD.png" alt="Use Case Diagram"/>
+</p>
+<p align="center">
+    <img src="pics/Comment_UCD.png" alt="Use Case Diagram"/>
 </p>
 
 # Design
