@@ -12,7 +12,7 @@ Use this section to outline the vision for the product to be developed, includin
 * Where dreams come true
 ## Use case Diagram
 <p align="center">
-    <img src="pics/UseCase.png" alt="Use Case Diagram" width="200"/>
+    <img src="pics/UseCase.png" alt="Use Case Diagram"/>
 </p>
 
 # Design
