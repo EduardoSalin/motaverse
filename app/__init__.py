@@ -8,9 +8,10 @@ template_folder: path to the templates folder
 static_folder: path to the static folder
 '''
 app = Flask(
-    "Authentication Web App", 
+    "Authentication Web App",
     template_folder=os.path.join(os.path.dirname(__file__), 'templates'), 
-    static_folder='src/app/static'
+    static_folder='app/static'
+    
 )
 
     
