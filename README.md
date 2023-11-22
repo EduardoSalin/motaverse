@@ -18,11 +18,9 @@ Use this section to outline the vision for the product to be developed, includin
 Describe the user stories designed for the project, including clear acceptance criteria and point estimate for each of them. User stories must be consistent with the use case diagram. Refer to the user stories using US#1, US#2, etc. At least one of the user stories, not related to user creation or authentication, must be detailed by a sequence diagram. 
 -->
 ### User Story #1
-*As a user, I want to be able to register for an online blogging platform.
-Given that a user provides a username, their name, profile picture, email and password,
-when the user clicks on the "Sign up" button then their user information
-is saved and a user profile is created.*
-Additional Information:
+*As a user, I want to be able to register for an online blogging platform. Given that a user provides a username, their name, profile picture, email and password, when the user clicks on the "Sign up" button then their user information is saved and a user profile is created.* 
+
+**Additional Information**
 * All members of the team, and Professor Mota should have their own user profile created.
 * White box testing should be implemented to the SignUp function.
 
@@ -32,13 +30,32 @@ Additional Information:
 
 
 ### User Story #3
-As a registered user, 
+*As a registered user, I want to be able to comment on any already existing post. Since the post has already been created, I should be able to click "comment" button and write a reply to this post.*
+
+**Additional information**
+* Comments should appear in chronological order showing the older ones on top and newer ones at the bottom.
+* The name or user ID of the person that made that comment should appear next to the comment.
 
 ### User Story #4
-Like a post?
+*As a registered user, I want to be able to like any already existing post. I also want to be able to see how many likes any given post has.*
+
+**Additional information**
+* Users should be able to like a post only once
+* If a user has liked a post, they should be able to remove that like.
+
 ### User Story #5
+*As a registered user, if I see a profile name, I want to be able to click on that name and go to their profile, where I will be able to see that person's profile picture and name on the left, and the middle there will be all of that specific person's posts.*
+
+**Additional information**
+* Any given person would also be able to see their own profile page
 
 ### User Story #6
+*As a registered user, I want to block people, if I have blocked a profile, all of that blocked profile's posts should automatically disappear from my feed, and they should not be able to see any of my posts.*
+
+**Additional information**
+* To block someone you need to go into their profile, and there you can find a "block" button
+* The block button should not be on the profile page that is currently logged in
+* Blocked profiles should appear on my own profile page, where I can then remove them from that list.
 
 ## Model 
 
