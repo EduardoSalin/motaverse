@@ -18,7 +18,7 @@ Use this section to outline the vision for the product to be developed, includin
 Describe the user stories designed for the project, including clear acceptance criteria and point estimate for each of them. User stories must be consistent with the use case diagram. Refer to the user stories using US#1, US#2, etc. At least one of the user stories, not related to user creation or authentication, must be detailed by a sequence diagram. 
 -->
 ### User Story #1
-*As a use, I want to be able to register for an online blogging platform.
+*As a user, I want to be able to register for an online blogging platform.
 Given that a user provides a username, their name, profile picture, email and password,
 when the user clicks on the "Sign up" button then their user information
 is saved and a user profile is created.*
@@ -28,11 +28,12 @@ Additional Information:
 
 
 ### User Story #2
-As a registered user, I want to log in to the online platform, so I can see new posts created on the platform and I can create new comments. Since a registered user has provided their ID and password, when the registered user clicks the “Sign In” button then, if their credentials are valid, they are presented with 
+*As a registered user, I want to log in to the online platform, so I can create new posts. Since a registered user has provided their ID and password, when the registered user clicks the “Sign In” button then, if their credentials are valid, they are presented with all the posts that have been submitted in chronological order, showing the newest ones on top.*
 
 
 ### User Story #3
-Comment on a post?
+As a registered user, 
+
 ### User Story #4
 Like a post?
 ### User Story #5
