@@ -1,5 +1,5 @@
 from app import app, db, load_user
-from app.models import User,Reseller, Admin
+from app.models import User, Admin
 from app.forms import *
 from flask import render_template, redirect, url_for, flash, request
 from flask_login import login_required, login_user, logout_user, current_user
@@ -33,11 +33,12 @@ def user_signup():
             return '<p>User with this ID already exists!</p>'
         
         # Create a new user
-        new_user = Reseller(
+        new_user = User(
             id=form.id.data,
             name=form.name.data,
-            email=form.email.data,
+            #email=form.email.data, #*****delete later
             passwd=hashed
+
         )
         
         # Add the new user to the database and commit
@@ -58,17 +59,17 @@ def login():
 
         # Determine user type based on credentials
         admin = Admin.query.filter_by(id=id).first()
-        reseller = Reseller.query.filter_by(id=id).first()
+        user = User.query.filter_by(id=id).first()
 
         if admin and bcrypt.checkpw(passwd.encode('utf-8'), admin.passwd):
             # Admin login successful
             login_user(admin)
             flash('Admin login successful', 'success')
             return redirect(url_for('motaverse'))
-        elif reseller and bcrypt.checkpw(passwd.encode('utf-8'), reseller.passwd):
-            # Reseller login successful
-            login_user(reseller)
-            flash('Reseller login successful', 'success')
+        elif user and bcrypt.checkpw(passwd.encode('utf-8'), user.passwd):
+            # User login successful
+            login_user(user)
+            flash('User login successful', 'success')
             return redirect(url_for('motaverse'))
         else:
             flash('Invalid ID or password', 'danger')
@@ -78,7 +79,7 @@ def login():
 
 # This will log out the user and remove their information from the session
 @app.route('/user/signout')
-def reseller_signout():
+def user_signout():
     logout_user()  
     return redirect(url_for('index'))
 
@@ -147,12 +148,12 @@ def admin_signup():
 '''
 '''
 #This was used in project 1, we probablily won't need it, delete later
-@app.route('/reseller/signin', methods=['GET', 'POST'])
-def reseller_signin():
+@app.route('/user/signin', methods=['GET', 'POST'])
+def user_signin():
     form = SignInForm()
     if form.validate_on_submit():
         # Check if user exists
-        user = Reseller.query.filter_by(id=form.id.data).first()
+        user = User.query.filter_by(id=form.id.data).first()
         #checking if user exists
         if not user:
             return '<p>Invalid ID or password</p>'
@@ -164,7 +165,7 @@ def reseller_signin():
             return '<p>Invalid ID or password</p>'
 
     
-    return render_template('reseller_signin.html', form=form)
+    return render_template('user_signin.html', form=form)
 '''
 
 

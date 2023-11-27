@@ -34,9 +34,9 @@ with app.app_context():
 
 # Add you user data here
 admins_to_add = [
-    {'id': 'tmota', 'passwd': '1', 'name': 'Thaygo Mota', 'email': 'tmota@example.com', 'title': 'Admin'},
-    {'id': 'e', 'passwd': '1', 'name': 'ES', 'email': 'email@example.com', 'title': 'Admin'},
-    {'id': 'b', 'passwd': '1', 'name': 'BL', 'email': 'brady@example.com', 'title': 'Admin'}
+    {'id': 'tmota', 'passwd': '1', 'name': 'Thaygo Mota', 'title': 'Admin'},
+    {'id': 'e', 'passwd': '1', 'name': 'ES', 'title': 'Admin'},
+    {'id': 'b', 'passwd': '1', 'name': 'BL', 'title': 'Admin'}
     #{'id': '', 'passwd': '', 'name': '', 'email': 'email@example.com', 'title': 'Admin'}
     #{'id': '', 'passwd': '', 'name': '', 'email': 'email@example.com', 'title': 'Admin'}
     #{'id': '', 'passwd': '', 'name': '', 'email': 'email@example.com', 'title': 'Admin'}
