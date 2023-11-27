@@ -31,15 +31,27 @@ from app.models import User, Admin
 with app.app_context():
     db.create_all()
 
+'''
+This is where you will input your data. 
+*id is what you will be using to login
+*passwd is the password, obviously
+*name is what will be displayed on the website
+***
+profile_picture is the path to the profile picture, if you want a default one, just name it picx.png where x = 1 to 8
+if you want to add a profile picture, put the image in app/static/pic and write the name here
+I found that it only really works with .jpg files, so I would recommend using that, 
+if you have a png I found that you can just rename it to .jpg and it will work
+***
+leave title as admin, idk what it does but it works
+'''
 
-# Add you user data here
 admins_to_add = [
     {'id': 'tmota', 'passwd': '1', 'name': 'Thaygo Mota', 'title': 'Admin'},
     {'id': 'e', 'passwd': '1', 'name': 'ES', 'profile_picture': 'picz.jpg', 'title': 'Admin'},
-    {'id': 'b', 'passwd': '1', 'name': 'BL', 'title': 'Admin'}
-    #{'id': '', 'passwd': '', 'name': '', 'email': 'email@example.com', 'title': 'Admin'}
-    #{'id': '', 'passwd': '', 'name': '', 'email': 'email@example.com', 'title': 'Admin'}
-    #{'id': '', 'passwd': '', 'name': '', 'email': 'email@example.com', 'title': 'Admin'}
+    {'id': 'b', 'passwd': '1', 'name': 'BL', 'profile_picture': 'pic3.jpg', 'title': 'Admin'}
+    #{'id': 'x', 'passwd': '1', 'name': 'a', 'profile_picture': 'pic1.jpg', 'title': 'Admin'}
+    #{'id': 'y', 'passwd': '1', 'name': 'a', 'profile_picture': 'pic1.jpg', 'title': 'Admin'}
+    #{'id': 'z', 'passwd': '1', 'name': 'a', 'profile_picture': 'pic1.jpg', 'title': 'Admin'}
 ]
 
 # Check and add admin users

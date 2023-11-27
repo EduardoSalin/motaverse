@@ -205,6 +205,15 @@ Profile picture in motaverse.html
   object-fit: cover; /* This ensures the image covers the area without stretching */
 }
 
+/*name in motaverse*/
+.user-name {
+  text-align: center;
+  font-size: 1.2em; /* Adjust the font size as needed */
+  margin-top: 10px; /* Space above the name */
+  color: blue; /* Adjust the color as needed */
+  padding-bottom: 10px; /* Space below the name */
+}
+
 
 /*
 .button {

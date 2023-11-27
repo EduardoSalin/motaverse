@@ -90,8 +90,12 @@ def admin_signout():
 @app.route('/motaverse')
 @login_required
 def motaverse():
+    
     profile_picture = url_for('static', filename='pic/' + current_user.profile_picture)
-    return render_template('motaverse.html', profile_picture=profile_picture)
+    user_name = current_user.name
 
-    # You can fetch posts and profiles from the database if you have them.
-    # For now, we'll pass placeholders to the template.
+
+    return render_template(
+        'motaverse.html', 
+        profile_picture=profile_picture,
+        user_name=user_name)
