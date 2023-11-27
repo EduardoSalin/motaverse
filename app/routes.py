@@ -36,9 +36,8 @@ def user_signup():
         new_user = User(
             id=form.id.data,
             name=form.name.data,
-            #email=form.email.data, #*****delete later
+            profile_picture=form.profile_picture.data,
             passwd=hashed
-
         )
         
         # Add the new user to the database and commit
@@ -91,83 +90,8 @@ def admin_signout():
 @app.route('/motaverse')
 @login_required
 def motaverse():
+    profile_picture = url_for('static', filename='pic/' + current_user.profile_picture)
+    return render_template('motaverse.html', profile_picture=profile_picture)
+
     # You can fetch posts and profiles from the database if you have them.
     # For now, we'll pass placeholders to the template.
-    return render_template('motaverse.html')
-
-
-
-
-'''
-#Admin
-
-@app.route('/admin/signin', methods=['GET', 'POST'])
-def admin_signin():
-    form = SignInForm()
-    if form.validate_on_submit():
-        admin = Admin.query.filter_by(id=form.id.data).first()
-        if admin and bcrypt.checkpw(form.passwd.data.encode('utf-8'), admin.passwd):
-            login_user(admin)
-            return redirect(url_for('motaverse')) 
-        else:
-            return '<p>Invalid ID or password</p>'
-    return render_template('admin_signin.html', form=form)
-
-
-
-@app.route('/admin/signup', methods=['GET', 'POST'])
-def admin_signup():
-    form = AdminSignUpForm()
-    if form.validate_on_submit():
-        passwd = form.passwd.data
-        passwd_confirm = form.passwd_confirm.data
-        if passwd != passwd_confirm:
-            return '<p>Passwords do not match</p>'
-        
-        # Hash the password
-        hashed = bcrypt.hashpw(passwd.encode('utf-8'), bcrypt.gensalt())
-        
-        # Check if an admin with the given ID already exists
-        existing_admin = Admin.query.filter_by(id=form.id.data).first()
-        if existing_admin:
-            return '<p>Admin with this ID already exists!</p>'
-        
-        # Create a new admin
-        new_admin = Admin(
-            id=form.id.data,
-            passwd=hashed
-        )
-        
-        # Add the new admin to the database and commit
-        db.session.add(new_admin)
-        db.session.commit()
-        
-        return redirect(url_for('index'))
-    
-    return render_template('admin_signup.html', form=form)
-'''
-'''
-#This was used in project 1, we probablily won't need it, delete later
-@app.route('/user/signin', methods=['GET', 'POST'])
-def user_signin():
-    form = SignInForm()
-    if form.validate_on_submit():
-        # Check if user exists
-        user = User.query.filter_by(id=form.id.data).first()
-        #checking if user exists
-        if not user:
-            return '<p>Invalid ID or password</p>'
-        #checking password at sign in
-        if bcrypt.checkpw(form.passwd.data.encode('utf-8'), user.passwd):
-            login_user(user)
-            return redirect(url_for('orders'))
-        else:
-            return '<p>Invalid ID or password</p>'
-
-    
-    return render_template('user_signin.html', form=form)
-'''
-
-
-
-

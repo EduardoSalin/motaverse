@@ -110,7 +110,7 @@ input[type=submit] {
 }
 
 .form-input {
-  width: 100%;
+  width: 95%;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -121,6 +121,72 @@ input[type=submit] {
 .form-input:focus {
   border-color: darkblue;
 }
+.form-select {
+  width: 25%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: medium;
+  background-color: white;
+  transition: border-color 0.3s;
+}
+
+.form-select:focus {
+  border-color: darkblue;
+}
+
+
+/* Profile picture options */
+.profile-pictures {
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.profile-picture-label {
+  margin-bottom: 10px;
+  font-weight: bold;
+  text-align: center;
+}
+.profile-picture-options {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.profile-picture-option {
+  margin: 5px;
+  display: inline-block; /* Keep each picture option inline */
+}
+
+.profile-picture-option input[type="radio"] {
+  display: none;
+}
+
+.profile-picture-option label {
+  cursor: pointer;
+  border: 2px solid transparent;
+
+  border-radius: 50%;
+  display: inline-block;
+  padding: 3px;
+}
+
+.profile-picture-option label:hover,
+.profile-picture-option input[type="radio"]:checked + label {
+  border-color: darkblue;
+}
+
+.profile-picture-option img {
+  width: 100px; /* Adjust as needed */
+  height: 100px; /* Adjust as needed */
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+
 /*
 .button {
   background-color: darkblue;

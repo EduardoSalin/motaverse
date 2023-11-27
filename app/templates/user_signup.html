@@ -1,15 +1,47 @@
 {% extends 'base.html' %}
 {% block main %}
-    <form action="" method="POST" novalidate>
-        {{ form.hidden_tag() }}
-        <p>{{ form.id.label }} <br> {{ form.id(size=15) }}</p>
-        <p>{{ form.email.label }} <br> {{ form.email(size=30) }}</p>
-        <p>{{ form.company.label }} <br> {{ form.company(size=30) }}</p>
-        <p>{{ form.address.label }} <br> {{ form.address(size=30) }}</p>
-        <p>{{ form.phone_number.label }} <br> {{ form.phone_number(size=15) }}</p>
-        <p>{{ form.website.label }} <br> {{ form.website(size=30) }}</p>
-        <p>{{ form.passwd.label }} <br> {{ form.passwd(size=30) }}</p>
-        <p>{{ form.passwd_confirm.label }} <br> {{ form.passwd_confirm(size=30) }}</p>
-        <p>{{ form.submit() }}</p>
-    </form>
+    <section class="form-section">
+        <h1>Sign Up</h1>
+        <div class="form-container">
+            <form action="{{ url_for('user_signup') }}" method="POST" novalidate>
+                {{ form.hidden_tag() }}
+                <div class="form-group">
+                    {{ form.id.label(class="form-label") }}
+                    {{ form.id(size=15, class="form-input") }}
+                </div>
+                <div class="form-group">
+                    {{ form.name.label(class="form-label") }}
+                    {{ form.name(size=30, class="form-input") }}
+                </div>
+                <div class="form-group">
+                    {{ form.passwd.label(class="form-label") }}
+                    {{ form.passwd(size=30, class="form-input") }}
+                </div>
+                <div class="form-group">
+                    {{ form.passwd_confirm.label(class="form-label") }}
+                    {{ form.passwd_confirm(size=30, class="form-input") }}
+                </div>
+
+                
+                <div class="profile-pictures">
+                    <p class="profile-picture-label">{{ form.profile_picture.label(class="form-label") }}</p>
+                    <div class="profile-picture-options">
+                        {% for value, label in form.profile_picture.choices %}
+                            <div class="profile-picture-option">
+                                <input type="radio" id="profile-{{ value }}" name="profile_picture" value="{{ value }}">
+                                <label for="profile-{{ value }}">
+                                    <img src="{{ url_for('static', filename='pic/' + value) }}" alt="{{ label }}">
+                                </label>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                
+
+                <div class="form-group">
+                    {{ form.submit(class="button") }}
+                </div>
+            </form>
+        </div>
+    </section>
 {% endblock %}
