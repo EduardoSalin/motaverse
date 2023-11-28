@@ -8,8 +8,11 @@
         <ul class="navigation">
             <!-- Navigation buttons -->
           <li><a href="#">motaverse</a></li>
+
+          <!-- 
           <li><a href="#">My Profile</a></li>
           <li><a href="#">About</a></li>
+           -->
           <li><button onclick="simple_action('{{ url_for('admin_signout') }}')">Logout</button></li>
         </ul>
       </header>
@@ -18,6 +21,7 @@
   <!-- This is the left side of the screen-->
   <aside class="aside left-side">
 
+    <!-- This is the profile picture and name of the current user-->
     <div class="profile-picture-container">
       <img src="{{ current_user_profile_pic_url }}" alt="Profile Picture">
     </div>
@@ -42,7 +46,7 @@
         <!-- this is where the post begins-->
       <li class="post-item">
         <div class="profile">
-          <img src="placeholder-profile.png" alt="Profile Picture" class="profile-pic" />
+          <img src="{{ current_user_profile_pic_url }}" alt="Profile Picture" class="profile-pic" />
           <div class="profile-info">
             <div class="profile-name">Shrek</div><!-- User Name   -->
             <div class="post-date">October 31, 2023</div><!-- Date Posted -->
@@ -63,7 +67,7 @@
 
       <li class="post-item">
         <div class="profile">
-          <img src="placeholder-profile.png" alt="Profile Picture" class="profile-pic" />
+          <img src="{{ current_user_profile_pic_url }}" alt="Profile Picture" class="profile-pic" />
           <div class="profile-info">
             <div class="profile-name">Your mom</div>
             <div class="post-date">July 4, 1776</div>
@@ -78,16 +82,13 @@
         </div>
       </li>
 
-      <!-- end of post -->
-    </ul>
+    </ul>      <!-- end of posts section -->
 
-    <!--    end of center section -->
-  </article>
+  </article>    <!--    end of center section -->
+
   
-    
-    <!-- 
-  Where all the profiles will be displayed
-    -->
+        <!-- Where all the profiles are being displayed -->
+
     <aside class="aside aside-2">
       
       <h2>Profiles</h2>
@@ -104,9 +105,6 @@
     
   <!-- Footer -->
     
-    <footer class="footer">
-      Footer
-    </footer>
     
     
 </div>

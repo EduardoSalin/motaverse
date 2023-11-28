@@ -110,7 +110,7 @@ input[type=submit] {
 }
 
 .form-input {
-  width: 95%;
+  width: 65%;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
