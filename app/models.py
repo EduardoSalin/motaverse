@@ -25,6 +25,7 @@ class Admin(User):
     }
 
 
+'''
 class Post(db.Model, UserMixin):
     __tablename__ = 'posts'
     user = db.relationship('User', back_populates='name', primary_key=True)
@@ -35,5 +36,6 @@ class Post(db.Model, UserMixin):
 
 class Comment(db.Model, UserMixin):
     __tablename__ = 'comments'
-    user = db.relationship('User', back_populaes='name', primary_key=True)
+    user = db.relationship('User', back_populates='name', primary_key=True)
     content = db.Column(db.String)
+    '''

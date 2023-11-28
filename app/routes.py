@@ -91,11 +91,12 @@ def admin_signout():
 @login_required
 def motaverse():
     
-    profile_picture = url_for('static', filename='pic/' + current_user.profile_picture)
-    user_name = current_user.name
-
+    all_users = User.query.all()
+    current_user_profile_pic_url = url_for('static', filename='pic/' + current_user.profile_picture)
+    current_user_display_name = current_user.name
 
     return render_template(
         'motaverse.html', 
-        profile_picture=profile_picture,
-        user_name=user_name)
+        all_users=all_users,
+        current_user_profile_pic_url=current_user_profile_pic_url,
+        current_user_display_name=current_user_display_name)

@@ -215,6 +215,58 @@ Profile picture in motaverse.html
 }
 
 
+.aside-2 {
+  text-align: left;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.profile-list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile-card {
+  width: 90%; /* Adjust the width as needed */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 10px 0;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.profile-pic-small {
+  width: 50px; /* Fixed size */
+  height: 50px; /* Fixed size */
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.profile-name-small {
+  font-size: 1em;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 600px) {
+  .profile-card {
+    width: 100%; /* Full width on smaller screens */
+    flex-direction: column; /* Stack elements vertically on smaller screens */
+    align-items: center;
+  }
+
+  .profile-pic-small {
+    margin-bottom: 10px;
+  }
+}
+
+
+
 /*
 .button {
   background-color: darkblue;
@@ -423,11 +475,7 @@ Profile picture in motaverse.html
     background-color: #0056b3; /* Darken button color on hover for feedback */
   }
   
-  /*right side*/
-  .aside-2 {
-    text-align: left;
-    color: white;
-  }
+
   
   .footer {
     background: black;

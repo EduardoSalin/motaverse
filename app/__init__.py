@@ -46,8 +46,8 @@ leave title as admin, idk what it does but it works
 '''
 
 admins_to_add = [
-    {'id': 'tmota', 'passwd': '1', 'name': 'Thaygo Mota', 'title': 'Admin'},
-    {'id': 'e', 'passwd': '1', 'name': 'ES', 'profile_picture': 'picz.jpg', 'title': 'Admin'},
+    {'id': 'tmota', 'passwd': '1', 'name': 'Thaygo Mota', 'profile_picture': 'pic2.jpg', 'title': 'Admin'},
+    {'id': 'e', 'passwd': '1', 'name': 'Eduardo', 'profile_picture': 'picz.jpg', 'title': 'Admin'},
     {'id': 'b', 'passwd': '1', 'name': 'BL', 'profile_picture': 'pic3.jpg', 'title': 'Admin'}
     #{'id': 'x', 'passwd': '1', 'name': 'a', 'profile_picture': 'pic1.jpg', 'title': 'Admin'}
     #{'id': 'y', 'passwd': '1', 'name': 'a', 'profile_picture': 'pic1.jpg', 'title': 'Admin'}
