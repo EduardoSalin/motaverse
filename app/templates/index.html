@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block main %}
+    <section class="form-section">
+        <img src="{{ url_for('static', filename='motaverse.png') }}" alt="Motaverse" width="500" height="250">
+
+        <h2 style="margin-bottom: 30px;">Sign up or log in to get started</h2>
+
+        <div class="button-group">
+            <button type="button" class="button" onclick=simple_action("{{ url_for('user_signup') }}")>Sign Up</button>
+            
+            <button type="button" class="button" onclick=simple_action("{{ url_for('login') }}")>Log In</button>
+        </div>
+    </section>
+    <script type="text/javascript">
+        function simple_action(target) {
+            window.location = target;
+        }
+    </script>
+{% endblock %}

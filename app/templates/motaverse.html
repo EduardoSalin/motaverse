@@ -1,0 +1,123 @@
+{% extends 'base.html' %}
+
+{% block main %}
+<div class="wrapper">
+  
+  <!--I think this part should remain the same, so every page looks similar-->
+    <header class="header">
+        <ul class="navigation">
+            <!-- Navigation buttons -->
+          <li><a href="#">motaverse</a></li>
+
+          <!-- 
+          <li><a href="#">My Profile</a></li>
+          <li><a href="#">About</a></li>
+           -->
+          <li><button onclick="simple_action('{{ url_for('admin_signout') }}')">Logout</button></li>
+        </ul>
+      </header>
+
+
+  <!-- This is the left side of the screen-->
+  <aside class="aside left-side">
+
+    <!-- This is the profile picture and name of the current user-->
+    <div class="profile-picture-container">
+      <img src="{{ current_user_profile_pic_url }}" alt="Profile Picture">
+    </div>
+    <div class="user-name">{{ current_user_display_name  }}</div>
+
+
+    <h2>Create new post</h2>
+    <form>
+      <textarea id="newPostContent" name="newPostContent" rows="4" cols="50" placeholder="What's on your mind?"></textarea>
+      <br/>
+      <button type="submit">Post</button>
+    </form>
+  </aside>
+    
+  <!--
+    center section
+    need to find a way to display the posts
+  -->
+  <article class="main">
+    <h1>Posts</h1>
+    <ul class="post-container">
+        <!-- this is where the post begins-->
+      <li class="post-item">
+        <div class="profile">
+          <img src="{{ current_user_profile_pic_url }}" alt="Profile Picture" class="profile-pic" />
+          <div class="profile-info">
+            <div class="profile-name">Shrek</div><!-- User Name   -->
+            <div class="post-date">October 31, 2023</div><!-- Date Posted -->
+          </div>
+        </div>
+        <div class="post-content">
+          Ogres are like onions. They have layers. Onions have layers. You get it? We both have layers.
+        </div>
+        <div class="post-actions">
+          <button type="button" class="like-button">Like</button>          
+          <button type="button">Comment</button>
+        </div>
+      </li>
+
+      <!-- end of post -->
+
+      <!-- more posts-->
+
+      <li class="post-item">
+        <div class="profile">
+          <img src="{{ current_user_profile_pic_url }}" alt="Profile Picture" class="profile-pic" />
+          <div class="profile-info">
+            <div class="profile-name">Your mom</div>
+            <div class="post-date">July 4, 1776</div>
+          </div>
+        </div>
+        <div class="post-content">
+          Hello world!
+        </div>
+        <div class="post-actions">
+          <button type="button">Like</button>
+          <button type="button">Comment</button>
+        </div>
+      </li>
+
+    </ul>      <!-- end of posts section -->
+
+  </article>    <!--    end of center section -->
+
+  
+        <!-- Where all the profiles are being displayed -->
+
+    <aside class="aside aside-2">
+      
+      <h2>Profiles</h2>
+
+      <div class="profile-list">
+        {% for user in all_users %}
+          <div class="profile-card">
+            <img src="{{ url_for('static', filename='pic/' + user.profile_picture) }}" alt="Profile Picture" class="profile-pic-small">
+            <div class="profile-name-small">{{ user.name }}</div>
+          </div>
+        {% endfor %}
+      </div>
+    </aside>
+    
+  <!-- Footer -->
+    
+    
+    
+</div>
+
+<script type="text/javascript">
+    function simple_action(target) {
+        window.location = target
+    }
+
+    function confirmed_action(target) {
+        if (confirm('Are you sure?')) {
+            window.location = target
+        }
+    }
+</script>
+{% endblock %}

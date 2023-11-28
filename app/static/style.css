@@ -1,0 +1,588 @@
+
+
+.header h1 {
+  color: white;
+  font-size: 2rem;
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+}
+h1 {
+  color: white;
+  font-size: 2rem;
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+}
+h2 {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  color: white;
+  font-size: 1rem;
+  margin: 20px;
+  padding: 20px;
+  display: inline-block;
+}
+
+.btn-default {
+  margin-top: 20px;
+}
+
+.body-content .post, .body-content .profile {
+  margin-bottom: 20px;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+/* Adjustments for mobile views */
+@media (max-width: 768px) {
+  .header .col-md-6 {
+      text-align: center;
+      margin-bottom: 10px;
+  }
+}
+
+
+table, th, td {
+  border: 1px solid;
+  padding: 5px
+}
+
+th {
+  background-color: rgb(91, 91, 241);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+input[type=submit] {
+  background-color: darkblue;
+  color: white;
+}
+
+
+
+.odd_row {
+  background-color: white;
+}
+
+.even_row {
+  background-color: lightgray;
+}
+
+.button {
+  background-color: darkblue;
+  color: white;
+}
+.like-button {
+  background-color: darkred;
+  color: white;
+}
+.form-section {
+  background:#010409;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  text-align: center;
+}
+
+.form-container {
+  width: 100%;
+  max-width: 500px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.form-input {
+  width: 65%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: medium;
+  transition: border-color 0.3s;
+}
+
+.form-input:focus {
+  border-color: darkblue;
+}
+.form-select {
+  width: 25%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: medium;
+  background-color: white;
+  transition: border-color 0.3s;
+}
+
+.form-select:focus {
+  border-color: darkblue;
+}
+
+
+/* 
+Sign up profile picture options 
+*/
+.profile-pictures {
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.profile-picture-label {
+  margin-bottom: 10px;
+  font-weight: bold;
+  text-align: center;
+}
+.profile-picture-options {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.profile-picture-option {
+  margin: 5px;
+  display: inline-block; /* Keep each picture option inline */
+}
+
+.profile-picture-option input[type="radio"] {
+  display: none;
+}
+
+.profile-picture-option label {
+  cursor: pointer;
+  border: 2px solid transparent;
+
+  border-radius: 50%;
+  display: inline-block;
+  padding: 3px;
+}
+
+.profile-picture-option label:hover,
+.profile-picture-option input[type="radio"]:checked + label {
+  border-color: darkblue;
+}
+
+.profile-picture-option img {
+  width: 100px; /* Adjust as needed */
+  height: 100px; /* Adjust as needed */
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+/*
+Profile picture in motaverse.html
+*/
+.profile-picture-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px; /* Adjust as needed */
+}
+
+.profile-picture-container img {
+  width: 200px; /* Adjust the size as needed */
+  height: 200px; /* Adjust the size as needed */
+  border-radius: 50%; /* This makes the image circular */
+  object-fit: cover; /* This ensures the image covers the area without stretching */
+}
+
+/*name in motaverse*/
+.user-name {
+  text-align: center;
+  font-size: 1.2em; /* Adjust the font size as needed */
+  margin-top: 10px; /* Space above the name */
+  color: blue; /* Adjust the color as needed */
+  padding-bottom: 10px; /* Space below the name */
+}
+
+
+.aside-2 {
+  text-align: left;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.profile-list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile-card {
+  width: 90%; /* Adjust the width as needed */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 10px 0;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.profile-pic-small {
+  width: 50px; /* Fixed size */
+  height: 50px; /* Fixed size */
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.profile-name-small {
+  font-size: 1em;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 600px) {
+  .profile-card {
+    width: 100%; /* Full width on smaller screens */
+    flex-direction: column; /* Stack elements vertically on smaller screens */
+    align-items: center;
+  }
+
+  .profile-pic-small {
+    margin-bottom: 10px;
+  }
+}
+
+
+
+/*
+.button {
+  background-color: darkblue;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.button:hover {
+  background-color: #0056b3;
+}
+*/
+.form-section p {
+  font-size: 1.1em;
+  margin: 20px 0;
+  color: #555;
+}
+
+.button-group {
+  display: flex;
+  gap: 10px;
+  animation: fadeIn 1s;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+  /* Basic reset for styles */
+  body, h1, h2, button {
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Header styles */
+  .top-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #f5f5f5; /* Light grey background */
+  }
+
+  .logout-button {
+    padding: 5px 15px;
+    background-color: white; /* Bootstrap primary color for example */
+    color: white;
+    
+    border: none;
+    border-radius: 5px;
+  }
+
+  /* Main content styles */
+  .main-content {
+    display: flex;
+    margin-top: 10px;
+  }
+
+  .left-column, .right-column {
+    padding: 10px;
+  }
+
+  .left-column {
+    width: 70%;
+  }
+
+  .right-column {
+    width: 30%;
+    background-color: #f5f5f5; /* Light grey background */
+  }
+
+  /* Post placeholder styles */
+  .post-placeholder {
+    background-color: #ffffff;
+    border: 1px solid #dddddd;
+    margin-bottom: 10px;
+    padding: 10px;
+  }
+
+  .wrapper {
+    display: flex;  
+    flex-flow: row wrap;
+    font-weight: bold;
+    text-align: center; 
+    min-height: 100vh;
+    background: #010409;
+    /*background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(52,0,52,1) 100%);*/
+  }
+  
+  .header, .footer {
+    flex: 0 0 auto; 
+  }
+
+  .left-side, .main, .right-side {
+    flex: 1 1 auto; /* Allow these elements to grow and shrink as needed */
+    min-height: calc(100vh - 90px); /*Adjust 90px to match the combined height of your header and footer */
+  }
+
+  .wrapper > * {
+    padding: 10px;
+    flex: 1 100%;
+  }
+  
+  .header {
+    background: black;
+    /*background: linear-gradient(0deg, rgba(45,0,37,1) 0%, rgba(117,0,107,1) 100%);*/
+    height: 45px;
+  }
+  /*
+  navigation inside hea
+  */
+  
+  .navigation {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    padding: 0;
+    //background: green;
+    list-style: none;
+    
+    padding-left: 0;
+    width: 100%
+  }
+  .navigation button {
+    background: none; /* Transparent background */
+    border: none; /* No border */
+    color: white; /* Text color matches the navigation links */
+    padding: 1em; /* Padding to match the navigation links */
+    font-size: inherit; /* Inherit the font size from parent */
+    cursor: pointer; /* Cursor to pointer to signify clickability */
+    text-align: left; /* Align text as per other navigation text */
+  }
+  
+  .navigation a {
+    text-decoration: none;
+    display: block;
+    padding: 1em;
+    color: white;
+  }
+  .navigation li:first-child {
+    margin-right: auto;
+  }
+  
+  .navigation a:hover {
+    background: black;
+  }
+  /* Style to reset the appearance of the button to a plain text for consistency */
+.navigation button:focus {
+  outline: none; /* Removes the outline on focus */
+}
+  
+  @media all and (max-width: 800px) {
+    .navigation {
+      justify-content: space-around;
+    }
+  }
+  
+  .main {
+    text-align: left;
+    color: white;
+  
+  }
+  /*left side:*/
+  .left-side {
+    text-align: center;
+    color: white;
+    background: linear-gradient(180deg, rgba(13,17,23,1) 0%, rgba(1,4,9,1) 50%);
+    /* Add more styling as needed */
+  }
+  
+  /* Style for the form inside the left-side */
+  .left-side form {
+    margin: 20px 0;
+  }
+  
+  /* Style for the textarea */
+  .left-side textarea {
+    width: 90%; /* Set the width to 90% of its parent element */
+    padding: 10px; /* Add some padding inside the textarea */
+    margin-bottom: 10px; /* Add some margin below the textarea */
+    border-radius: 4px; /* Optional: rounds the corners of the textarea */
+    border: 1px solid #ccc; /* Add a border to the textarea */
+    box-shadow: inset 0 1px 3px #ddd; /* Optional: adds a subtle inner shadow */
+    font-size: 1em; /* Set the font size similar to the default text */
+  }
+  
+  /* Style for the button */
+  .left-side button {
+    padding: 10px 20px;
+    background-color: #007bff; /* Set your desired button color */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .left-side button:hover {
+    background-color: #0056b3; /* Darken button color on hover for feedback */
+  }
+  
+
+  
+  .footer {
+    background: black;
+    color: white;
+    height: 45px;
+  }
+
+  @media all and (min-width: 800px) {
+    .main    { flex: 3 0px; }
+    .aside-1 { order: 1; } 
+    .main    { order: 2; }
+    .aside-2 { order: 3; }
+    .footer  { order: 4; }
+  }
+  
+  body {
+     margin: 0; /* Remove default margin */
+    padding: 0; 
+  }
+  
+  
+  @media all and (min-width: 600px) {
+      .navigation {
+      //flex-flow: column wrap;
+      padding: 0;
+    }
+      .navigation a { 
+      text-align: center; 
+      padding: 10px;
+      border-top: 1px solid rgba(255, 255, 255,0.3); 
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1); 
+    }
+      .navigation li:last-of-type a {
+      border-bottom: none;
+    }
+    .aside { flex: 1 0 0; }
+  }
+  
+  /*on main page this is the post container*/
+  .post-container {
+    display: block; /* Switched to block to layout li items vertically */
+    padding: 0;
+    margin: 15px;
+    list-style: none;
+  }
+  
+  .post-item {
+    background: radial-gradient(circle, rgba(13,17,23,1) 0%, rgba(1,4,9,1) 100%);
+
+    padding: 20px; /* Increased padding */
+    margin-top: 15px; /* Adjusted margin */
+    color: white;
+    border-radius: 15px; /* Optional: adds rounded corners to the post */
+    border: .1px solid #FFF0F5; /* Add this line */
+
+  }
+  
+  .profile {
+    display: flex; /* Flex to align image and info side by side */
+    align-items: center; /* Center items vertically */
+    margin-bottom: 10px; /* Space between profile and post content */
+  }
+  
+  .profile-pic {
+    float: left;
+    width: 60px; /* Adjusted width for profile image */
+    height: 60px; /* Adjusted height for profile image */
+    margin-right: 15px; /* Space between image and name */
+    border-radius: 50%; /* Makes the profile picture circular */
+  }
+  
+  .profile-info {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .profile-name {
+    font-size: 1.2em; /* Larger font size for the name */
+    color: teal; /* Lighter text color for better readability */
+  }
+  
+  .post-date {
+    font-size: 0.8em; /* Smaller font size for date */
+    color: #bbbbbb; /* Light grey color for the date */
+  }
+  
+  .post-content {
+    font-size: 1em; /* Font size for post content */
+    color: white; /* Text color for post content */
+    margin-bottom: 10px; /* Space between content and actions */
+  }
+  
+  .post-actions {
+    text-align: right; /* Aligns buttons to the right */
+  }
+  
+  button {
+    background: #007bff; /* Example button color */
+    color: white;
+    border: none;
+    padding: 8px 16px; /* Padding inside the button */
+    margin: 0 5px; /* Margin between buttons */
+    border-radius: 10px; /* Rounded corners for buttons */
+    cursor: pointer; /* Pointer cursor on hover */
+  }
+  
+  button:hover {
+    opacity: 0.8; /* Button feedback on hover */
+  }
+/*nav bar buttons*/
