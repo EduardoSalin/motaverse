@@ -19,6 +19,73 @@ Use this section to outline the vision for the product to be developed, includin
 </p>
 
 # Design
+<p align="center">
+    <img src="pics/classDiagram.png" alt="Class Diagram"/>
+</p>
+
+```
+@startuml
+!theme amiga
+
+title Class Diagram
+
+class User {
+  +username: String
+  +name: String
+  +profile_picture: Image
+  +password
+  +posts: List<Post>
+  +blocked_users: List<User>
+  +comments: List<Comment>
+  +likes: List<Post>
+  -signUp()
+  -signIn()
+  -commentOnPost()
+  -likePost()
+  -viewProfile()
+  -blockUser()
+  -removeBlockedUser()
+}
+
+class Admin extends User {
+  +title: String
+  -adminPrivilege()
+}
+
+class Post {
+  +comments: List<Comment>
+  +addComment()
+  +getComments()
+  +getOP() 
+  +viewAuthor()
+}
+
+class Comment {
+  +content: String
+  +dateCreated: DateTime
+  +author: User
+  +post: Post
+  +getAuthor()
+  +getParent()
+}
+
+class Profile {
+  +user: User
+  +profilePicture: Image
+  +name: String
+  +posts: List<Post>
+  +viewPosts()
+}
+
+User "1" -- "0.." Post : writes >
+User "1" -- "0.." Comment : makes >
+User "1" -- "0.." User : blocks >
+Post "1" -- "0.." Comment : contains >
+User "1" -- "1" Profile : has >
+
+@enduml
+```
+## User stories
 
 <!-- **Please delete this comment once we don't need it, this is from README_TEMPLATE.md**
 Describe the user stories designed for the project, including clear acceptance criteria and point estimate for each of them. User stories must be consistent with the use case diagram. Refer to the user stories using US#1, US#2, etc. At least one of the user stories, not related to user creation or authentication, must be detailed by a sequence diagram. 
