@@ -8,6 +8,7 @@ class User(db.Model, UserMixin):
     name = db.Column(db.String)
     profile_picture = db.Column(db.String(120))
     passwd = db.Column(db.LargeBinary)
+    posts = db.relationship('Post', back_populates='user', lazy=True)
 
     # Polymorphic relationship
     __mapper_args__ = {
@@ -25,17 +26,19 @@ class Admin(User):
     }
 
 
-'''
 class Post(db.Model, UserMixin):
     __tablename__ = 'posts'
-    user = db.relationship('User', back_populates='name', primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     content = db.Column(db.String)
     likes = db.Column(db.Integer)
-    comments = db.relationship('Comment', back_populates='')
 
+    user = db.Relationship('User', back_populates='posts')
+    # comments = db.relationship('Comment', back_populates='')
 
+'''
 class Comment(db.Model, UserMixin):
     __tablename__ = 'comments'
     user = db.relationship('User', back_populates='name', primary_key=True)
     content = db.Column(db.String)
-    '''
+'''

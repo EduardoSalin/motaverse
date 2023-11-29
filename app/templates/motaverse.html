@@ -29,21 +29,42 @@
 
 
     <h2>Create new post</h2>
-    <form>
+    <form action="{{ url_for('save_post') }}" method="post">
       <textarea id="newPostContent" name="newPostContent" rows="4" cols="50" placeholder="What's on your mind?"></textarea>
       <br/>
       <button type="submit">Post</button>
     </form>
   </aside>
     
-  <!--
-    center section
-    need to find a way to display the posts
-  -->
+  <!-- Shows posts -->
   <article class="main">
     <h1>Posts</h1>
     <ul class="post-container">
         <!-- this is where the post begins-->
+
+        <!-- Current user posts -->
+        {% if current_user_posts %}
+            {% for post in current_user_posts %}
+              <li class="post-item">
+                <div class="profile">
+                  <img src="{{ current_user_profile_pic_url }}" alt="Profile Picture" class="profile-pic" />
+                  <div class="profile-info">
+                    <div class="profile-name">{{ current_user_display_name }}</div><!-- User Name   -->
+                    <div class="post-date">October 31, 2023</div><!-- Date Posted -->
+                  </div>
+                </div>
+                <div class="post-content">
+                  {{ post.content }}
+                </div>
+                <div class="post-actions">
+                  <button type="button" class="like-button">Like</button>
+                  <button type="button">Comment</button>
+                </div>
+              </li>
+            {% endfor %}
+        {% endif %}
+
+    <!-- Example hard coded posts below here -->
       <li class="post-item">
         <div class="profile">
           <img src="{{ current_user_profile_pic_url }}" alt="Profile Picture" class="profile-pic" />

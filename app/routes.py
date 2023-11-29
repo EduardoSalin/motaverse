@@ -1,5 +1,5 @@
 from app import app, db, load_user
-from app.models import User, Admin
+from app.models import User, Admin, Post
 from app.forms import *
 from flask import render_template, redirect, url_for, flash, request
 from flask_login import login_required, login_user, logout_user, current_user
@@ -87,6 +87,22 @@ def admin_signout():
     logout_user()  
     return redirect(url_for('index'))
 
+
+@app.route('/save_post', methods=['POST'])
+@login_required
+def save_post():
+    new_post_request = request.form['newPostContent']
+    new_post = Post(content=new_post_request, user=current_user)
+
+    # Add the post to the user and commit the change to the db
+    current_user.posts.append(new_post)
+    db.session.add(new_post)
+    db.session.commit()
+
+    print(f"New post created: {new_post.content}")
+    return redirect(url_for('motaverse'))
+
+
 @app.route('/motaverse')
 @login_required
 def motaverse():
@@ -99,4 +115,6 @@ def motaverse():
         'motaverse.html', 
         all_users=all_users,
         current_user_profile_pic_url=current_user_profile_pic_url,
-        current_user_display_name=current_user_display_name)
+        current_user_display_name=current_user_display_name,
+        current_user_posts=current_user.posts
+    )
