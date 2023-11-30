@@ -1,5 +1,5 @@
 from app import app, db, load_user
-from app.models import User, Admin, Post
+from app.models import User, Post
 from app.forms import *
 from flask import render_template, redirect, url_for, flash, request
 from flask_login import login_required, login_user, logout_user, current_user
@@ -56,16 +56,10 @@ def login():
         id = form.id.data
         passwd = form.passwd.data
 
-        # Determine user type based on credentials
-        admin = Admin.query.filter_by(id=id).first()
+
         user = User.query.filter_by(id=id).first()
 
-        if admin and bcrypt.checkpw(passwd.encode('utf-8'), admin.passwd):
-            # Admin login successful
-            login_user(admin)
-            flash('Admin login successful', 'success')
-            return redirect(url_for('motaverse'))
-        elif user and bcrypt.checkpw(passwd.encode('utf-8'), user.passwd):
+        if user and bcrypt.checkpw(passwd.encode('utf-8'), user.passwd):
             # User login successful
             login_user(user)
             flash('User login successful', 'success')

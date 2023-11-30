@@ -26,7 +26,7 @@ login_manager = LoginManager()
 login_manager.init_app(app)
 
 
-from app.models import User, Admin
+from app.models import User
 
 with app.app_context():
     db.create_all()
@@ -45,32 +45,33 @@ if you have a png I found that you can just rename it to .jpg and it will work
 leave title as admin, idk what it does but it works
 '''
 
-admins_to_add = [
-    {'id': 'tmota', 'passwd': '1', 'name': 'Thaygo Mota', 'profile_picture': 'pic2.jpg', 'title': 'Admin'},
-    {'id': 'e', 'passwd': '1', 'name': 'Eduardo', 'profile_picture': 'picz.jpg', 'title': 'Admin'},
-    {'id': 'b', 'passwd': '1', 'name': 'BL', 'profile_picture': 'pic3.jpg', 'title': 'Admin'}
-    #{'id': 'x', 'passwd': '1', 'name': 'a', 'profile_picture': 'pic1.jpg', 'title': 'Admin'}
-    #{'id': 'y', 'passwd': '1', 'name': 'a', 'profile_picture': 'pic1.jpg', 'title': 'Admin'}
-    #{'id': 'z', 'passwd': '1', 'name': 'a', 'profile_picture': 'pic1.jpg', 'title': 'Admin'}
+# Check and add admin users
+users_to_add = [
+    {'id': 'tmota', 'passwd': '1', 'name': 'Thaygo Mota', 'profile_picture': 'pic2.jpg' },
+    {'id': 'e', 'passwd': '1', 'name': 'Eduardo', 'profile_picture': 'picz.jpg' },
+    {'id': 'b', 'passwd': '1', 'name': 'BL', 'profile_picture': 'pic3.jpg' }
+    #{'id': 'x', 'passwd': '1', 'name': 'a', 'profile_picture': 'pic1.jpg'}
+    #{'id': 'y', 'passwd': '1', 'name': 'a', 'profile_picture': 'pic1.jpg'}
+    #{'id': 'z', 'passwd': '1', 'name': 'a', 'profile_picture': 'pic1.jpg' }
 ]
 
-# Check and add admin users
+# Check for  users, prepopulate for testing purposes
 with app.app_context():
-    for admin_data in admins_to_add:
-        admin_id = admin_data['id']
+    for user_data in users_to_add:
+        user_id = user_data['id']
         # Check if the admin with the given ID already exists in the database
-        existing_admin = Admin.query.get(admin_id)
+        existing_user = User.query.get(user_id)
         
         # If the admin doesn't exist, add it to the database
-        if not existing_admin:
+        if not existing_user:
             # Hash the password using bcrypt
-            password = admin_data['passwd'].encode('utf-8')
+            password = user_data['passwd'].encode('utf-8')
             hashed_password = bcrypt.hashpw(password, bcrypt.gensalt())
             
-            admin_data['passwd'] = hashed_password
+            user_data['passwd'] = hashed_password
             
-            admin = Admin(**admin_data)
-            db.session.add(admin)
+            user = User(**user_data)
+            db.session.add(user)
     
     # Commit the admin user additions
     db.session.commit()

@@ -17,14 +17,6 @@ class User(db.Model, UserMixin):
     }
 
 
-class Admin(User):
-    title = db.Column(db.String)
-
-    # Polymorphic identity for Admin
-    __mapper_args__ = {
-        "polymorphic_identity": "admin"
-    }
-
 
 class Post(db.Model, UserMixin):
     __tablename__ = 'posts'
