@@ -100,7 +100,7 @@ def save_post():
 @app.route('/motaverse')
 @login_required
 def motaverse():
-    
+    all_posts = Post.query.order_by(Post.id.desc()).limit(100).all()
     all_users = User.query.all()
     current_user_profile_pic_url = url_for('static', filename='pic/' + current_user.profile_picture)
     current_user_display_name = current_user.name
@@ -110,5 +110,5 @@ def motaverse():
         all_users=all_users,
         current_user_profile_pic_url=current_user_profile_pic_url,
         current_user_display_name=current_user_display_name,
-        current_user_posts=current_user.posts
+        posts=all_posts
     )

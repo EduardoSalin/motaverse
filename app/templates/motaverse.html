@@ -43,8 +43,8 @@
         <!-- this is where the post begins-->
 
         <!-- Current user posts -->
-        {% if current_user_posts %}
-            {% for post in current_user_posts %}
+        {% if posts %}
+            {% for post in posts %}
               <li class="post-item">
                 <div class="profile">
                   <img src="{{ current_user_profile_pic_url }}" alt="Profile Picture" class="profile-pic" />
