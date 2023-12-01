@@ -1,3 +1,9 @@
+'''
+CS3250 - Software Development Methods and Tools - Fall 2023
+Instructor: Thyago Mota
+Students: Brady Lamson, Emerson Hatton, Riley Moen, Ebenezer Addei, Eduardo Salinas
+Description: Routes for the SQLAlchemy application
+'''
 from app import app, db, load_user
 from app.models import User, Post
 from app.forms import *

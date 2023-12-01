@@ -1,3 +1,9 @@
+'''
+CS3250 - Software Development Methods and Tools - Fall 2023
+Instructor: Thyago Mota
+Students: Brady Lamson, Emerson Hatton, Riley Moen, Ebenezer Addei, Eduardo Salinas
+Description: motaverse - Models for the SQLAlchemy application
+'''
 from flask_login import UserMixin
 from app import db
 

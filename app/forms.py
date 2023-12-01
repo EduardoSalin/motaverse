@@ -1,3 +1,9 @@
+'''
+CS3250 - Software Development Methods and Tools - Fall 2023
+Instructor: Thyago Mota
+Students: Brady Lamson, Emerson Hatton, Riley Moen, Ebenezer Addei, Eduardo Salinas
+Description: motaverse - Forms for the SQLAlchemy application
+'''
 from flask_wtf import FlaskForm
 from wtforms import *
 from wtforms.validators import DataRequired
@@ -22,17 +28,6 @@ class SignUpForm(FlaskForm):
     passwd_confirm = PasswordField('Confirm Password', validators=[DataRequired()])
     submit = SubmitField('Confirm')
     
-class AdminSignUpForm(FlaskForm):
-    id = StringField('Admin ID', validators=[DataRequired()])
-    passwd = PasswordField('Password', validators=[DataRequired()])
-    passwd_confirm = PasswordField('Confirm Password', validators=[DataRequired()])
-    submit = SubmitField('Sign Up')
-
-class SignInForm(FlaskForm):
-    id = StringField('Username', validators=[DataRequired()])
-    passwd = PasswordField('Password', validators=[DataRequired()])
-    submit = SubmitField('Sign In')
-
 class LoginForm(FlaskForm):
     id = StringField('Username', validators=[DataRequired()])
     passwd = PasswordField('Password', validators=[DataRequired()])
