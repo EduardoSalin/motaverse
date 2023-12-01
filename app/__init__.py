@@ -3,6 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 import bcrypt
 import os
+from lorem_text import lorem
 '''
 template_folder: path to the templates folder
 static_folder: path to the static folder
@@ -26,7 +27,7 @@ login_manager = LoginManager()
 login_manager.init_app(app)
 
 
-from app.models import User
+from app.models import User,Post
 
 with app.app_context():
     db.create_all()
@@ -59,21 +60,28 @@ users_to_add = [
 with app.app_context():
     for user_data in users_to_add:
         user_id = user_data['id']
-        # Check if the admin with the given ID already exists in the database
+        # Check if the user with the given ID already exists in the database
         existing_user = User.query.get(user_id)
-        
-        # If the admin doesn't exist, add it to the database
+
+        # If the user doesn't exist, add it to the database
         if not existing_user:
             # Hash the password using bcrypt
             password = user_data['passwd'].encode('utf-8')
             hashed_password = bcrypt.hashpw(password, bcrypt.gensalt())
-            
+
+            # Save the hashed password as bytes
             user_data['passwd'] = hashed_password
-            
+
+            # Create a new User instance
             user = User(**user_data)
             db.session.add(user)
-    
-    # Commit the admin user additions
+
+            # Create a Lorem Ipsum post for the user
+            post_data = {'user_id': user.id, 'content': lorem.sentence(), 'likes': 0}
+            post = Post(**post_data)
+            db.session.add(post)
+
+    # Commit the user and post additions
     db.session.commit()
 
 
