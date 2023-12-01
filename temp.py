@@ -43,4 +43,4 @@ Students:
 Brady Lamson, Emerson Hatton, Riley Moen, Ebenezer Addei, Eduardo Salinas
 Description: motaverse - Forms for the SQLAlchemy application
 '''
-py -m pycodestyle app/routes.py
+py -m pycodestyle app/__init__.py
