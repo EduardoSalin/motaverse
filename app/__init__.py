@@ -77,7 +77,7 @@ with app.app_context():
             db.session.add(user)
 
             # Create a Lorem Ipsum post for the user
-            post_data = {'user_id': user.id, 'content': lorem.sentence(), 'likes': 0}
+            post_data = {'user_id': user.id, 'content': lorem.sentence(), 'likes': []}
             post = Post(**post_data)
             db.session.add(post)
 

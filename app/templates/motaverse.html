@@ -56,13 +56,16 @@
             <div class="post-content">
                 {{ post.content }}
             </div>
+            <div class="post-likes">
+              Likes: {{ post.likes|length }}
+            </div>
             <div class="post-actions">
                 <button type="button" class="like-button">Like</button>
                 <button type="button">Comment</button>
             </div>
         </li>
     {% endfor %}
-{% endif %}
+    {% endif %}
 
     </ul>      <!-- end of posts section -->
 
