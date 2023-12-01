@@ -13,3 +13,6 @@ typing_extensions==4.7.1
 Werkzeug==2.3.7
 WTForms==3.0.1
 lorem-text==2.1
+selenium==2.33
+pycodestyle==2.11.1
+autopep8==2.0.4
