@@ -56,10 +56,10 @@ users_to_add = [
      'profile_picture': 'picz.jpg'},
     {'id': 'b', 'passwd': '1', 'name': 'BL',
      'profile_picture': 'pic3.jpg'},
-    {'id': 'x', 'passwd': '1', 'name': 'Shrek',
-     'profile_picture': 'pic1.jpg'},
-    {'id': 'y', 'passwd': '1', 'name': 'Donkey',
-     'profile_picture': 'pic1.jpg'},
+    {'id': 'shrek', 'passwd': '1', 'name': 'Shrek',
+     'profile_picture': 'shrek.jpg'},
+    {'id': 'donkey', 'passwd': '1', 'name': 'Donkey',
+     'profile_picture': 'donkey.jpg'},
     {'id': 'z', 'passwd': '1', 'name': 'Fiona',
      'profile_picture': 'pic1.jpg'}
 ]
