@@ -8,7 +8,7 @@ Description: Routes for the SQLAlchemy application
 from app import app, db, load_user
 from app.models import User, Post,Comment
 from app.forms import *
-from flask import render_template, redirect, url_for, flash, request
+from flask import render_template, redirect, url_for, flash, request,jsonify
 from flask_login import login_required, login_user, logout_user, current_user
 import bcrypt
 
@@ -175,14 +175,12 @@ def motaverse():
         current_user_display_name=current_user_display_name,
         posts=all_posts
     )
-@app.route('/get_more_comments', methods=['GET'])
-def get_more_comments():
-    post_id = request.args.get('post_id')
-    # Assuming you have a function to retrieve more comments based on post_id
-    # You might need to adjust this based on your actual database model and logic
-    more_comments = get_comments_for_post(post_id, offset=2, limit=5)
 
-    # Transform comments to JSON format
-    comments_json = [{'user': {'name': comment.user.name}, 'content': comment.content} for comment in more_comments]
 
-    return jsonify({'comments': comments_json})
+@app.route('/display_post/<int:post_id>')
+def display_post(post_id):
+    # Retrieve the post and its comments based on the post_id
+    post = Post.query.get(post_id)
+    # ...
+
+    return render_template('display_post.html', post=post)

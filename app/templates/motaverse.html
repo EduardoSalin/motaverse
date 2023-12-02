@@ -82,7 +82,7 @@
 
       <!-- Show more comments button -->
       {% if post.comments|length > 2 %}
-        <button class="show-more-comments-btn" data-post-id="{{ post.id }}">Show More Comments</button>
+      <a href="{{ url_for('display_post', post_id=post.id) }}" class="show-more-comments-btn">Show More Comments</a>
       {% endif %}
 
       <!-- Comment input box and send button -->
@@ -98,41 +98,6 @@
 
 
     </ul>      <!-- end of posts section -->
-    <script>
-      // JavaScript to handle showing more comments
-      document.addEventListener('DOMContentLoaded', function () {
-        const showMoreButtons = document.querySelectorAll('.show-more-comments-btn');
-    
-        showMoreButtons.forEach(button => {
-          button.addEventListener('click', function () {
-            const postId = this.getAttribute('data-post-id');
-            const commentContainer = document.querySelector(`[data-post-id="${postId}"] .post-comments ul`);
-    
-            // Assuming you have a route to fetch more comments for a specific post
-            // You can use fetch API or any other method to retrieve more comments
-            // and append them to the comment container
-    
-            // Example using fetch:
-            fetch(`/get_more_comments?post_id=${postId}`)
-              .then(response => response.json())
-              .then(data => {
-                // Append the new comments to the comment container
-                data.comments.forEach(comment => {
-                  const li = document.createElement('li');
-                  li.innerHTML = `<div class="comment"><span class="comment-author">${comment.user.name}</span>: ${comment.content}</div>`;
-                  commentContainer.appendChild(li);
-                });
-    
-                // Remove the "Show More Comments" button if no more comments
-                if (data.comments.length < 2) {
-                  button.style.display = 'none';
-                }
-              })
-              .catch(error => console.error('Error fetching more comments:', error));
-          });
-        });
-      });
-    </script>
   </article>    <!--    end of center section -->
 
   <script>
