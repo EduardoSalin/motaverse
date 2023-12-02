@@ -47,7 +47,11 @@
   {% for post in posts %}
     <li class="post-item">
       <div class="profile">
-        <!-- ... (post details) ... -->
+        <img src="{{ url_for('static', filename='pic/' + post.user.profile_picture) }}" alt="Profile Picture" class="profile-pic" />
+        <div class="profile-info">
+            <div class="profile-name">{{ post.user.name }}</div><!-- User Name -->
+            <div class="post-date">October 31, 2023</div><!-- Date Posted -->
+        </div>
       </div>
       <div class="post-content">
         {{ post.content }}
@@ -57,8 +61,9 @@
       </div>
       <div class="post-actions">
         <form action="{{ url_for('like_post') }}" method="POST">
-          <!-- ... (like button) ... -->
-        </form>
+          <input type="hidden" name="post" value="{{ post.id }}">
+          <button type="submit" class="like-button">Like</button>
+        </form>>
         <button type="button" class="comment-button">Comment</button>
       </div>
 
