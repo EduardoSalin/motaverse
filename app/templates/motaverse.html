@@ -86,11 +86,13 @@
       {% endif %}
 
       <!-- Comment input box and send button -->
-      <div class="comment-input-box" style="display: none;">
-        <textarea rows="3" cols="50" placeholder="Type your comment..." class="comment-input"></textarea>
-        <button type="button" class="send-comment-button">Send</button>
-      </div>
-    </li>
+<div class="comment-input-box">
+  <form action="{{ url_for('submit_comment') }}" method="post">
+      <textarea rows="3" cols="50" placeholder="Type your comment..." name="comment_content" class="comment-input"></textarea>
+      <input type="hidden" name="post_id" value="{{ post.id }}">
+      <button type="submit" class="send-comment-button">Send</button>
+  </form>
+</div>
   {% endfor %}
 {% endif %}
 
@@ -134,19 +136,19 @@
   </article>    <!--    end of center section -->
 
   <script>
-    // JavaScript to handle showing/hiding the comment input box
-    document.addEventListener('DOMContentLoaded', function () {
-      const commentButtons = document.querySelectorAll('.comment-button');
-      const commentInputBoxes = document.querySelectorAll('.comment-input-box');
-  
-      commentButtons.forEach((button, index) => {
-        button.addEventListener('click', function () {
-          // Toggle display of the comment input box
-          const commentInputBox = commentInputBoxes[index];
-          commentInputBox.style.display = commentInputBox.style.display === 'none' ? 'block' : 'none';
-        });
-      });
+// JavaScript to handle showing/hiding the comment input box
+document.addEventListener('DOMContentLoaded', function () {
+  const commentButtons = document.querySelectorAll('.comment-button');
+  const commentInputBoxes = document.querySelectorAll('.comment-input-box');
+
+  commentButtons.forEach((button, index) => {
+    button.addEventListener('click', function () {
+      // Toggle display of the comment input box
+      const commentInputBox = commentInputBoxes[index];
+      commentInputBox.style.display = (commentInputBox.style.display === 'none' || commentInputBox.style.display === '') ? 'block' : 'none';
     });
+  });
+});
   </script>
   
         <!-- Where all the profiles are being displayed -->

@@ -6,7 +6,7 @@ Brady Lamson, Emerson Hatton, Riley Moen, Ebenezer Addei, Eduardo Salinas
 Description: Routes for the SQLAlchemy application
 '''
 from app import app, db, load_user
-from app.models import User, Post, post_likes
+from app.models import User, Post,Comment
 from app.forms import *
 from flask import render_template, redirect, url_for, flash, request
 from flask_login import login_required, login_user, logout_user, current_user
@@ -127,6 +127,30 @@ def like_post():
     db.session.commit()
     return redirect(url_for('motaverse'))
 
+@app.route('/submit_comment', methods=['POST'])
+@login_required
+def submit_comment():
+    comment_content = request.form.get('comment_content')
+    post_id = request.form.get('post_id')
+
+    # Ensure the comment content and post ID are provided
+    if not comment_content or not post_id:
+        flash('Invalid comment submission', 'danger')
+        return redirect(url_for('motaverse'))
+
+    post = Post.query.get(post_id)
+
+    # Create a new comment
+    new_comment = Comment(content=comment_content, user=current_user)
+
+    # Associate the comment with the post
+    post.comments.append(new_comment)
+
+    # Add the comment to the database and commit the change
+    db.session.add(new_comment)
+    db.session.commit()
+
+    return redirect(url_for('motaverse'))
 
 @app.route('/motaverse')
 @login_required
@@ -151,3 +175,14 @@ def motaverse():
         current_user_display_name=current_user_display_name,
         posts=all_posts
     )
+@app.route('/get_more_comments', methods=['GET'])
+def get_more_comments():
+    post_id = request.args.get('post_id')
+    # Assuming you have a function to retrieve more comments based on post_id
+    # You might need to adjust this based on your actual database model and logic
+    more_comments = get_comments_for_post(post_id, offset=2, limit=5)
+
+    # Transform comments to JSON format
+    comments_json = [{'user': {'name': comment.user.name}, 'content': comment.content} for comment in more_comments]
+
+    return jsonify({'comments': comments_json})
