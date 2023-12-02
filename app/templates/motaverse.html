@@ -42,38 +42,107 @@
     <ul class="post-container">
         <!-- this is where the post begins-->
 
-        <!-- Current user posts -->
-        {% if posts %}
-        {% for post in posts %}
-        <li class="post-item">
-            <div class="profile">
-                <img src="{{ url_for('static', filename='pic/' + post.user.profile_picture) }}" alt="Profile Picture" class="profile-pic" />
-                <div class="profile-info">
-                    <div class="profile-name">{{ post.user.name }}</div><!-- User Name -->
-                    <div class="post-date">October 31, 2023</div><!-- Date Posted -->
-                </div>
-            </div>
-            <div class="post-content">
-                {{ post.content }}
-            </div>
-            <div class="post-likes">
-              Likes: {{ post.count_likes() }}
-            </div>
-            <div class="post-actions">
-                <form action="{{ url_for('like_post') }}" method="POST">
-                  <input type="hidden" name="post" value="{{ post.id }}">
-                  <button type="submit" class="like-button">Like</button>
-                </form>
-                <button type="button">Comment</button>
-            </div>
-        </li>
-    {% endfor %}
-    {% endif %}
+<!-- Current user posts -->
+{% if posts %}
+  {% for post in posts %}
+    <li class="post-item">
+      <div class="profile">
+        <!-- ... (post details) ... -->
+      </div>
+      <div class="post-content">
+        {{ post.content }}
+      </div>
+      <div class="post-likes">
+        Likes: {{ post.count_likes() }}
+      </div>
+      <div class="post-actions">
+        <form action="{{ url_for('like_post') }}" method="POST">
+          <!-- ... (like button) ... -->
+        </form>
+        <button type="button" class="comment-button">Comment</button>
+      </div>
+
+      <!-- Display up to two comments initially -->
+      <div class="post-comments" data-post-id="{{ post.id }}">
+        <ul>
+          {% for comment in post.comments[:2] %}
+            <li>
+              <div class="comment">
+                <span class="comment-author">{{ comment.user.name }}</span>: {{ comment.content }}
+              </div>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      <!-- Show more comments button -->
+      {% if post.comments|length > 2 %}
+        <button class="show-more-comments-btn" data-post-id="{{ post.id }}">Show More Comments</button>
+      {% endif %}
+
+      <!-- Comment input box and send button -->
+      <div class="comment-input-box" style="display: none;">
+        <textarea rows="3" cols="50" placeholder="Type your comment..." class="comment-input"></textarea>
+        <button type="button" class="send-comment-button">Send</button>
+      </div>
+    </li>
+  {% endfor %}
+{% endif %}
+
 
     </ul>      <!-- end of posts section -->
-
+    <script>
+      // JavaScript to handle showing more comments
+      document.addEventListener('DOMContentLoaded', function () {
+        const showMoreButtons = document.querySelectorAll('.show-more-comments-btn');
+    
+        showMoreButtons.forEach(button => {
+          button.addEventListener('click', function () {
+            const postId = this.getAttribute('data-post-id');
+            const commentContainer = document.querySelector(`[data-post-id="${postId}"] .post-comments ul`);
+    
+            // Assuming you have a route to fetch more comments for a specific post
+            // You can use fetch API or any other method to retrieve more comments
+            // and append them to the comment container
+    
+            // Example using fetch:
+            fetch(`/get_more_comments?post_id=${postId}`)
+              .then(response => response.json())
+              .then(data => {
+                // Append the new comments to the comment container
+                data.comments.forEach(comment => {
+                  const li = document.createElement('li');
+                  li.innerHTML = `<div class="comment"><span class="comment-author">${comment.user.name}</span>: ${comment.content}</div>`;
+                  commentContainer.appendChild(li);
+                });
+    
+                // Remove the "Show More Comments" button if no more comments
+                if (data.comments.length < 2) {
+                  button.style.display = 'none';
+                }
+              })
+              .catch(error => console.error('Error fetching more comments:', error));
+          });
+        });
+      });
+    </script>
   </article>    <!--    end of center section -->
 
+  <script>
+    // JavaScript to handle showing/hiding the comment input box
+    document.addEventListener('DOMContentLoaded', function () {
+      const commentButtons = document.querySelectorAll('.comment-button');
+      const commentInputBoxes = document.querySelectorAll('.comment-input-box');
+  
+      commentButtons.forEach((button, index) => {
+        button.addEventListener('click', function () {
+          // Toggle display of the comment input box
+          const commentInputBox = commentInputBoxes[index];
+          commentInputBox.style.display = commentInputBox.style.display === 'none' ? 'block' : 'none';
+        });
+      });
+    });
+  </script>
   
         <!-- Where all the profiles are being displayed -->
 
