@@ -16,3 +16,4 @@ lorem-text==2.1
 selenium==2.33
 pycodestyle==2.11.1
 autopep8==2.0.4
+coverage==7.3.2

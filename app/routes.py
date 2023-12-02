@@ -98,9 +98,10 @@ def save_post():
     new_post = Post(content=new_post_request, user=current_user)
 
     # Add the post to the user and commit the change to the db
-    current_user.posts.append(new_post)
     db.session.add(new_post)
     db.session.commit()
+    
+    current_user.posts.append(new_post)
 
     print(f"New post created: {new_post.content}")
     return redirect(url_for('motaverse'))
