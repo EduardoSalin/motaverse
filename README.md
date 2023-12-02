@@ -25,63 +25,51 @@ Use this section to outline the vision for the product to be developed, includin
 
 ```
 @startuml
-!theme amiga
 
 title Class Diagram
 
 class User {
-  +username: String
-  +name: String
-  +profile_picture: Image
-  +password
-  +posts: List<Post>
-  +blocked_users: List<User>
-  +comments: List<Comment>
-  +likes: List<Post>
-  -signUp()
-  -signIn()
-  -commentOnPost()
-  -likePost()
-  -viewProfile()
-  -blockUser()
-  -removeBlockedUser()
+  + id: db.String
+  + type: db.String
+  + name: db.String
+  + profile_picture: db.String
+  + passwd: db.LargeBinary
+  + posts: List<Post>
+  + comments: List<Comment>
+  + liked_posts: List<Post>
+  -SignUpFom()
+  -LogInForm ()
 }
 
-class Admin extends User {
-  +title: String
-  -adminPrivilege()
-}
 
 class Post {
-  +comments: List<Comment>
-  +addComment()
-  +getComments()
-  +getOP() 
-  +viewAuthor()
+  + id: db.Integer
+  + user_id: db.ForeignKey
+  + content: db.String
+  + comments: List<Comment>
+  + likes: List<User>
+  + user: User
+  + count_likes(): int
+  -PostForm()
+  -PostLikes()
 }
 
 class Comment {
-  +content: String
-  +dateCreated: DateTime
-  +author: User
-  +post: Post
-  +getAuthor()
-  +getParent()
+  + id: db.Integer
+  + user_id: db.ForeignKey
+  + post_id: db.ForeignKey
+  + content: db.String
+  + user: User
+  + post: Post
+  -CommentForm()
 }
 
-class Profile {
-  +user: User
-  +profilePicture: Image
-  +name: String
-  +posts: List<Post>
-  +viewPosts()
-}
+
 
 User "1" -- "0.." Post : writes >
 User "1" -- "0.." Comment : makes >
 User "1" -- "0.." User : blocks >
 Post "1" -- "0.." Comment : contains >
-User "1" -- "1" Profile : has >
 
 @enduml
 ```
@@ -100,6 +88,17 @@ Describe the user stories designed for the project, including clear acceptance c
 
 ### User Story #2
 *As a registered user, I want to log in to the online platform, so I can create new posts. Since a registered user has provided their ID and password, when the registered user clicks the “Sign In” button then, if their credentials are valid, they are presented with all the posts that have been submitted in chronological order, showing the newest ones on top.*
+
+```
+User -> PostForm: Submit post content
+PostForm -> save_post: Invoke route
+save_post -> Post: Create new Post object
+save_post -> User: Associate Post with current_user
+User -> Database: Add Post to user's posts
+Post -> Database: Add new Post
+Database -> save_post: Commit session
+save_post -> motaverse: Redirect to motaverse page
+```
 
 
 ### User Story #3
