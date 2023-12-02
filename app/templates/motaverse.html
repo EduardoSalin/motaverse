@@ -57,10 +57,13 @@
                 {{ post.content }}
             </div>
             <div class="post-likes">
-              Likes: {{ post.likes|length }}
+              Likes: {{ post.count_likes() }}
             </div>
             <div class="post-actions">
-                <button type="button" class="like-button">Like</button>
+                <form action="{{ url_for('like_post') }}" method="POST">
+                  <input type="hidden" name="post" value="{{ post.id }}">
+                  <button type="submit" class="like-button">Like</button>
+                </form>
                 <button type="button">Comment</button>
             </div>
         </li>

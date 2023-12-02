@@ -6,7 +6,7 @@ Brady Lamson, Emerson Hatton, Riley Moen, Ebenezer Addei, Eduardo Salinas
 Description: Routes for the SQLAlchemy application
 '''
 from app import app, db, load_user
-from app.models import User, Post
+from app.models import User, Post, post_likes
 from app.forms import *
 from flask import render_template, redirect, url_for, flash, request
 from flask_login import login_required, login_user, logout_user, current_user
@@ -106,10 +106,38 @@ def save_post():
     return redirect(url_for('motaverse'))
 
 
+@app.route('/like_post', methods=['POST'])
+@login_required
+def like_post():
+
+    post_id = request.form['post']
+    post = (
+        Post
+        .query
+        .filter_by(id=post_id)
+        .first()
+    )
+
+    # We need to remove the pre-existing like first to prevent uniqueness errors in the other condition.
+    if current_user in post.likes:
+        post.likes.remove(current_user)
+    else:
+        post.likes.append(current_user)
+
+    db.session.commit()
+    return redirect(url_for('motaverse'))
+
+
 @app.route('/motaverse')
 @login_required
 def motaverse():
-    all_posts = Post.query.order_by(Post.id.desc()).limit(100).all()
+    all_posts = (
+        Post
+        .query
+        .order_by(Post.id.desc())
+        .limit(100)
+        .all()
+    )
     all_users = User.query.all()
     current_user_profile_pic_url = url_for(
         'static',
