@@ -262,7 +262,7 @@ Profile picture in motaverse.html
   margin-top: 20px;
 }
 
-.like-button, .comment-button{
+.like-button {
   padding: 8px 15px;
   color: white;
   background-color: #007bff;
@@ -273,10 +273,66 @@ Profile picture in motaverse.html
   transition:0 background-color 0.3s ease;
 }
 
-.like-button:hover, .comment-button:hover {
+.like-button:hover {
   background-color: #0056b3;
 }
+.comment-button {
+  padding: 8px 15px;
+  color: white; 
+  background-color: transparent; /* No background */
+  border: 0.5px solid #0056b3; 
+  border-radius: 4px; /* Rounded edges */
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold; /* Bold text */
+  transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
 
+.comment-button:hover {
+  background-color: #0056b3; /* Background color on hover */
+  color: white;
+}
+.block-button {
+  padding: 8px 15px;
+  color: IndianRed; /* White text */
+  background-color: transparent; /* No background */
+  border: none; /* No border */
+  border-radius: 4px; /* Rounded edges */
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold; /* Bold text */
+  transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.block-button:hover {
+  background-color: #d9534f; 
+  color: white;
+}
+
+.block-button-container {
+  position: absolute; /* Position the button container */
+  top: 20px; /* Adjust as needed */
+  right: 15px; /* Adjust as needed */
+  z-index: 1; /* Ensures it's above other content */
+}
+.show-more-comments-btn {
+  display: inline-block;
+  padding: 8px 15px;
+  background-color: transparent;
+  color: white;
+  text-align: center;
+  font-size: 14px;
+  border-radius: 4px;
+  text-decoration: none; /* Removes underline from links */
+  transition: background-color 0.3s ease;
+  margin-top: 10px;
+  border: none;
+  cursor: pointer;
+}
+
+.show-more-comments-btn:hover {
+  background-color: #007bff;
+}
 /* Style for the post comments section */
 .post-comments {
   margin-top: 20px;
@@ -593,7 +649,7 @@ Profile picture in motaverse.html
   
   .post-item {
     background: radial-gradient(circle, rgba(13,17,23,1) 0%, rgba(1,4,9,1) 100%);
-
+    position: relative;
     padding: 20px; /* Increased padding */
     margin-top: 15px; /* Adjusted margin */
     color: white;
@@ -681,25 +737,6 @@ Profile picture in motaverse.html
 .button:focus, .btn-default:focus {
     outline: none; 
     box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.4); 
-}
-/* Style for the show more comments button */
-.show-more-comments-btn {
-  display: inline-block;
-  padding: 8px 15px;
-  background-color: #007bff;
-  color: white;
-  text-align: center;
-  font-size: 14px;
-  border-radius: 4px;
-  text-decoration: none; /* Removes underline from links */
-  transition: background-color 0.3s ease;
-  margin-top: 10px;
-  border: none;
-  cursor: pointer;
-}
-
-.show-more-comments-btn:hover {
-  background-color: #007bff;
 }
 
 /* Style for the post comments section */

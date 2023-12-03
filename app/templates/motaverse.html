@@ -55,6 +55,13 @@
 {% if posts %}
   {% for post in posts %}
     <li class="post-item">
+      <div class="block-button-container">
+        <form action="{{ url_for('block_user') }}" method="POST">
+          <input type="hidden" name="user_id" value="{{ post.user.id }}">
+          <button type="submit" class="block-button">Block</button>
+        </form>
+      </div>
+
       <div class="profile">
         <img src="{{ url_for('static', filename='pic/' + post.user.profile_picture) }}" alt="Profile Picture" class="profile-pic" />
         <div class="profile-info">
@@ -73,10 +80,6 @@
           <input type="hidden" name="post" value="{{ post.id }}">
           <button type="submit" class="like-button">Like</button>
         </form>
-        <form action="{{ url_for('block_user') }}" method="POST">
-          <input type="hidden" name="user_id" value="{{ post.user.id }}">
-          <button type="submit" class="block-button">Block</button>
-      </form>
   
         <button type="button" class="comment-button">Comment</button>
       </div>
