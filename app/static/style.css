@@ -1,3 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+body {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
 .header h1 {
   color: white;
   font-size: 2rem;
@@ -24,6 +28,7 @@ h2 {
 .btn-default {
   margin-top: 20px;
 }
+
 
 .body-content .post, .body-content .profile {
   margin-bottom: 20px;
@@ -75,10 +80,7 @@ input[type=submit] {
   background-color: green, gold, darkblue;
   color: white;
 }
-.like-button {
-  background-color: darkred;
-  color: white;
-}
+
 .form-section {
   background:#010409;
   display: flex;
@@ -248,6 +250,78 @@ Profile picture in motaverse.html
 
 .profile-name-small {
   font-size: 1em;
+}
+
+/* Style for the post actions section */
+.post-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-top: 1px solid #e0e0e0;
+  margin-top: 20px;
+}
+
+.like-button, .comment-button{
+  padding: 8px 15px;
+  color: white;
+  background-color: #007bff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition:0 background-color 0.3s ease;
+}
+
+.like-button:hover, .comment-button:hover {
+  background-color: #0056b3;
+}
+
+/* Style for the post comments section */
+.post-comments {
+  margin-top: 20px;
+
+  padding: 15px;
+}
+
+.post-comments ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.post-comments li {
+  margin-bottom: 10px;
+}
+/* Style for the post likes section */
+.post-likes {
+  padding: 10px 15px;
+  color: white;
+  font-size: 16px;
+
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.post-likes::before {
+  content: '👍';
+  margin-right: 10px;
+  font-size: 20px;
+}
+.profile-name-comment {
+  color: teal; /* Lighter text color for better readability */
+}
+.comment {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+}
+
+.comment-author {
+  font-weight: bold;
+  margin-right: 5px;
 }
 
 /* Responsive design for smaller screens */
@@ -611,5 +685,25 @@ Profile picture in motaverse.html
     outline: none; 
     box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.4); 
 }
+/* Style for the show more comments button */
+.show-more-comments-btn {
+  display: inline-block;
+  padding: 8px 15px;
+  background-color: #007bff;
+  color: white;
+  text-align: center;
+  font-size: 14px;
+  border-radius: 4px;
+  text-decoration: none; /* Removes underline from links */
+  transition: background-color 0.3s ease;
+  margin-top: 10px;
+  border: none;
+  cursor: pointer;
+}
+
+.show-more-comments-btn:hover {
+  background-color: #007bff;
+}
+
 
 /*nav bar buttons*/
