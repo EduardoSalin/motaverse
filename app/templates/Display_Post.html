@@ -6,13 +6,15 @@
   <!--I think this part should remain the same, so every page looks similar-->
   <header class="header">
     <ul class="navigation">
-      <!-- Navigation buttons -->
-      <li><button onclick="simple_action('{{ url_for('motaverse') }}')">Motaverse</button></li>
+        <!-- Navigation buttons -->
+        <li>
+          <a href="{{ url_for('motaverse') }}">
 
-      <!-- 
-      <li><a href="#">My Profile</a></li>
-      <li><a href="#">About</a></li>
-      -->
+          <img src="{{ url_for('static', filename='icon.png') }}" alt="Motaverse" width= 100px height= auto>
+        </a>
+
+        </li>
+
       <li><button onclick="simple_action('{{ url_for('admin_signout') }}')">Logout</button></li>
     </ul>
   </header>
