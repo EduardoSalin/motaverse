@@ -4,110 +4,110 @@
 <div class="wrapper">
   
   <!--I think this part should remain the same, so every page looks similar-->
-    <header class="header">
-        <ul class="navigation">
-            <!-- Navigation buttons -->
-          <li><a href="#">motaverse</a></li>
+  <header class="header">
+    <ul class="navigation">
+      <!-- Navigation buttons -->
+      <li><a href="#">motaverse</a></li>
 
-          <!-- 
-          <li><a href="#">My Profile</a></li>
-          <li><a href="#">About</a></li>
-           -->
-          <li><button onclick="simple_action('{{ url_for('admin_signout') }}')">Logout</button></li>
-        </ul>
-      </header>
+      <!-- 
+      <li><a href="#">My Profile</a></li>
+      <li><a href="#">About</a></li>
+      -->
+      <li><button onclick="simple_action('{{ url_for('admin_signout') }}')">Logout</button></li>
+    </ul>
+  </header>
 
-      <!-- This is the left side of the screen-->
+  <!-- This is the left side of the screen-->
   <aside class="aside left-side">
 
     <!-- This is the profile picture and name of the current user-->
     <div class="profile-picture-container">
       <img src="{{ current_user_profile_pic_url }}" alt="Profile Picture">
     </div>
-    <div class="user-name">{{ current_user_display_name  }}</div>
-<!-- Shows posts -->
-<article class="main">
-    <h1>Posts</h1>
-    <ul class="post-container">
+    <div class="user-name">{{ current_user_display_name }}</div>
+
+    <!-- Shows posts -->
+    <article class="main">
+      <h1>Posts</h1>
+      <ul class="post-container">
         <!-- this is where the post begins-->
-
-<!-- Current user posts -->
-{% if posts %}
-  {% for post in posts %}
-    <li class="post-item">
-      <div class="profile">
-        <img src="{{ url_for('static', filename='pic/' + post.user.profile_picture) }}" alt="Profile Picture" class="profile-pic" />
-        <div class="profile-info">
-            <div class="profile-name">{{ post.user.name }}</div><!-- User Name -->
-            <div class="post-date">October 31, 2023</div><!-- Date Posted -->
-        </div>
-      </div>
-      <div class="post-content">
-        {{ post.content }}
-      </div>
-      <div class="post-likes">
-        Likes: {{ post.count_likes() }}
-      </div>
-      <div class="post-actions">
-        <form action="{{ url_for('like_post') }}" method="POST">
-          <input type="hidden" name="post" value="{{ post.id }}">
-          <button type="submit" class="like-button">Like</button>
-        </form>>
-        <button type="button" class="comment-button">Comment</button>
-      </div>
-
-      <!-- Display up to two comments initially -->
-      <div class="post-comments" data-post-id="{{ post.id }}">
-        <ul>
-          {% for comment in post.comments[:2] %}
-            <li>
-              <div class="comment">
-                <span class="comment-author">{{ comment.user.name }}</span>: {{ comment.content }}
+        
+        <!-- Check if 'post' exists -->
+        {% if post %}
+          <li class="post-item">
+            <div class="profile">
+              <img src="{{ url_for('static', filename='pic/' + post.user.profile_picture) }}" alt="Profile Picture" class="profile-pic" />
+              <div class="profile-info">
+                <div class="profile-name">{{ post.user.name }}</div><!-- User Name -->
+                <div class="post-date">October 31, 2023</div><!-- Date Posted -->
               </div>
-            </li>
-          {% endfor %}
-        </ul>
-      </div>
-      <!-- Comment input box and send button -->
-<div class="comment-input-box">
-    <form action="{{ url_for('submit_comment') }}" method="post">
-        <textarea rows="3" cols="50" placeholder="Type your comment..." name="comment_content" class="comment-input"></textarea>
-        <input type="hidden" name="post_id" value="{{ post.id }}">
-        <button type="submit" class="send-comment-button">Send</button>
-    </form>
-  </div>
-    {% endfor %}
-  {% endif %}
-  
-  
-      </ul>      <!-- end of posts section -->
-    </article>    <!--    end of center section -->
-  
+            </div>
+            <div class="post-content">
+              {{ post.content }}
+            </div>
+            <div class="post-likes">
+              Likes: {{ post.count_likes() }}
+            </div>
+            <div class="post-actions">
+              <form action="{{ url_for('like_post') }}" method="POST">
+                <input type="hidden" name="post" value="{{ post.id }}">
+                <button type="submit" class="like-button">Like</button>
+              </form>
+              <button type="button" class="comment-button">Comment</button>
+            </div>
+
+            <div class="post-comments" data-post-id="{{ post.id }}">
+              <ul>
+                {% for comment in post.comments %}
+                  <li>
+                    <div class="comment">
+                      <span class="comment-author">{{ comment.user.name }}</span>: {{ comment.content }}
+                    </div>
+                  </li>
+                {% endfor %}
+              </ul>
+            </div>
+            <!-- Comment input box and send button -->
+            <div class="comment-input-box">
+              <form action="{{ url_for('submit_comment') }}" method="post">
+                <textarea rows="3" cols="50" placeholder="Type your comment..." name="comment_content" class="comment-input"></textarea>
+                <input type="hidden" name="post_id" value="{{ post.id }}">
+                <button type="submit" class="send-comment-button">Send</button>
+              </form>
+            </div>
+          </li>
+        {% endif %}
+
+      </ul> <!-- end of posts section -->
+    </article> <!-- end of center section -->
+
     <script>
-  // JavaScript to handle showing/hiding the comment input box
-  document.addEventListener('DOMContentLoaded', function () {
-    const commentButtons = document.querySelectorAll('.comment-button');
-    const commentInputBoxes = document.querySelectorAll('.comment-input-box');
-  
-    commentButtons.forEach((button, index) => {
-      button.addEventListener('click', function () {
-        // Toggle display of the comment input box
-        const commentInputBox = commentInputBoxes[index];
-        commentInputBox.style.display = (commentInputBox.style.display === 'none' || commentInputBox.style.display === '') ? 'block' : 'none';
+      // JavaScript to handle showing/hiding the comment input box
+      document.addEventListener('DOMContentLoaded', function () {
+        const commentButtons = document.querySelectorAll('.comment-button');
+        const commentInputBoxes = document.querySelectorAll('.comment-input-box');
+
+        commentButtons.forEach((button, index) => {
+          button.addEventListener('click', function () {
+            // Toggle display of the comment input box
+            const commentInputBox = commentInputBoxes[index];
+            commentInputBox.style.display = (commentInputBox.style.display === 'none' || commentInputBox.style.display === '') ? 'block' : 'none';
+          });
+        });
       });
-    });
-  });
     </script>
     <script type="text/javascript">
-        function simple_action(target) {
-            window.location = target
+      function simple_action(target) {
+        window.location = target
+      }
+
+      function confirmed_action(target) {
+        if (confirm('Are you sure?')) {
+          window.location = target
         }
-    
-        function confirmed_action(target) {
-            if (confirm('Are you sure?')) {
-                window.location = target
-            }
-        }
+      }
     </script>
-    {% endblock %}
-    
+  </div>
+</div>
+
+{% endblock %}

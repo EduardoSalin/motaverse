@@ -98,10 +98,9 @@ def save_post():
     new_post = Post(content=new_post_request, user=current_user)
 
     # Add the post to the user and commit the change to the db
+    current_user.posts.append(new_post)
     db.session.add(new_post)
     db.session.commit()
-    
-    current_user.posts.append(new_post)
 
     print(f"New post created: {new_post.content}")
     return redirect(url_for('motaverse'))
@@ -179,9 +178,14 @@ def motaverse():
 
 
 @app.route('/display_post/<int:post_id>')
+@login_required
 def display_post(post_id):
     # Retrieve the post and its comments based on the post_id
-    post = Post.query.get(post_id)
+    post = get_post_by_id(post_id)
     # ...
 
-    return render_template('display_post.html', post=post)
+    return render_template('Display_Post.html', post=post)
+
+
+def get_post_by_id(post_id):
+    return Post.query.get(post_id)
