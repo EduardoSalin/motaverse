@@ -236,7 +236,7 @@ Profile picture in motaverse.html
   align-items: center;
   margin: 10px 0;
   padding: 10px;
-  border: 1px solid #ccc;
+  border: 1px solid #30363D;
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -599,7 +599,7 @@ Profile picture in motaverse.html
     margin-top: 15px; /* Adjusted margin */
     color: white;
     border-radius: 15px; /* Optional: adds rounded corners to the post */
-    border: .1px solid #FFF0F5; /* Add this line */
+    border: .1px solid #30363D; /* Add this line */
 
   }
   
@@ -701,6 +701,41 @@ Profile picture in motaverse.html
 
 .show-more-comments-btn:hover {
   background-color: #007bff;
+}
+
+/* Style for the post comments section */
+.post-comments ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.comment-item {
+  display: flex;
+  align-items: flex-start;
+  background-color: #161B22; /* Dark background */
+  border-radius: 15px; /* Circular edges */
+  margin: 0; /* No margin */
+  padding: 10px;
+  color: white; /* Light text for dark background */
+ /* flex-wrap: wrap;  Allows items to wrap as needed */
+}
+
+.comment-profile-pic {
+  width: 50px; /* Adjust as needed */
+  height: 50px; /* Adjust as needed */
+  border-radius: 50%; /* Circular profile picture */
+  margin-right: 20px;
+  flex-shrink: 0; /* Prevents the image from shrinking */
+}
+
+.comment-details {
+  flex-grow: 1;  /*Allows this div to grow as needed */
+  max-width: calc(100% - 60px);  /*Adjusts width accounting for image and margin */
+}
+
+.comment-content {
+  /* Additional styling for comment content if needed */
 }
 
 
