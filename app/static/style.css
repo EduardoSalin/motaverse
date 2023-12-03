@@ -280,7 +280,6 @@ Profile picture in motaverse.html
 /* Style for the post comments section */
 .post-comments {
   margin-top: 20px;
-
   padding: 15px;
 }
 
@@ -315,8 +314,7 @@ Profile picture in motaverse.html
 }
 .comment {
   padding: 10px;
-  border-radius: 5px;
-  border: 1px solid #ddd;
+  width: 75%;
 }
 
 .comment-author {

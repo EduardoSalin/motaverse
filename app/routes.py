@@ -182,9 +182,17 @@ def motaverse():
 def display_post(post_id):
     # Retrieve the post and its comments based on the post_id
     post = get_post_by_id(post_id)
-    # ...
+    all_users = User.query.all()
+    current_user_profile_pic_url = url_for(
+        'static',
+        filename='pic/' + current_user.profile_picture)
+    current_user_display_name = current_user.name
 
-    return render_template('Display_Post.html', post=post)
+    return render_template('Display_Post.html',
+                           post=post,
+                           all_users=all_users,
+                           current_user_profile_pic_url=current_user_profile_pic_url,
+                           current_user_display_name=current_user_display_name)
 
 
 def get_post_by_id(post_id):

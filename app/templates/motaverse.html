@@ -14,9 +14,12 @@
     <header class="header">
         <ul class="navigation">
             <!-- Navigation buttons -->
-          <li><a href="#">motaverse</a></li>
+            <li><button onclick="simple_action('{{ url_for('motaverse') }}')">Motaverse</button></li>
+
+          
 
           <!-- 
+            <li><a href="#">motaverse</a></li>
           <li><a href="#">My Profile</a></li>
           <li><a href="#">About</a></li>
            -->
@@ -74,23 +77,26 @@
         <button type="button" class="comment-button">Comment</button>
       </div>
 
+
       <!-- Display up to two comments initially -->
       <div class="post-comments" data-post-id="{{ post.id }}">
         <ul>
           {% for comment in post.comments[:2] %}
             <li>
               <div class="comment">
-                <span class="profile-name-comment">{{ comment.user.name }}</span>: {{ comment.content }}
+                <span class="profile-name-comment">{{ comment.user.name }}:</span> {{ comment.content }}
               </div>
             </li>
           {% endfor %}
         </ul>
       </div>
 
+
       <!-- Show more comments button -->
       {% if post.comments|length > 2 %}
       <a href="{{ url_for('display_post', post_id=post.id) }}" class="show-more-comments-btn">Show More Comments</a>
       {% endif %}
+
 
       <!-- Comment input box and send button -->
 <div class="comment-input-box">

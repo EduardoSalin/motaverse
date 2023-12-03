@@ -7,7 +7,7 @@
   <header class="header">
     <ul class="navigation">
       <!-- Navigation buttons -->
-      <li><a href="#">motaverse</a></li>
+      <li><button onclick="simple_action('{{ url_for('motaverse') }}')">Motaverse</button></li>
 
       <!-- 
       <li><a href="#">My Profile</a></li>
@@ -24,7 +24,8 @@
     <div class="profile-picture-container">
       <img src="{{ current_user_profile_pic_url }}" alt="Profile Picture">
     </div>
-    <div class="user-name">{{ current_user_display_name }}</div>
+    <div class="user-name">{{ current_user_display_name  }}</div>
+
   </aside>
 
     <!-- Shows posts -->
