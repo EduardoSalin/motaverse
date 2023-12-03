@@ -25,6 +25,7 @@
       <img src="{{ current_user_profile_pic_url }}" alt="Profile Picture">
     </div>
     <div class="user-name">{{ current_user_display_name }}</div>
+  </aside>
 
     <!-- Shows posts -->
     <article class="main">
@@ -61,7 +62,7 @@
                 {% for comment in post.comments %}
                   <li>
                     <div class="comment">
-                      <span class="comment-author">{{ comment.user.name }}</span>: {{ comment.content }}
+                      <span class="profile-name-comment">{{ comment.user.name }}</span>: {{ comment.content }}
                     </div>
                   </li>
                 {% endfor %}
@@ -80,6 +81,21 @@
 
       </ul> <!-- end of posts section -->
     </article> <!-- end of center section -->
+
+    <aside class="aside aside-2">
+      
+      <h2>Profiles</h2>
+
+      <div class="profile-list">
+        {% for user in all_users %}
+          <div class="profile-card">
+            <img src="{{ url_for('static', filename='pic/' + user.profile_picture) }}" alt="Profile Picture" class="profile-pic-small">
+            <div class="profile-name-small">{{ user.name }}</div>
+          </div>
+        {% endfor %}
+      </div>
+    </aside>
+
 
     <script>
       // JavaScript to handle showing/hiding the comment input box
