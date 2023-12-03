@@ -73,6 +73,11 @@
           <input type="hidden" name="post" value="{{ post.id }}">
           <button type="submit" class="like-button">Like</button>
         </form>
+        <form action="{{ url_for('block_user') }}" method="POST">
+          <input type="hidden" name="user_id" value="{{ post.user.id }}">
+          <button type="submit" class="block-button">Block</button>
+      </form>
+  
         <button type="button" class="comment-button">Comment</button>
       </div>
 

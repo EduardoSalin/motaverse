@@ -167,14 +167,37 @@ def motaverse():
         'static',
         filename='pic/' + current_user.profile_picture)
     current_user_display_name = current_user.name
+    filtered_posts = filter_blocked_posts(all_posts, current_user.blocked_users)
 
     return render_template(
         'motaverse.html',
         all_users=all_users,
         current_user_profile_pic_url=current_user_profile_pic_url,
         current_user_display_name=current_user_display_name,
-        posts=all_posts
+        posts=filtered_posts
     )
+def filter_blocked_posts(posts, blocked_users):
+    # Filter out posts from blocked users
+    return [post for post in posts if post.user not in blocked_users]
+
+from flask import redirect, url_for, request
+
+@app.route('/block_user', methods=['POST'])
+def block_user():
+    # Get the user ID from the form data
+    user_id_to_block = request.form.get('user_id')
+
+    # Get the user to block
+    user_to_block = User.query.filter_by(id=user_id_to_block).first()
+
+    # Add the user to the blocklist
+    current_user.blocked_users.append(user_to_block)
+
+    # Commit the changes to the database
+    db.session.commit()
+
+    # Redirect back to the referring page after blocking
+    return redirect(request.referrer)
 
 
 @app.route('/display_post/<int:post_id>')

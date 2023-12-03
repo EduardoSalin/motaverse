@@ -8,7 +8,11 @@ Description: motaverse - Models for the SQLAlchemy application
 from flask_login import UserMixin
 from app import db
 
-
+user_blocklist = db.Table(
+    'user_blocklist',
+    db.Column('user_id', db.String, db.ForeignKey('users.id'), primary_key=True),
+    db.Column('blocked_user_id', db.String, db.ForeignKey('users.id'), primary_key=True)
+)
 
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
@@ -31,7 +35,22 @@ class User(db.Model, UserMixin):
         secondary='post_likes',
         back_populates='likes'
     )
+    
+    blocked_users = db.relationship(
+        'User',
+        secondary=user_blocklist,
+        primaryjoin=(user_blocklist.c.user_id == id),
+        secondaryjoin=(user_blocklist.c.blocked_user_id == id),
+        back_populates='blocking_users'
+    )
 
+    blocking_users = db.relationship(
+        'User',
+        secondary=user_blocklist,
+        primaryjoin=(user_blocklist.c.blocked_user_id == id),
+        secondaryjoin=(user_blocklist.c.user_id == id),
+        back_populates='blocked_users'
+    )
 
 class Post(db.Model):
     __tablename__ = 'posts'
@@ -72,3 +91,4 @@ post_likes = db.Table(
     db.Column('user_id', db.Integer, db.ForeignKey('users.id'), primary_key=True),
     db.Column('post_id', db.Integer, db.ForeignKey('posts.id'), primary_key=True)
 )
+
