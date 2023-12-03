@@ -184,21 +184,25 @@ from flask import redirect, url_for, request
 
 @app.route('/block_user', methods=['POST'])
 def block_user():
-    # Get the user ID from the form data
     user_id_to_block = request.form.get('user_id')
-
-    # Get the user to block
     user_to_block = User.query.filter_by(id=user_id_to_block).first()
 
-    # Add the user to the blocklist
-    current_user.blocked_users.append(user_to_block)
+    if user_to_block:
+        current_user.blocked_users.append(user_to_block)
+        db.session.commit()
 
-    # Commit the changes to the database
-    db.session.commit()
-
-    # Redirect back to the referring page after blocking
     return redirect(request.referrer)
 
+@app.route('/unblock_user', methods=['POST'])
+def unblock_user():
+    user_id_to_unblock = request.form.get('user_id')
+    user_to_unblock = User.query.filter_by(id=user_id_to_unblock).first()
+
+    if user_to_unblock:
+        current_user.blocked_users.remove(user_to_unblock)
+        db.session.commit()
+
+    return redirect(request.referrer)
 
 @app.route('/display_post/<int:post_id>')
 @login_required

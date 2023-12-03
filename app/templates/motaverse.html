@@ -137,21 +137,35 @@ document.addEventListener('DOMContentLoaded', function () {
 });
   </script>
   
-        <!-- Where all the profiles are being displayed -->
+<!-- Where all the profiles are being displayed -->
+<aside class="aside aside-2">
+  <h2>Profiles</h2>
 
-    <aside class="aside aside-2">
-      
-      <h2>Profiles</h2>
-
-      <div class="profile-list">
-        {% for user in all_users %}
-          <div class="profile-card">
-            <img src="{{ url_for('static', filename='pic/' + user.profile_picture) }}" alt="Profile Picture" class="profile-pic-small">
-            <div class="profile-name-small">{{ user.name }}</div>
-          </div>
-        {% endfor %}
+  <div class="profile-list">
+    {% for user in all_users %}
+      <div class="profile-card">
+        <img src="{{ url_for('static', filename='pic/' + user.profile_picture) }}" alt="Profile Picture" class="profile-pic-small">
+        <div class="profile-name-small">{{ user.name }}</div>
+        
+        {% if user.id != current_user.id %}
+          {% if user in current_user.blocked_users %}
+            <!-- Display "Unblock" button if user is already blocked -->
+            <form action="{{ url_for('unblock_user') }}" method="POST" style="display: inline;">
+              <input type="hidden" name="user_id" value="{{ user.id }}">
+              <button type="submit" class="unblock-button">Unblock</button>
+            </form>
+          {% else %}
+            <!-- Display "Block" button if user is not blocked -->
+            <form action="{{ url_for('block_user') }}" method="POST" style="display: inline;">
+              <input type="hidden" name="user_id" value="{{ user.id }}">
+              <button type="submit" class="block-button">Block</button>
+            </form>
+          {% endif %}
+        {% endif %}
       </div>
-    </aside>
+    {% endfor %}
+  </div>
+</aside>
     
   <!-- Footer -->
     
