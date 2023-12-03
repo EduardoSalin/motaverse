@@ -1,5 +1,3 @@
-
-
 .header h1 {
   color: white;
   font-size: 2rem;
@@ -55,7 +53,7 @@ th {
   padding: 10px 20px;
   margin: 10px;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: background-color ease 0.3s;
 }
 
 input[type=submit] {
@@ -74,7 +72,7 @@ input[type=submit] {
 }
 
 .button {
-  background-color: darkblue;
+  background-color: green, gold, darkblue;
   color: white;
 }
 .like-button {
@@ -582,7 +580,36 @@ Profile picture in motaverse.html
     cursor: pointer; /* Pointer cursor on hover */
   }
   
-  button:hover {
-    opacity: 0.8; /* Button feedback on hover */
-  }
+  .button, .btn-default {
+    background-image: linear-gradient(to right, #003366, #003366); /* Gradient background */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.8s ease; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); 
+    transform: scale(1); 
+    text-transform: uppercase; 
+    letter-spacing: 0.05em; 
+}
+
+.button:hover, .btn-default:hover {
+    background-image: linear-gradient(to right, #50bb55, #50bb55); 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); 
+    transform: scale(1.05); 
+}
+
+.button:active, .btn-default:active {
+    background-image: linear-gradient(to right, #003366, #003366); 
+    box-shadow: 0 2px 4px rgba(245, 243, 243, 0.2); 
+    transform: scale(0.95);
+}
+
+.button:focus, .btn-default:focus {
+    outline: none; 
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.4); 
+}
+
 /*nav bar buttons*/
