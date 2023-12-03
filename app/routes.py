@@ -125,7 +125,7 @@ def like_post():
         post.likes.append(current_user)
 
     db.session.commit()
-    return redirect(url_for('motaverse'))
+    return redirect(request.referrer)
 
 @app.route('/submit_comment', methods=['POST'])
 @login_required
@@ -150,7 +150,7 @@ def submit_comment():
     db.session.add(new_comment)
     db.session.commit()
 
-    return redirect(url_for('motaverse'))
+    return redirect(request.referrer)
 
 @app.route('/motaverse')
 @login_required
