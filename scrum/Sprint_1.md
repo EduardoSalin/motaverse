@@ -1,8 +1,8 @@
-Date/Time: 10/12/2023-13:00
+Date/Time: 11/16/2023-13:00
 
-Participants:  Mr. T, Brady Lamson, Emerson Hatton, Riley Moen, Eduardo salinas
+Participants: Brady Lamson, Emerson Hatton, Riley Moen, Eduardo salinas, Ebenezer Addei
 
-Goal Statement: Set goal to finish user stories 1 and 2   
+Goal Statement: Set goal to finish basic planning and User Stories and begin with the project implementation.
 
 # Daily Scrums
 
@@ -18,6 +18,22 @@ Eduardo started working on setting up the basic structure for the repository, se
 ## 11/21/2023 4:31 PM
 
 Brady modified the branches for more clear organization, created the class diagram and worked on the sign up page. Brady also created the Jira board and introduced the backlog  to start working on the project.
+
+## 11/20/2023 9:48 AM
+
+Emerson implemented and shared a Use Case Diagram for the application.
+
+## 11/21/2023 4:26 PM
+
+Brady presented a rough draft of what the Class Diagram should look like
+
+## 11/22/2023 3:11 PM
+
+Eduardo presented a more refined look at the Class Diagram and Emerson added to it and changed things that needed to be changed, and presented ideas as to how the app should work once it is implemented as well as throughout the development process.
+
+## 11/23/2023 7:00 PM
+
+Everyone was eating turkey.
 
 ## 11/27/2023 9:42 AM
 

@@ -383,6 +383,7 @@ Profile picture in motaverse.html
 }
 .profile-name-comment {
   color: teal; /* Lighter text color for better readability */
+  padding-bottom: 15px;
 }
 .comment {
   padding: 10px;
@@ -707,6 +708,7 @@ Profile picture in motaverse.html
   
   .post-content {
     font-size: 1em; /* Font size for post content */
+    font-weight: normal;
     color: white; /* Text color for post content */
     margin-bottom: 10px; /* Space between content and actions */
   }
@@ -789,7 +791,8 @@ Profile picture in motaverse.html
 }
 
 .comment-content {
-  /* Additional styling for comment content if needed */
+  padding-top: 7px;
+  font-weight: normal;
 }
 
 
