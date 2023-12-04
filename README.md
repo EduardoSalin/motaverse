@@ -9,16 +9,103 @@ Use this section to outline the vision for the product to be developed, includin
 
 ## Mission Statement
 * For a better universe, motaverse 
-* Where dreams come true
-## Use case Diagram
+
+"This web application seeks to inform its developers on the nuance and care taken into developing modern social media applications. By attempting to emulate basic functionality and recognizing the difficulty therein, a better appreciation for the tools we take for granted will be acquired."
+
+# User stories
+
+<!-- **Please delete this comment once we don't need it, this is from README_TEMPLATE.md**
+Describe the user stories designed for the project, including clear acceptance criteria and point estimate for each of them. User stories must be consistent with the use case diagram. Refer to the user stories using US#1, US#2, etc. At least one of the user stories, not related to user creation or authentication, must be detailed by a sequence diagram. 
+-->
+### User Story #1
+*As a user, I want to be able to register for an online blogging platform. Given that a user provides a username, their name, profile picture, email and password, when the user clicks on the "Sign up" button then their user information is saved and a user profile is created.* 
+
+**Additional Information**
+* All members of the team, and Professor Mota should have their own user profile created.
+* White box testing should be implemented to the SignUp function.
+
+
+### User Story #2
+*As a registered user, I want to log in to the online platform, so I can create new posts. Since a registered user has provided their ID and password, when the registered user clicks the “Sign In” button then, if their credentials are valid, they are presented with the main page, User can create a new post in the given "New post" field, and once they hit "post" their post will appear first alongside other posts all the posts that have been submitted in chronological order, showing the newest ones on top.*
+
+```
+User -> PostForm: Submit post content
+PostForm -> save_post: Invoke route
+save_post -> Post: Create new Post object
+save_post -> User: Associate Post with current_user
+User -> Database: Add Post to user's posts
+Post -> Database: Add new Post
+Database -> save_post: Commit session
+save_post -> motaverse: Redirect to motaverse page
+```
 <p align="center">
-    <img src="pics/Post_UCD.png" alt="Use Case Diagram"/>
-</p>
-<p align="center">
-    <img src="pics/Comment_UCD.png" alt="Use Case Diagram"/>
+    <img src="pics/SequenceD.png" alt="Use Case Diagram"/>
 </p>
 
+
+### User Story #3
+*As a registered user, I want to be able to comment on any already existing post. Since the post has already been created, I should be able to click "comment" button and write a reply to this post.*
+
+**Additional information**
+* Comments should appear in chronological order showing the older ones on top and newer ones at the bottom.
+* The name  of the person that made that comment should appear next to the comment, along side the profile picture.
+
+### User Story #4
+*As a registered user, I want to be able to like any already existing post. I also want to be able to see how many likes any given post has.*
+
+**Additional information**
+* Users should be able to like a post only once
+* If a user has liked a post, they should be able to remove that like.
+
+### User Story #5
+*As a registered user, I want to block people, if I have blocked a profile, all of that blocked profile's posts should automatically disappear from my feed, and they should not be able to see any of my posts.*
+
+**Additional information**
+* To block someone you can find the block or unblock button next to their name in the "profile" list or on a post that they made.
+* The block button should not be on the actively logged in profile.
+* Blocked profiles should appear on my own profile page, where I can then remove them from that list.
+
+### User Story #6
+*As a registered user, if I have submitted a post, I want to be able to edit or delete the post in case I made a mistake.*
+
 # Design
+
+
+<!--
+At a minimum, this section should have a class diagram that succinctly describes the main classes designed for this project, as well as their associations.-->
+
+## Use case Diagram
+
+```
+@startuml
+!theme amiga
+
+left to right direction
+actor User
+
+usecase "Sign Up" as UC1
+usecase "Log In" as UC2
+usecase "Create Post" as UC3
+usecase "Like Post" as UC4
+usecase "Comment on Post" as UC5
+usecase "Block User" as UC6
+
+
+User --> UC1
+User --> UC2
+User --> UC3
+User --> UC4
+User --> UC5
+User --> UC6
+
+@enduml
+```
+<p align="center">
+    <img src="pics/UseCase.png" alt="Use Case Diagram"/>
+</p>
+
+## Class Diagram 
+
 <p align="center">
     <img src="pics/classDiagram.png" alt="Class Diagram"/>
 </p>
@@ -73,65 +160,6 @@ Post "1" -- "0.." Comment : contains >
 
 @enduml
 ```
-## User stories
-
-<!-- **Please delete this comment once we don't need it, this is from README_TEMPLATE.md**
-Describe the user stories designed for the project, including clear acceptance criteria and point estimate for each of them. User stories must be consistent with the use case diagram. Refer to the user stories using US#1, US#2, etc. At least one of the user stories, not related to user creation or authentication, must be detailed by a sequence diagram. 
--->
-### User Story #1
-*As a user, I want to be able to register for an online blogging platform. Given that a user provides a username, their name, profile picture, email and password, when the user clicks on the "Sign up" button then their user information is saved and a user profile is created.* 
-
-**Additional Information**
-* All members of the team, and Professor Mota should have their own user profile created.
-* White box testing should be implemented to the SignUp function.
-
-
-### User Story #2
-*As a registered user, I want to log in to the online platform, so I can create new posts. Since a registered user has provided their ID and password, when the registered user clicks the “Sign In” button then, if their credentials are valid, they are presented with all the posts that have been submitted in chronological order, showing the newest ones on top.*
-
-```
-User -> PostForm: Submit post content
-PostForm -> save_post: Invoke route
-save_post -> Post: Create new Post object
-save_post -> User: Associate Post with current_user
-User -> Database: Add Post to user's posts
-Post -> Database: Add new Post
-Database -> save_post: Commit session
-save_post -> motaverse: Redirect to motaverse page
-```
-
-
-### User Story #3
-*As a registered user, I want to be able to comment on any already existing post. Since the post has already been created, I should be able to click "comment" button and write a reply to this post.*
-
-**Additional information**
-* Comments should appear in chronological order showing the older ones on top and newer ones at the bottom.
-* The name or user ID of the person that made that comment should appear next to the comment.
-
-### User Story #4
-*As a registered user, I want to be able to like any already existing post. I also want to be able to see how many likes any given post has.*
-
-**Additional information**
-* Users should be able to like a post only once
-* If a user has liked a post, they should be able to remove that like.
-
-### User Story #5
-*As a registered user, if I see a profile name, I want to be able to click on that name and go to their profile, where I will be able to see that person's profile picture and name on the left, and the middle there will be all of that specific person's posts.*
-
-**Additional information**
-* Any given person would also be able to see their own profile page
-
-### User Story #6
-*As a registered user, I want to block people, if I have blocked a profile, all of that blocked profile's posts should automatically disappear from my feed, and they should not be able to see any of my posts.*
-
-**Additional information**
-* To block someone you need to go into their profile, and there you can find a "block" button
-* The block button should not be on the profile page that is currently logged in
-* Blocked profiles should appear on my own profile page, where I can then remove them from that list.
-
-## Model 
-
-At a minimum, this section should have a class diagram that succinctly describes the main classes designed for this project, as well as their associations.
 
 # Development Process 
 <!--- **Please delete this comment once we don't need it, this is from README_TEMPLATE.md**
@@ -143,9 +171,9 @@ Feel free to use your own format for this section, as long as you are able to co
 
 |Sprint#|Goals|Start|End|Done|Observations|
 |---|---|---|---|---|---|
-|1|US#1, US#2|11/16/23|11/21/23|...|...|
-|2|US#3, US#4|11/12/23|11/28/23|...|...|
-|1|US#5, US#6|11/29/23|12/05/23|...|...|
+|1|Design, US#1|11/16/23|11/28/23|Finilized Design and finished sign up implementation|There is a lot to do and not a lot of time|
+|2|US#2, US#3, US#4|11/29/23|12/02/23|Finished US#2, US#3, and US#4, started setting up for next sprint|Started working on testing and other project requirements|
+|3|US#5, US#6|12/03/23|12/06/23|...|...|
 |Last|Finishing Project|12/06/23|12/07/23|...|...|
 
 Use the observations column to report problems encountered during a sprint and/or to reflect on how the team has continuously improved its work.
@@ -164,13 +192,10 @@ The final product must demonstrate the integrity of at least 5 of the 6 planned 
 
 +5 Project's README file: mission statement
 
-+5 Project's README file: use case diagram 
 
 +10 Project's README file: user stories (~ 6 x 1.5)
 
-+5 Project's README file: sequence diagram 
 
-+5 Project's README file: class diagram 
 
 +5 GitHub repository organization
 
@@ -182,11 +207,9 @@ The final product must demonstrate the integrity of at least 5 of the 6 planned 
 
 +10 Code execution: white-box and black-box testing
 
-+5 Project's README file: test coverage report using Python's **coverage**
 
 +5 Project's README file: deployment instructions
 
-+15 team/self evaluation
 
 Deductions: 
 
