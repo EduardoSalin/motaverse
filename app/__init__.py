@@ -93,17 +93,17 @@ with app.app_context():
             post = Post(**post_data)
             db.session.add(post)
     # Commit the user and post additions
-    db.session.commit()
-    for other_user in users_to_add:
-                if other_user['id'] != user.id:
-                    comment_data = {
-                        'user_id': other_user['id'],
-                        'post_id': post.id,
-                        'content': lorem.sentence()
-                    }
-                    comment = Comment(**comment_data)
-                    db.session.add(comment)
-                    db.session.commit()
+        db.session.commit()
+        for other_user in users_to_add:
+                    if other_user['id'] != user.id:
+                        comment_data = {
+                            'user_id': other_user['id'],
+                            'post_id': post.id,
+                            'content': lorem.sentence()
+                        }
+                        comment = Comment(**comment_data)
+                        db.session.add(comment)
+                        db.session.commit()
 
 
 # user_loader callback
