@@ -53,14 +53,16 @@
 <!-- All posts being displayed -->
 {% if posts %}
   {% for post in posts %}
-    <li class="post-item">
-      <!-- Block button -->
+  <li class="post-item">
+    <!-- Block button (display only if the post is not by the current user) -->
+    {% if post.user.id != current_user.id %}
       <div class="block-button-container">
         <form action="{{ url_for('block_user') }}" method="POST">
           <input type="hidden" name="user_id" value="{{ post.user.id }}">
           <button type="submit" class="block-button">Block</button>
         </form>
       </div>
+    {% endif %}
       <!-- Profile info -->
       <div class="profile">
         <img src="{{ url_for('static', filename='pic/' + post.user.profile_picture) }}" alt="Profile Picture" class="profile-pic" />
