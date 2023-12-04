@@ -210,7 +210,7 @@ Profile picture in motaverse.html
   text-align: center;
   font-size: 1.2em; /* Adjust the font size as needed */
   margin-top: 10px; /* Space above the name */
-  color: #238636; /* Adjust the color as needed */
+  color: rgb(103, 243, 151); /* Adjust the color as needed */
   padding-bottom: 10px; /* Space below the name */
 }
 
@@ -382,7 +382,7 @@ Profile picture in motaverse.html
   font-size: 20px;
 }
 .profile-name-comment {
-  color: teal; /* Lighter text color for better readability */
+  color: #2dd4bf; /* Lighter text color for better readability */
   padding-bottom: 15px;
 }
 .comment {
@@ -698,7 +698,7 @@ Profile picture in motaverse.html
   
   .profile-name {
     font-size: 1.2em; /* Larger font size for the name */
-    color: teal; /* Lighter text color for better readability */
+    color: #34d399; /* Lighter text color for better readability */
   }
   
   .post-date {
@@ -707,10 +707,11 @@ Profile picture in motaverse.html
   }
   
   .post-content {
-    font-size: 1em; /* Font size for post content */
+    font-size: 1.05em; /* Font size for post content */
     font-weight: normal;
     color: white; /* Text color for post content */
     margin-bottom: 10px; /* Space between content and actions */
+    line-height: 1.35; /* Increase the line spacing */
   }
   
   .post-actions {
@@ -793,6 +794,7 @@ Profile picture in motaverse.html
 .comment-content {
   padding-top: 7px;
   font-weight: normal;
+  line-height: 1.25;
 }
 
 
