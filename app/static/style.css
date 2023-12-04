@@ -266,16 +266,18 @@ Profile picture in motaverse.html
 .like-button {
   padding: 8px 15px;
   color: white;
-  background-color: #007bff;
-  border: none;
+  background-color: transparent; /* No background */
+  border: 0.5px solid #d8b4fe; 
   border-radius: 4px;
   cursor: pointer;
   font-size: 14px;
+  font-weight: bold;
   transition:0 background-color 0.3s ease;
 }
 
 .like-button:hover {
-  background-color: #0056b3;
+  background-color: #e9d5ff;
+  color: black;
 }
 .comment-button {
   padding: 8px 15px;
@@ -290,7 +292,7 @@ Profile picture in motaverse.html
 }
 
 .comment-button:hover {
-  background-color: #0056b3; /* Background color on hover */
+  background-color: #007bff; /* Background color on hover */
   color: white;
 }
 .unblock-button {
@@ -351,7 +353,7 @@ Profile picture in motaverse.html
   display: inline-block;
   padding: 8px 15px;
   background-color: transparent;
-  color: white;
+  color: #60a5fa;
   text-align: center;
   font-size: 14px;
   border-radius: 4px;
@@ -364,6 +366,7 @@ Profile picture in motaverse.html
 
 .show-more-comments-btn:hover {
   background-color: #007bff;
+  color: white;
 }
 /* Style for the post comments section */
 .post-comments {
@@ -383,7 +386,7 @@ Profile picture in motaverse.html
 /* Style for the post likes section */
 .post-likes {
   padding: 10px 15px;
-  color: white;
+  color: #e9d5ff;
   font-size: 16px;
 
   margin-top: 10px;
