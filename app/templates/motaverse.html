@@ -56,7 +56,7 @@
   <li class="post-item">
     <!-- Block button (display only if the post is not by the current user) -->
     {% if post.user.id != current_user.id %}
-      <div class="block-button-container">
+      <div class="action-button-container">
         <form action="{{ url_for('block_user') }}" method="POST">
           <input type="hidden" name="user_id" value="{{ post.user.id }}">
           <button type="submit" class="block-button">Block</button>
@@ -65,7 +65,7 @@
     {% endif %}
      <!-- Delete button for the current user's post -->
      {% if post.user.id == current_user.id %}
-     <div class="delete-button-container">
+     <div class="action-button-container">
        <form action="{{ url_for('delete_post', post_id=post.id) }}" method="POST">
          <button type="submit" class="delete-button">Delete</button>
        </form>
@@ -101,20 +101,21 @@
   <ul>
       {% for comment in post.comments[:2] %}
           {% if comment.user not in current_user.blocked_users %}
-           <!-- Delete button for the current user's comment -->
-           {% if comment.user.id == current_user.id %}
-           <div class="delete-button-container">
-             <form action="{{ url_for('delete_comment', comment_id=comment.id) }}" method="POST">
-               <button type="submit" class="delete-button">Delete</button>
-             </form>
-           </div>
-         {% endif %}
               <li class="comment-item">
                 <img src="{{ url_for('static', filename='pic/' + comment.user.profile_picture) }}" alt="Profile Picture" class="comment-profile-pic" />
-              <div class="comment-details">
+                         <!-- Delete button for the current user's comment -->
+
+                <div class="comment-details">
                   <span class="profile-name-comment">{{ comment.user.name }}</span>
                   <div class="comment-content">{{ comment.content }}</div>
               </div>
+              {% if comment.user.id == current_user.id %}
+              <div class="action-button-comment">
+                <form action="{{ url_for('delete_comment', comment_id=comment.id) }}" method="POST">
+                  <button type="submit" class="delete-button">Delete</button>
+                </form>
+              </div>
+            {% endif %}
             </li>
           {% endif %}
       {% endfor %}

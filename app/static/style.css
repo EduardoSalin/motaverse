@@ -324,8 +324,24 @@ Profile picture in motaverse.html
   background-color: #d9534f; 
   color: white;
 }
+.delete-button {
+  padding: 2px 2px;
+  color: #fcd34d; /* White text */
+  background-color: transparent; /* No background */
+  border: 2px; /* No border */
+  border-radius: 4px; /* Rounded edges */
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold; /* Bold text */
+  transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
 
-.block-button-container {
+.delete-button:hover {
+  background-color: #facc15; 
+  color: black;
+}
+
+.action-button-container {
   position: absolute; /* Position the button container */
   top: 20px; /* Adjust as needed */
   right: 15px; /* Adjust as needed */
@@ -777,7 +793,10 @@ Profile picture in motaverse.html
   color: white; /* Light text for dark background */
  /* flex-wrap: wrap;  Allows items to wrap as needed */
 }
-
+.action-button-comment {
+  display: flex;
+  margin-top: 0px; /* Adjust as needed */
+}
 .comment-profile-pic {
   width: 50px; /* Adjust as needed */
   height: 50px; /* Adjust as needed */
