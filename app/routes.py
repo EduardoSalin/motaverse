@@ -231,3 +231,39 @@ def display_post(post_id):
 
 def get_post_by_id(post_id):
     return Post.query.get(post_id)
+
+# Route to delete a post and its associated comments
+@app.route('/delete_post/<int:post_id>', methods=['POST'])
+@login_required
+def delete_post(post_id):
+    post = Post.query.get_or_404(post_id)
+
+    # Check if the current user is the author of the post
+    if current_user.id == post.user_id:
+        # Delete associated comments
+        Comment.query.filter_by(post_id=post.id).delete()
+
+        # Delete the post
+        db.session.delete(post)
+        db.session.commit()
+        flash('Post and comments deleted successfully!', 'success')
+    else:
+        flash('You do not have permission to delete this post!', 'danger')
+
+    return redirect(url_for('motaverse'))  # Redirect to the main page
+
+# Route to delete a comment
+@app.route('/delete_comment/<int:comment_id>', methods=['POST'])
+@login_required
+def delete_comment(comment_id):
+    comment = Comment.query.get_or_404(comment_id)
+
+    # Check if the current user is the author of the comment
+    if current_user.id == comment.user_id:
+        db.session.delete(comment)
+        db.session.commit()
+        flash('Comment deleted successfully!', 'success')
+    else:
+        flash('You do not have permission to delete this comment!', 'danger')
+
+    return redirect(url_for('motaverse'))  # Redirect to the main page

@@ -63,6 +63,14 @@
         </form>
       </div>
     {% endif %}
+     <!-- Delete button for the current user's post -->
+     {% if post.user.id == current_user.id %}
+     <div class="delete-button-container">
+       <form action="{{ url_for('delete_post', post_id=post.id) }}" method="POST">
+         <button type="submit" class="delete-button">Delete</button>
+       </form>
+     </div>
+   {% endif %}
       <!-- Profile info -->
       <div class="profile">
         <img src="{{ url_for('static', filename='pic/' + post.user.profile_picture) }}" alt="Profile Picture" class="profile-pic" />
@@ -93,6 +101,14 @@
   <ul>
       {% for comment in post.comments[:2] %}
           {% if comment.user not in current_user.blocked_users %}
+           <!-- Delete button for the current user's comment -->
+           {% if comment.user.id == current_user.id %}
+           <div class="delete-button-container">
+             <form action="{{ url_for('delete_comment', comment_id=comment.id) }}" method="POST">
+               <button type="submit" class="delete-button">Delete</button>
+             </form>
+           </div>
+         {% endif %}
               <li class="comment-item">
                 <img src="{{ url_for('static', filename='pic/' + comment.user.profile_picture) }}" alt="Profile Picture" class="comment-profile-pic" />
               <div class="comment-details">
