@@ -94,16 +94,26 @@ with app.app_context():
             db.session.add(post)
     # Commit the user and post additions
         db.session.commit()
-        for other_user in users_to_add:
-                    if other_user['id'] != user.id:
+# adding comments to existing posts
+    for user_data in users_to_add:
+        user_id = user_data['id']
+        user = User.query.get(user_id)
+        if user:
+            # Fetch the first post of the user to add comments
+            post = Post.query.filter_by(user_id=user.id).first()
+            if post:
+                for other_user_data in users_to_add:
+                    if other_user_data['id'] != user.id:
+                        # Create comments by other users on this user's post
                         comment_data = {
-                            'user_id': other_user['id'],
+                            'user_id': other_user_data['id'],
                             'post_id': post.id,
                             'content': lorem.sentence()
                         }
                         comment = Comment(**comment_data)
                         db.session.add(comment)
-                        db.session.commit()
+    db.session.commit()
+
 
 
 # user_loader callback
