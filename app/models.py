@@ -51,6 +51,15 @@ class User(db.Model, UserMixin):
         secondaryjoin=(user_blocklist.c.user_id == id),
         back_populates='blocked_users'
     )
+    def block_user(self, user_to_block):
+        # Check if the user is not already in the blocked users list
+        if user_to_block not in self.blocked_users:
+            # Add the user to the blocked users list
+            self.blocked_users.append(user_to_block)
+
+            # Commit the changes to the database
+            db.session.commit()
+
 
 class Post(db.Model):
     __tablename__ = 'posts'

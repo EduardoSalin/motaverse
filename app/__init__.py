@@ -28,7 +28,7 @@ login_manager.init_app(app)
 
 # pep8 compliance warns of 'module level import not at top of file'
 # if you change this to the top app will not run
-from app.models import User, Post
+from app.models import User, Post, Comment
 
 with app.app_context():
     db.create_all()
@@ -92,9 +92,18 @@ with app.app_context():
             }
             post = Post(**post_data)
             db.session.add(post)
-
     # Commit the user and post additions
     db.session.commit()
+    for other_user in users_to_add:
+                if other_user['id'] != user.id:
+                    comment_data = {
+                        'user_id': other_user['id'],
+                        'post_id': post.id,
+                        'content': lorem.sentence()
+                    }
+                    comment = Comment(**comment_data)
+                    db.session.add(comment)
+                    db.session.commit()
 
 
 # user_loader callback
