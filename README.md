@@ -58,7 +58,7 @@ save_post -> motaverse: Redirect to motaverse page
 * If a user has liked a post, they should be able to remove that like.
 
 ### User Story #5
-*As a registered user, I want to block people, if I have blocked a profile, all of that blocked profile's posts should automatically disappear from my feed, and they should not be able to see any of my posts.*
+*As a registered user, I want to block people, if I have blocked a profile, all of that blocked profile's posts and commentsshould automatically disappear from my feed.*
 
 **Additional information**
 * To block someone you can find the block or unblock button next to their name in the "profile" list or on a post that they made.
