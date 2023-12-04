@@ -27,7 +27,7 @@
       </header>
 
 
-  <!-- This is the left side of the screen-->
+  <!-- Left side of the screen-->
   <aside class="aside left-side">
 
     <!-- This is the profile picture and name of the current user-->
@@ -45,23 +45,23 @@
     </form>
   </aside>
     
-  <!-- Shows posts -->
+  <!-- Middle section of the page -->
   <article class="main">
     <h1>Posts</h1>
     <ul class="post-container">
-        <!-- this is where the post begins-->
 
-<!-- Current user posts -->
+<!-- All posts being displayed -->
 {% if posts %}
   {% for post in posts %}
     <li class="post-item">
+      <!-- Block button -->
       <div class="block-button-container">
         <form action="{{ url_for('block_user') }}" method="POST">
           <input type="hidden" name="user_id" value="{{ post.user.id }}">
           <button type="submit" class="block-button">Block</button>
         </form>
       </div>
-
+      <!-- Profile info -->
       <div class="profile">
         <img src="{{ url_for('static', filename='pic/' + post.user.profile_picture) }}" alt="Profile Picture" class="profile-pic" />
         <div class="profile-info">
@@ -69,23 +69,23 @@
             <div class="post-date">October 31, 2023</div><!-- Date Posted -->
         </div>
       </div>
+      <!-- content and likes -->
       <div class="post-content">
         {{ post.content }}
       </div>
       <div class="post-likes">
         Likes: {{ post.count_likes() }}
       </div>
+      <!-- Like and comment buttons -->
       <div class="post-actions">
         <form action="{{ url_for('like_post') }}" method="POST">
           <input type="hidden" name="post" value="{{ post.id }}">
           <button type="submit" class="like-button">Like</button>
         </form>
-  
         <button type="button" class="comment-button">Comment</button>
       </div>
 
 
-      <!-- Display up to two comments initially -->
 <!-- Display up to two comments initially -->
 <div class="post-comments" data-post-id="{{ post.id }}">
   <ul>
