@@ -6,9 +6,9 @@ Brady Lamson, Emerson Hatton, Riley Moen, Ebenezer Addei, Eduardo Salinas
 Description: Routes for the SQLAlchemy application
 '''
 from app import app, db, load_user
-from app.models import User, Post,Comment
+from app.models import User, Post, Comment
 from app.forms import *
-from flask import render_template, redirect, url_for, flash, request,jsonify
+from flask import render_template, redirect, url_for, flash, request, jsonify
 from flask_login import login_required, login_user, logout_user, current_user
 import bcrypt
 
@@ -118,7 +118,8 @@ def like_post():
         .first()
     )
 
-    # We need to remove the pre-existing like first to prevent uniqueness errors in the other condition.
+    # We need to remove the pre-existing like first to prevent
+    # uniqueness errors in the other condition.
     if current_user in post.likes:
         post.likes.remove(current_user)
     else:
@@ -126,6 +127,7 @@ def like_post():
 
     db.session.commit()
     return redirect(request.referrer)
+
 
 @app.route('/submit_comment', methods=['POST'])
 @login_required
@@ -152,6 +154,7 @@ def submit_comment():
 
     return redirect(request.referrer)
 
+
 @app.route('/motaverse')
 @login_required
 def motaverse():
@@ -167,7 +170,8 @@ def motaverse():
         'static',
         filename='pic/' + current_user.profile_picture)
     current_user_display_name = current_user.name
-    filtered_posts = filter_blocked_posts(all_posts, current_user.blocked_users)
+    filtered_posts = filter_blocked_posts(all_posts,
+                                          current_user.blocked_users)
 
     return render_template(
         'motaverse.html',
@@ -176,11 +180,12 @@ def motaverse():
         current_user_display_name=current_user_display_name,
         posts=filtered_posts
     )
+
+
 def filter_blocked_posts(posts, blocked_users):
     # Filter out posts from blocked users
     return [post for post in posts if post.user not in blocked_users]
 
-from flask import redirect, url_for, request
 
 @app.route('/block_user', methods=['POST'])
 def block_user():
@@ -193,6 +198,7 @@ def block_user():
 
     return redirect(request.referrer)
 
+
 @app.route('/unblock_user', methods=['POST'])
 def unblock_user():
     user_id_to_unblock = request.form.get('user_id')
@@ -204,13 +210,14 @@ def unblock_user():
 
     return redirect(request.referrer)
 
+
 @app.route('/display_post/<int:post_id>')
 @login_required
 def display_post(post_id):
     # Retrieve the post and its comments based on the post_id
     post = get_post_by_id(post_id)
     all_users = User.query.all()
-    current_user_profile_pic_url = url_for(
+    current_user_prof_pic = url_for(
         'static',
         filename='pic/' + current_user.profile_picture)
     current_user_display_name = current_user.name
@@ -218,7 +225,7 @@ def display_post(post_id):
     return render_template('Display_Post.html',
                            post=post,
                            all_users=all_users,
-                           current_user_profile_pic_url=current_user_profile_pic_url,
+                           current_user_profile_pic_url=current_user_prof_pic,
                            current_user_display_name=current_user_display_name)
 
 
