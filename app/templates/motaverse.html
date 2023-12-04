@@ -92,17 +92,18 @@
 <div class="post-comments" data-post-id="{{ post.id }}">
   <ul>
       {% for comment in post.comments[:2] %}
+          {% if comment.user not in current_user.blocked_users %}
               <li class="comment-item">
                 <img src="{{ url_for('static', filename='pic/' + comment.user.profile_picture) }}" alt="Profile Picture" class="comment-profile-pic" />
               <div class="comment-details">
                   <span class="profile-name-comment">{{ comment.user.name }}</span>
                   <div class="comment-content">{{ comment.content }}</div>
               </div>
-          </li>
+            </li>
+          {% endif %}
       {% endfor %}
   </ul>
 </div>
-
 
 
       <!-- Show more comments button -->
