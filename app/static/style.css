@@ -210,7 +210,7 @@ Profile picture in motaverse.html
   text-align: center;
   font-size: 1.2em; /* Adjust the font size as needed */
   margin-top: 10px; /* Space above the name */
-  color: #238636; /* Adjust the color as needed */
+  color: rgb(103, 243, 151); /* Adjust the color as needed */
   padding-bottom: 10px; /* Space below the name */
 }
 
@@ -232,6 +232,7 @@ Profile picture in motaverse.html
 .profile-card {
   width: 90%; /* Adjust the width as needed */
   display: flex;
+  justify-content: space-between;
   flex-direction: row;
   align-items: center;
   margin: 10px 0;
@@ -262,21 +263,111 @@ Profile picture in motaverse.html
   margin-top: 20px;
 }
 
-.like-button, .comment-button{
+.like-button {
   padding: 8px 15px;
   color: white;
-  background-color: #007bff;
-  border: none;
+  background-color: transparent; /* No background */
+  border: 0.5px solid #d8b4fe; 
   border-radius: 4px;
   cursor: pointer;
   font-size: 14px;
+  font-weight: bold;
   transition:0 background-color 0.3s ease;
 }
 
-.like-button:hover, .comment-button:hover {
-  background-color: #0056b3;
+.like-button:hover {
+  background-color: #e9d5ff;
+  color: black;
+}
+.comment-button {
+  padding: 8px 15px;
+  color: white; 
+  background-color: transparent; /* No background */
+  border: 0.5px solid #0056b3; 
+  border-radius: 4px; /* Rounded edges */
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold; /* Bold text */
+  transition: background-color 0.3s ease; /* Smooth transition for hover effect */
 }
 
+.comment-button:hover {
+  background-color: #007bff; /* Background color on hover */
+  color: white;
+}
+.unblock-button {
+  background-color: transparent;
+  font-size: 14px;
+  font-weight: bold;
+  color: #98fb98; /* Or any other color that fits your design */
+  border-radius: 4px;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.unblock-button:hover {
+  background-color: #98fb98; /* Light green background on hover */
+  color: black;
+}
+.block-button {
+  padding: 8px 15px;
+  color: IndianRed; /* White text */
+  background-color: transparent; /* No background */
+  border: none; /* No border */
+  border-radius: 4px; /* Rounded edges */
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold; /* Bold text */
+  transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.block-button:hover {
+  background-color: #d9534f; 
+  color: white;
+}
+.delete-button {
+  padding: 2px 2px;
+  color: #fcd34d; /* White text */
+  background-color: transparent; /* No background */
+  border: 2px; /* No border */
+  border-radius: 4px; /* Rounded edges */
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold; /* Bold text */
+  transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.delete-button:hover {
+  background-color: #facc15; 
+  color: black;
+}
+
+.action-button-container {
+  position: absolute; /* Position the button container */
+  top: 20px; /* Adjust as needed */
+  right: 15px; /* Adjust as needed */
+  z-index: 1; /* Ensures it's above other content */
+}
+.show-more-comments-btn {
+  display: inline-block;
+  padding: 8px 15px;
+  background-color: transparent;
+  color: #60a5fa;
+  text-align: center;
+  font-size: 14px;
+  border-radius: 4px;
+  text-decoration: none; /* Removes underline from links */
+  transition: background-color 0.3s ease;
+  margin-top: 10px;
+  border: none;
+  cursor: pointer;
+}
+
+.show-more-comments-btn:hover {
+  background-color: #007bff;
+  color: white;
+}
 /* Style for the post comments section */
 .post-comments {
   margin-top: 20px;
@@ -295,9 +386,9 @@ Profile picture in motaverse.html
 /* Style for the post likes section */
 .post-likes {
   padding: 10px 15px;
-  color: white;
+  color: #e9d5ff;
   font-size: 16px;
-
+  font-family: 'Courier New', Courier, monospace;
   margin-top: 10px;
   display: flex;
   align-items: center;
@@ -310,7 +401,8 @@ Profile picture in motaverse.html
   font-size: 20px;
 }
 .profile-name-comment {
-  color: teal; /* Lighter text color for better readability */
+  color: #2dd4bf; /* Lighter text color for better readability */
+  padding-bottom: 15px;
 }
 .comment {
   padding: 10px;
@@ -328,6 +420,7 @@ Profile picture in motaverse.html
     width: 100%; /* Full width on smaller screens */
     flex-direction: column; /* Stack elements vertically on smaller screens */
     align-items: center;
+    justify-content: space-between;
   }
 
   .profile-pic-small {
@@ -593,7 +686,7 @@ Profile picture in motaverse.html
   
   .post-item {
     background: radial-gradient(circle, rgba(13,17,23,1) 0%, rgba(1,4,9,1) 100%);
-
+    position: relative;
     padding: 20px; /* Increased padding */
     margin-top: 15px; /* Adjusted margin */
     color: white;
@@ -619,11 +712,12 @@ Profile picture in motaverse.html
   .profile-info {
     display: flex;
     flex-direction: column;
+    flex-grow: 1;
   }
   
   .profile-name {
     font-size: 1.2em; /* Larger font size for the name */
-    color: teal; /* Lighter text color for better readability */
+    color: #34d399; /* Lighter text color for better readability */
   }
   
   .post-date {
@@ -632,9 +726,11 @@ Profile picture in motaverse.html
   }
   
   .post-content {
-    font-size: 1em; /* Font size for post content */
+    font-size: 1.05em; /* Font size for post content */
+    font-weight: normal;
     color: white; /* Text color for post content */
     margin-bottom: 10px; /* Space between content and actions */
+    line-height: 1.35; /* Increase the line spacing */
   }
   
   .post-actions {
@@ -682,25 +778,6 @@ Profile picture in motaverse.html
     outline: none; 
     box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.4); 
 }
-/* Style for the show more comments button */
-.show-more-comments-btn {
-  display: inline-block;
-  padding: 8px 15px;
-  background-color: #007bff;
-  color: white;
-  text-align: center;
-  font-size: 14px;
-  border-radius: 4px;
-  text-decoration: none; /* Removes underline from links */
-  transition: background-color 0.3s ease;
-  margin-top: 10px;
-  border: none;
-  cursor: pointer;
-}
-
-.show-more-comments-btn:hover {
-  background-color: #007bff;
-}
 
 /* Style for the post comments section */
 .post-comments ul {
@@ -719,7 +796,10 @@ Profile picture in motaverse.html
   color: white; /* Light text for dark background */
  /* flex-wrap: wrap;  Allows items to wrap as needed */
 }
-
+.action-button-comment {
+  display: flex;
+  margin-top: 0px; /* Adjust as needed */
+}
 .comment-profile-pic {
   width: 50px; /* Adjust as needed */
   height: 50px; /* Adjust as needed */
@@ -734,7 +814,9 @@ Profile picture in motaverse.html
 }
 
 .comment-content {
-  /* Additional styling for comment content if needed */
+  padding-top: 7px;
+  font-weight: normal;
+  line-height: 1.25;
 }
 
 

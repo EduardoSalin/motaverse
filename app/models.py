@@ -8,6 +8,17 @@ Description: motaverse - Models for the SQLAlchemy application
 from flask_login import UserMixin
 from app import db
 
+user_blocklist = db.Table(
+    'user_blocklist',
+    db.Column('user_id',
+              db.String,
+              db.ForeignKey('users.id'),
+              primary_key=True),
+    db.Column('blocked_user_id',
+              db.String,
+              db.ForeignKey('users.id'),
+              primary_key=True)
+)
 
 
 class User(db.Model, UserMixin):
@@ -32,6 +43,31 @@ class User(db.Model, UserMixin):
         back_populates='likes'
     )
 
+    blocked_users = db.relationship(
+        'User',
+        secondary=user_blocklist,
+        primaryjoin=(user_blocklist.c.user_id == id),
+        secondaryjoin=(user_blocklist.c.blocked_user_id == id),
+        back_populates='blocking_users'
+    )
+
+    blocking_users = db.relationship(
+        'User',
+        secondary=user_blocklist,
+        primaryjoin=(user_blocklist.c.blocked_user_id == id),
+        secondaryjoin=(user_blocklist.c.user_id == id),
+        back_populates='blocked_users'
+    )
+    def block_user(self, user_to_block):
+        # Check if the user is not already in the blocked users list
+        if user_to_block not in self.blocked_users:
+            # Add the user to the blocked users list
+            self.blocked_users.append(user_to_block)
+
+            # Commit the changes to the database
+            db.session.commit()
+
+
 
 class Post(db.Model):
     __tablename__ = 'posts'
@@ -51,6 +87,7 @@ class Post(db.Model):
     def count_likes(self):
         return len(self.likes)
 
+
 class Comment(db.Model):
     __tablename__ = 'comments'
     id = db.Column(db.Integer, primary_key=True)
@@ -64,11 +101,17 @@ class Comment(db.Model):
     # Establish a relationship with the Post model for the associated post
     post = db.relationship('Post', back_populates='comments')
 
+
 # Create a new table to represent the many-to-many relationship
 # between users and liked posts
-
 post_likes = db.Table(
     'post_likes',
-    db.Column('user_id', db.Integer, db.ForeignKey('users.id'), primary_key=True),
-    db.Column('post_id', db.Integer, db.ForeignKey('posts.id'), primary_key=True)
+    db.Column('user_id',
+              db.Integer,
+              db.ForeignKey('users.id'),
+              primary_key=True),
+    db.Column('post_id',
+              db.Integer,
+              db.ForeignKey('posts.id'),
+              primary_key=True)
 )

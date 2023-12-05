@@ -32,13 +32,30 @@
 
     <!-- Shows posts -->
     <article class="main">
-      <h1>Posts</h1>
       <ul class="post-container">
         <!-- this is where the post begins-->
         
         <!-- Check if 'post' exists -->
         {% if post %}
           <li class="post-item">
+            <!-- Block button (display only if the post is not by the current user) -->
+            {% if post.user.id != current_user.id %}
+            <div class="action-button-container">
+              <form action="{{ url_for('block_user') }}" method="POST">
+                <input type="hidden" name="user_id" value="{{ post.user.id }}">
+                <button type="submit" class="block-button">Block</button>
+              </form>
+            </div>
+          {% endif %}
+           <!-- Delete button for the current user's post -->
+           {% if post.user.id == current_user.id %}
+           <div class="action-button-container">
+             <form action="{{ url_for('delete_post', post_id=post.id) }}" method="POST">
+               <button type="submit" class="delete-button">Delete</button>
+             </form>
+           </div>
+         {% endif %}
+
             <div class="profile">
               <img src="{{ url_for('static', filename='pic/' + post.user.profile_picture) }}" alt="Profile Picture" class="profile-pic" />
               <div class="profile-info">
@@ -62,15 +79,24 @@
 
             <div class="post-comments" data-post-id="{{ post.id }}">
               <ul>
-                {% for comment in post.comments %}
-                <li class="comment-item">
-                  <img src="{{ url_for('static', filename='pic/' + comment.user.profile_picture) }}" alt="Profile Picture" class="comment-profile-pic" />
+        {% for comment in post.comments %}
+          {% if comment.user not in current_user.blocked_users %}
+            <li class="comment-item">
+                <img src="{{ url_for('static', filename='pic/' + comment.user.profile_picture) }}" alt="Profile Picture" class="comment-profile-pic" />
                 <div class="comment-details">
                     <span class="profile-name-comment">{{ comment.user.name }}</span>
                     <div class="comment-content">{{ comment.content }}</div>
                 </div>
+              {% if comment.user.id == current_user.id %}
+                <div class="action-button-comment">
+                  <form action="{{ url_for('delete_comment', comment_id=comment.id) }}" method="POST">
+                    <button type="submit" class="delete-button">Delete</button>
+                  </form>
+                </div>
+              {% endif %}
             </li>
-                {% endfor %}
+          {% endif %}
+        {% endfor %}
               </ul>
             </div>
             <!-- Comment input box and send button -->
@@ -88,14 +114,30 @@
     </article> <!-- end of center section -->
 
     <aside class="aside aside-2">
-      
       <h2>Profiles</h2>
-
+    
       <div class="profile-list">
         {% for user in all_users %}
+          {% if user.id != current_user.id %}
+    
           <div class="profile-card">
             <img src="{{ url_for('static', filename='pic/' + user.profile_picture) }}" alt="Profile Picture" class="profile-pic-small">
             <div class="profile-name-small">{{ user.name }}</div>
+            
+              {% if user in current_user.blocked_users %}
+                <!-- Display "Unblock" button if user is already blocked -->
+                <form action="{{ url_for('unblock_user') }}" method="POST" style="display: inline;">
+                  <input type="hidden" name="user_id" value="{{ user.id }}">
+                  <button type="submit" class="unblock-button">Unblock</button>
+                </form>
+              {% else %}
+                <!-- Display "Block" button if user is not blocked -->
+                <form action="{{ url_for('block_user') }}" method="POST" style="display: inline;">
+                  <input type="hidden" name="user_id" value="{{ user.id }}">
+                  <button type="submit" class="block-button">Block</button>
+                </form>
+              {% endif %}
+            {% endif %}
           </div>
         {% endfor %}
       </div>

@@ -27,7 +27,7 @@
       </header>
 
 
-  <!-- This is the left side of the screen-->
+  <!-- Left side of the screen-->
   <aside class="aside left-side">
 
     <!-- This is the profile picture and name of the current user-->
@@ -45,16 +45,33 @@
     </form>
   </aside>
     
-  <!-- Shows posts -->
+  <!-- Middle section of the page -->
   <article class="main">
     <h1>Posts</h1>
     <ul class="post-container">
-        <!-- this is where the post begins-->
 
-<!-- Current user posts -->
+<!-- All posts being displayed -->
 {% if posts %}
   {% for post in posts %}
-    <li class="post-item">
+  <li class="post-item">
+    <!-- Block button (display only if the post is not by the current user) -->
+    {% if post.user.id != current_user.id %}
+      <div class="action-button-container">
+        <form action="{{ url_for('block_user') }}" method="POST">
+          <input type="hidden" name="user_id" value="{{ post.user.id }}">
+          <button type="submit" class="block-button">Block</button>
+        </form>
+      </div>
+    {% endif %}
+     <!-- Delete button for the current user's post -->
+     {% if post.user.id == current_user.id %}
+     <div class="action-button-container">
+       <form action="{{ url_for('delete_post', post_id=post.id) }}" method="POST">
+         <button type="submit" class="delete-button">Delete</button>
+       </form>
+     </div>
+   {% endif %}
+      <!-- Profile info -->
       <div class="profile">
         <img src="{{ url_for('static', filename='pic/' + post.user.profile_picture) }}" alt="Profile Picture" class="profile-pic" />
         <div class="profile-info">
@@ -62,12 +79,14 @@
             <div class="post-date">October 31, 2023</div><!-- Date Posted -->
         </div>
       </div>
+      <!-- content and likes -->
       <div class="post-content">
         {{ post.content }}
       </div>
       <div class="post-likes">
         Likes: {{ post.count_likes() }}
       </div>
+      <!-- Like and comment buttons -->
       <div class="post-actions">
         <form action="{{ url_for('like_post') }}" method="POST">
           <input type="hidden" name="post" value="{{ post.id }}">
@@ -77,22 +96,31 @@
       </div>
 
 
-      <!-- Display up to two comments initially -->
 <!-- Display up to two comments initially -->
 <div class="post-comments" data-post-id="{{ post.id }}">
   <ul>
       {% for comment in post.comments[:2] %}
+          {% if comment.user not in current_user.blocked_users %}
               <li class="comment-item">
                 <img src="{{ url_for('static', filename='pic/' + comment.user.profile_picture) }}" alt="Profile Picture" class="comment-profile-pic" />
-              <div class="comment-details">
+                         <!-- Delete button for the current user's comment -->
+
+                <div class="comment-details">
                   <span class="profile-name-comment">{{ comment.user.name }}</span>
                   <div class="comment-content">{{ comment.content }}</div>
               </div>
-          </li>
+              {% if comment.user.id == current_user.id %}
+              <div class="action-button-comment">
+                <form action="{{ url_for('delete_comment', comment_id=comment.id) }}" method="POST">
+                  <button type="submit" class="delete-button">Delete</button>
+                </form>
+              </div>
+            {% endif %}
+            </li>
+          {% endif %}
       {% endfor %}
   </ul>
 </div>
-
 
 
       <!-- Show more comments button -->
@@ -132,21 +160,36 @@ document.addEventListener('DOMContentLoaded', function () {
 });
   </script>
   
-        <!-- Where all the profiles are being displayed -->
+<!-- Where all the profiles are being displayed -->
+<aside class="aside aside-2">
+  <h2>Profiles</h2>
 
-    <aside class="aside aside-2">
-      
-      <h2>Profiles</h2>
+  <div class="profile-list">
+    {% for user in all_users %}
+      {% if user.id != current_user.id %}
 
-      <div class="profile-list">
-        {% for user in all_users %}
-          <div class="profile-card">
-            <img src="{{ url_for('static', filename='pic/' + user.profile_picture) }}" alt="Profile Picture" class="profile-pic-small">
-            <div class="profile-name-small">{{ user.name }}</div>
-          </div>
-        {% endfor %}
+      <div class="profile-card">
+        <img src="{{ url_for('static', filename='pic/' + user.profile_picture) }}" alt="Profile Picture" class="profile-pic-small">
+        <div class="profile-name-small">{{ user.name }}</div>
+        
+          {% if user in current_user.blocked_users %}
+            <!-- Display "Unblock" button if user is already blocked -->
+            <form action="{{ url_for('unblock_user') }}" method="POST" style="display: inline;">
+              <input type="hidden" name="user_id" value="{{ user.id }}">
+              <button type="submit" class="unblock-button">Unblock</button>
+            </form>
+          {% else %}
+            <!-- Display "Block" button if user is not blocked -->
+            <form action="{{ url_for('block_user') }}" method="POST" style="display: inline;">
+              <input type="hidden" name="user_id" value="{{ user.id }}">
+              <button type="submit" class="block-button">Block</button>
+            </form>
+          {% endif %}
+        {% endif %}
       </div>
-    </aside>
+    {% endfor %}
+  </div>
+</aside>
     
   <!-- Footer -->
     
