@@ -232,6 +232,7 @@ def display_post(post_id):
 def get_post_by_id(post_id):
     return Post.query.get(post_id)
 
+
 # Route to delete a post and its associated comments
 @app.route('/delete_post/<int:post_id>', methods=['POST'])
 @login_required
@@ -251,6 +252,7 @@ def delete_post(post_id):
         flash('You do not have permission to delete this post!', 'danger')
 
     return redirect(url_for('motaverse'))  # Redirect to the main page
+
 
 # Route to delete a comment
 @app.route('/delete_comment/<int:comment_id>', methods=['POST'])

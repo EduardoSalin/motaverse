@@ -105,7 +105,8 @@ with app.app_context():
                 if not post.comments:
                     for other_user_data in users_to_add:
                         if other_user_data['id'] != user.id:
-                            # Create comments by other users on this user's post
+                            # Create comments by other users
+                            # on this user's post
                             comment_data = {
                                 'user_id': other_user_data['id'],
                                 'post_id': post.id,
@@ -114,7 +115,6 @@ with app.app_context():
                             comment = Comment(**comment_data)
                             db.session.add(comment)
     db.session.commit()
-
 
 
 # user_loader callback
