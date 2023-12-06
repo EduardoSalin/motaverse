@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="pics/motaverse.png" alt="motavese" width="200"/>
+    <img src="pics/motaverse.png" alt="motavese" width="500"/>
 </p>
 
 # Overview
@@ -9,9 +9,15 @@
 
 "This web application seeks to inform its developers on the nuance and care taken into developing modern social media applications. By attempting to emulate basic functionality and recognizing the difficulty therein, a better appreciation for the tools we take for granted will be acquired."
 
+### Use case Diagram
+
+<p align="center">
+    <img src="pics/UseCase.png" alt="Use Case Diagram"/>
+</p>
+
 # User stories
 
-### User Story #1
+## User Story #1 - Sign up functionality
 *As a user, I want to be able to register for an online blogging platform. Given that a user provides a username, their name, profile picture, email and password, when the user clicks on the "Sign up" button then their user information is saved and a user profile is created.* 
 
 **Additional Information**
@@ -19,32 +25,24 @@
 * White box testing should be implemented to the SignUp function.
 
 
-### User Story #2
+## User Story #2 - Post submission
 *As a registered user, I want to log in to the online platform, so I can create new posts. Since a registered user has provided their ID and password, when the registered user clicks the “Sign In” button then, if their credentials are valid, they are presented with the main page, User can create a new post in the given "New post" field, and once they hit "post" their post will appear first alongside other posts all the posts that have been submitted in chronological order, showing the newest ones on top.*
 
-```
-User -> PostForm: Submit post content
-PostForm -> save_post: Invoke route
-save_post -> Post: Create new Post object
-save_post -> User: Associate Post with current_user
-User -> Database: Add Post to user's posts
-Post -> Database: Add new Post
-Database -> save_post: Commit session
-save_post -> motaverse: Redirect to motaverse page
-```
+### Sequence Diagram for Post Submission
+
 <p align="center">
     <img src="pics/SequenceD.png" alt="Use Case Diagram"/>
 </p>
 
 
-### User Story #3
+## User Story #3 - Commenting on Posts
 *As a registered user, I want to be able to comment on any already existing post. Since the post has already been created, I should be able to click "comment" button and write a reply to this post.*
 
 **Additional information**
 * Comments should appear in chronological order showing the older ones on top and newer ones at the bottom.
 * The name  of the person that made that comment should appear next to the comment, along side the profile picture.
 
-### User Story #4
+## User Story #4 - Like posts
 *As a registered user, I want to be able to like any already existing post. I also want to be able to see how many likes any given post has.*
 
 **Additional information**
@@ -59,8 +57,15 @@ save_post -> motaverse: Redirect to motaverse page
 * The block button should not be on the actively logged in profile.
 * Blocked profiles should appear on my own profile page, where I can then remove them from that list.
 
-### User Story #6
-*As a registered user, if I have submitted a post, I want to be able to edit or delete the post in case I made a mistake.*
+## User Story #6 - Deleting Posts
+*As a registered user, if I have submitted a post or a comment, I want to be able to delete the post in case I made a mistake or no longer want it displayed.*
+
+**Additional information**
+
+* There should be a delete button next to posts or comments that I have created.
+* Deleting a post should also remove all associated comments and likes.
+* The option should only be visible to me as the creator of the post.
+
 
 # Design
 
@@ -68,35 +73,7 @@ save_post -> motaverse: Redirect to motaverse page
 <!--
 At a minimum, this section should have a class diagram that succinctly describes the main classes designed for this project, as well as their associations.-->
 
-## Use case Diagram
 
-```
-@startuml
-!theme amiga
-
-left to right direction
-actor User
-
-usecase "Sign Up" as UC1
-usecase "Log In" as UC2
-usecase "Create Post" as UC3
-usecase "Like Post" as UC4
-usecase "Comment on Post" as UC5
-usecase "Block User" as UC6
-
-
-User --> UC1
-User --> UC2
-User --> UC3
-User --> UC4
-User --> UC5
-User --> UC6
-
-@enduml
-```
-<p align="center">
-    <img src="pics/UseCase.png" alt="Use Case Diagram"/>
-</p>
 
 ## Class Diagram 
 
@@ -105,58 +82,10 @@ User --> UC6
 </p>
 
 ```
-@startuml
-!theme amiga
-title Class Diagram
 
-class User {
-  + id: String
-  + type: String
-  + name: String
-  + profile_picture: String
-  + passwd: LargeBinary
-  + posts: List<Post>
-  + comments: List<Comment>
-  + liked_posts: List<Post>
-  + blocked_users: List<User>
-  + blocking_users: List<User>
-  + block_user(User)
-}
-
-class Post {
-  + id: Integer
-  + user_id: Integer (Foreign Key)
-  + content: String
-  + comments: List<Comment>
-  + likes: List<User>
-  + user: User (Many-to-One)
-  + count_likes(): int
-}
-
-class Comment {
-  + id: Integer
-  + user_id: String (Foreign Key)
-  + post_id: Integer (Foreign Key)
-  + content: String
-  + user: User (Many-to-One)
-  + post: Post (Many-to-One)
-}
-
-User "1" -- "0.." Post : writes >
-User "1" -- "0.." Comment : makes >
-User "1" -- "*" User : blocks >
-Post "1" -- "0.." Comment : contains >
-
-@enduml
 ```
 
 # Development Process 
-<!--- **Please delete this comment once we don't need it, this is from README_TEMPLATE.md**
-This section should be used to describe how the scrum methodology was used in this project. As a suggestion, include the following table to summarize how the sprints occurred during the development of this project.
-
-
-Feel free to use your own format for this section, as long as you are able to communicate what has been described here.
--->
 
 |Sprint#|Goals|Start|End|Done|Observations|
 |---|---|---|---|---|---|
@@ -165,7 +94,7 @@ Feel free to use your own format for this section, as long as you are able to co
 |3|US#5, US#6|12/02/23|12/05/23|Finished implementing the last two user stories|We were able to get the last two user stories done in a short amount of time giving us extra time to finish the final touches, and make sure PEP8 was being used|
 |Last|Testing and containerization|12/05/23|12/07/23|...|...|
 
-Use the observations column to report problems encountered during a sprint and/or to reflect on how the team has continuously improved its work.
+You can find comprehensive details on our scrum meetings in the ```scrum``` folder. This folder contains meticulous records of our development journey, documenting each step and decision as the project evolved.
 
 
 # Testing 
@@ -223,3 +152,84 @@ Deductions:
 -5 **dev** branch does not have consistent commmits
 
 -5 deployment does not work
+<!-- Here in case we need it
+```
+****Use Case Diagram:
+@startuml
+!theme amiga
+
+left to right direction
+actor User
+
+usecase "Sign Up" as UC1
+usecase "Log In" as UC2
+usecase "Create Post" as UC3
+usecase "Comment on Post" as UC4
+usecase "Like Post" as UC5
+usecase "Block User" as UC6
+usecase "Delete Post" as UC7
+
+User - -> UC1
+User - -> UC2
+User - -> UC3
+User - -> UC4
+User - -> UC5
+User - -> UC6
+User - -> UC7
+
+@enduml
+****Class Diagram
+@startuml
+!theme amiga
+title Class Diagram
+
+class User {
+  + id: String
+  + type: String
+  + name: String
+  + profile_picture: String
+  + passwd: LargeBinary
+  + posts: List<Post>
+  + comments: List<Comment>
+  + liked_posts: List<Post>
+  + blocked_users: List<User>
+  + blocking_users: List<User>
+  + block_user(User)
+}
+
+class Post {
+  + id: Integer
+  + user_id: Integer (Foreign Key)
+  + content: String
+  + comments: List<Comment>
+  + likes: List<User>
+  + user: User (Many-to-One)
+  + count_likes(): int
+}
+
+class Comment {
+  + id: Integer
+  + user_id: String (Foreign Key)
+  + post_id: Integer (Foreign Key)
+  + content: String
+  + user: User (Many-to-One)
+  + post: Post (Many-to-One)
+}
+
+User "1" -- "0.." Post : writes >
+User "1" -- "0.." Comment : makes >
+User "1" -- "*" User : blocks >
+Post "1" -- "0.." Comment : contains >
+
+@enduml
+*****Sequence Diagram
+User -> PostForm: Submit post content
+PostForm -> save_post: Invoke route
+save_post -> Post: Create new Post object
+save_post -> User: Associate Post with current_user
+User -> Database: Add Post to user's posts
+Post -> Database: Add new Post
+Database -> save_post: Commit session
+save_post -> motaverse: Redirect to motaverse page
+```
+-->
