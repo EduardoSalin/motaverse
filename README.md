@@ -3,9 +3,6 @@
 </p>
 
 # Overview
-<!-- **Please delete this comment once we don't need it, this is from README_TEMPLATE.md**
-Use this section to outline the vision for the product to be developed, including a use case diagram that shows the main user interactions with the product, in order to provide readers with an overview of the project.
--->
 
 ## Mission Statement
 * For a better universe, motaverse 
@@ -14,9 +11,6 @@ Use this section to outline the vision for the product to be developed, includin
 
 # User stories
 
-<!-- **Please delete this comment once we don't need it, this is from README_TEMPLATE.md**
-Describe the user stories designed for the project, including clear acceptance criteria and point estimate for each of them. User stories must be consistent with the use case diagram. Refer to the user stories using US#1, US#2, etc. At least one of the user stories, not related to user creation or authentication, must be detailed by a sequence diagram. 
--->
 ### User Story #1
 *As a user, I want to be able to register for an online blogging platform. Given that a user provides a username, their name, profile picture, email and password, when the user clicks on the "Sign up" button then their user information is saved and a user profile is created.* 
 
@@ -175,8 +169,18 @@ Use the observations column to report problems encountered during a sprint and/o
 
 
 # Testing 
-
+<!--
 Share in this section the results of the tests performed to attest to the quality of the developed product, including the coverage of the tests in relation to the written code. There is no minimum code coverage expectation for your tests, other than expecting "some" coverage through at least one white-box and one black-box test.
+-->
+## Unit testing coverage
+
+In test/ you will find ```test_creation.py```
+
+
+
+## Black-box testing
+
+## White-box testing
 
 # Deployment 
 

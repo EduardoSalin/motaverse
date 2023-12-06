@@ -44,7 +44,7 @@ class ModelsTestCase(unittest.TestCase):
     def test_comment_creation(self):
         user = User(id="testuser3",
                     name="Test User 3",
-                    rofile_picture="pic3.jpg")
+                    profile_picture="pic3.jpg")
         post = Post(content="Test Post for Comment", user=user)
         comment = Comment(content="Test Comment", user=user, post=post)
         db.session.add_all([user, post, comment])

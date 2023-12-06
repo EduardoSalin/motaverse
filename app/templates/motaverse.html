@@ -43,6 +43,13 @@
       <br/>
       <button type="submit">Post</button>
     </form>
+    <div class="flash-messages">
+      {% with messages = get_flashed_messages(with_categories=true) %}
+          {% for category, message in messages %}
+              <div class="alert alert-{{ category }}">{{ message }}</div>
+          {% endfor %}
+      {% endwith %}
+  </div>  
   </aside>
     
   <!-- Middle section of the page -->
@@ -207,5 +214,13 @@ document.addEventListener('DOMContentLoaded', function () {
             window.location = target
         }
     }
+    window.onload = function() {
+        setTimeout(function() {
+            var flashMessages = document.querySelector('.flash-messages');
+            if (flashMessages) {
+                flashMessages.style.display = 'none';
+            }
+        }, 5000); // Flash message will disappear after 5000ms = 5 seconds
+    };
 </script>
 {% endblock %}
