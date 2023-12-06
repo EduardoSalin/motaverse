@@ -8,21 +8,32 @@
                 <div class="form-group">
                     {{ form.id.label(class="form-label") }}
                     {{ form.id(size=15, class="form-input") }}
+                    {% if form.id.errors %}
+                        <span class="error">{{ form.id.errors[0] }}</span>
+                    {% endif %}
                 </div>
                 <div class="form-group">
                     {{ form.name.label(class="form-label") }}
                     {{ form.name(size=30, class="form-input") }}
+                    {% if form.name.errors %}
+                        <span class="error">{{ form.name.errors[0] }}</span>
+                    {% endif %}
                 </div>
                 <div class="form-group">
                     {{ form.passwd.label(class="form-label") }}
                     {{ form.passwd(size=30, class="form-input") }}
+                    {% if form.passwd.errors %}
+                        <span class="error">{{ form.passwd.errors[0] }}</span>
+                    {% endif %}
                 </div>
                 <div class="form-group">
                     {{ form.passwd_confirm.label(class="form-label") }}
                     {{ form.passwd_confirm(size=30, class="form-input") }}
+                    {% if form.passwd_confirm.errors %}
+                        <span class="error">{{ form.passwd_confirm.errors[0] }}</span>
+                    {% endif %}
                 </div>
-
-                
+        
                 <div class="profile-pictures">
                     <p class="profile-picture-label">{{ form.profile_picture.label(class="form-label") }}</p>
                     <div class="profile-picture-options">
@@ -35,13 +46,16 @@
                             </div>
                         {% endfor %}
                     </div>
+                    {% if form.profile_picture.errors %}
+                        <span class="error">{{ form.profile_picture.errors[0] }}</span>
+                    {% endif %}
                 </div>
-                
-
+        
                 <div class="form-group">
                     {{ form.submit(class="button") }}
                 </div>
             </form>
         </div>
+        
     </section>
 {% endblock %}

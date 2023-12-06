@@ -1,3 +1,10 @@
+'''
+CS3250 - Software Development Methods and Tools - Fall 2023
+Instructor: Thyago Mota
+Students:
+Brady Lamson, Emerson Hatton, Riley Moen, Ebenezer Addei, Eduardo Salinas
+Description: tests for motaverse functions
+'''
 import unittest
 from app import app, db
 from app.models import User, Post, Comment
@@ -43,8 +50,6 @@ class ModelsTestCase(unittest.TestCase):
         db.session.add_all([user, post, comment])
         db.session.commit()
         self.assertEqual(len(post.comments), 1)
-
-    # Add more tests as needed
 
 
 class RoutesTestCase(unittest.TestCase):

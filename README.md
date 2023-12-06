@@ -112,50 +112,45 @@ User --> UC6
 
 ```
 @startuml
-
+!theme amiga
 title Class Diagram
 
 class User {
-  + id: db.String
-  + type: db.String
-  + name: db.String
-  + profile_picture: db.String
-  + passwd: db.LargeBinary
+  + id: String
+  + type: String
+  + name: String
+  + profile_picture: String
+  + passwd: LargeBinary
   + posts: List<Post>
   + comments: List<Comment>
   + liked_posts: List<Post>
-  -SignUpFom()
-  -LogInForm ()
+  + blocked_users: List<User>
+  + blocking_users: List<User>
+  + block_user(User)
 }
 
-
 class Post {
-  + id: db.Integer
-  + user_id: db.ForeignKey
-  + content: db.String
+  + id: Integer
+  + user_id: Integer (Foreign Key)
+  + content: String
   + comments: List<Comment>
   + likes: List<User>
-  + user: User
+  + user: User (Many-to-One)
   + count_likes(): int
-  -PostForm()
-  -PostLikes()
 }
 
 class Comment {
-  + id: db.Integer
-  + user_id: db.ForeignKey
-  + post_id: db.ForeignKey
-  + content: db.String
-  + user: User
-  + post: Post
-  -CommentForm()
+  + id: Integer
+  + user_id: String (Foreign Key)
+  + post_id: Integer (Foreign Key)
+  + content: String
+  + user: User (Many-to-One)
+  + post: Post (Many-to-One)
 }
-
-
 
 User "1" -- "0.." Post : writes >
 User "1" -- "0.." Comment : makes >
-User "1" -- "0.." User : blocks >
+User "1" -- "*" User : blocks >
 Post "1" -- "0.." Comment : contains >
 
 @enduml
@@ -171,10 +166,10 @@ Feel free to use your own format for this section, as long as you are able to co
 
 |Sprint#|Goals|Start|End|Done|Observations|
 |---|---|---|---|---|---|
-|1|Design, US#1|11/16/23|11/28/23|Finilized Design and finished sign up implementation|There is a lot to do and not a lot of time|
-|2|US#2, US#3, US#4|11/29/23|12/02/23|Finished US#2, US#3, and US#4, started setting up for next sprint|Started working on testing and other project requirements|
-|3|US#5, US#6|12/03/23|12/06/23|...|...|
-|Last|Finishing Project|12/06/23|12/07/23|...|...|
+|1|Design, US#1|11/16/23|11/28/23|Finilized Design and finished sign up implementation|Team took firm decision on where to take the project, started implementing sign in and sign up functionality|
+|2|US#2, US#3, US#4|11/28/23|12/02/23|Finished US#2, US#3, and US#4, started setting up for next sprint|Once User Story #2, implementation of posts, was implemented the other two user stories were not as comlicated|
+|3|US#5, US#6|12/02/23|12/05/23|Finished implementing the last two user stories|We were able to get the last two user stories done in a short amount of time giving us extra time to finish the final touches, and make sure PEP8 was being used|
+|Last|Testing and containerization|12/05/23|12/07/23|...|...|
 
 Use the observations column to report problems encountered during a sprint and/or to reflect on how the team has continuously improved its work.
 
