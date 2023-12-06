@@ -18,15 +18,20 @@
 # User stories
 
 ## User Story #1 - Sign up functionality
-*As a user, I want to be able to register for an online blogging platform. Given that a user provides a username, their name, profile picture, email and password, when the user clicks on the "Sign up" button then their user information is saved and a user profile is created.* 
+*As a user, I want to be able to register for an online blogging platform. Given that a user provides a username, their name, password and chooses profile picture, when the user clicks on the "Sign up" button then their user information is saved and a user profile is created.* 
 
 **Additional Information**
-* All members of the team, and Professor Mota should have their own user profile created.
-* White box testing should be implemented to the SignUp function.
+* Profiles should be created to demonstrate functionality.
 
 
 ## User Story #2 - Post submission
-*As a registered user, I want to log in to the online platform, so I can create new posts. Since a registered user has provided their ID and password, when the registered user clicks the “Sign In” button then, if their credentials are valid, they are presented with the main page, User can create a new post in the given "New post" field, and once they hit "post" their post will appear first alongside other posts all the posts that have been submitted in chronological order, showing the newest ones on top.*
+*As a registered user, I want to log in to the online platform, so I can create new posts. Upon presenting valid credentials they are presented with the main page. User can create a new post in the given "New post" field, my post alongside other posts should appear in chronological order, showing the newest ones on top.*
+
+**Additional Information**
+* If credentials are not valid a notice should appear at the log in page
+* Posts should appear immediately and in chronological order, showing the newest ones on top.
+* Users should not be able to submit an empty post.
+
 
 ### Sequence Diagram for Post Submission
 
@@ -49,31 +54,25 @@
 * Users should be able to like a post only once
 * If a user has liked a post, they should be able to remove that like.
 
-### User Story #5
-*As a registered user, I want to block people, if I have blocked a profile, all of that blocked profile's posts and commentsshould automatically disappear from my feed.*
+## User Story #5
+*As a registered user, I want to block people, if I have blocked a profile, I expect their posts and comments to be immediately hidden from my feed.*
 
 **Additional information**
-* To block someone you can find the block or unblock button next to their name in the "profile" list or on a post that they made.
 * The block button should not be on the actively logged in profile.
-* Blocked profiles should appear on my own profile page, where I can then remove them from that list.
+* To block someone you can find the block button next to their name in the "profile" list or on a post that they made.
+* To unblock someone the unblock button should appear next to their name in the Profile list.
+
 
 ## User Story #6 - Deleting Posts
 *As a registered user, if I have submitted a post or a comment, I want to be able to delete the post in case I made a mistake or no longer want it displayed.*
 
 **Additional information**
-
 * There should be a delete button next to posts or comments that I have created.
 * Deleting a post should also remove all associated comments and likes.
-* The option should only be visible to me as the creator of the post.
+* The option should only be visible to me as the creator of the post or comment.
 
 
 # Design
-
-
-<!--
-At a minimum, this section should have a class diagram that succinctly describes the main classes designed for this project, as well as their associations.-->
-
-
 
 ## Class Diagram 
 
@@ -81,32 +80,37 @@ At a minimum, this section should have a class diagram that succinctly describes
     <img src="pics/classDiagram.png" alt="Class Diagram"/>
 </p>
 
-```
-
-```
-
 # Development Process 
 
 |Sprint#|Goals|Start|End|Done|Observations|
 |---|---|---|---|---|---|
 |1|Design, US#1|11/16/23|11/28/23|Finilized Design and finished sign up implementation|Team took firm decision on where to take the project, started implementing sign in and sign up functionality|
-|2|US#2, US#3, US#4|11/28/23|12/02/23|Finished US#2, US#3, and US#4, started setting up for next sprint|Once User Story #2, implementation of posts, was implemented the other two user stories were not as comlicated|
-|3|US#5, US#6|12/02/23|12/05/23|Finished implementing the last two user stories|We were able to get the last two user stories done in a short amount of time giving us extra time to finish the final touches, and make sure PEP8 was being used|
-|Last|Testing and containerization|12/05/23|12/07/23|...|...|
+|2|US#2, US#3, US#4|11/28/23|12/02/23|Finished implementing post creation, comments to post as well as likes, started setting up for next sprint|Once User Story #2, implementation of posts, was implemented the other two user stories were not as comlpicated|
+|3|US#5, US#6|12/02/23|12/05/23|Finished implementing user blocking feature as well as post and comment deletion|We were able to get the last two user stories done in a short amount of time giving us extra time to focus on the final touches, and make sure PEP8 was being used|
+|Last|Testing and containerization|12/05/23|12/07/23|Finalized Implementation, testing and containerization|This final sprint was dedicated for testing and containerization, as well as final touches in documentation and code review|
 
-You can find comprehensive details on our scrum meetings in the ```scrum``` folder. This folder contains meticulous records of our development journey, documenting each step and decision as the project evolved.
-
+You can find comprehensive details on our scrum meetings in the ```scrum``` folder. This folder contains detailed records of the development process, documenting each step and decision as the project evolved.
 
 # Testing 
+
+## Unit testing coverage
+
+*Testing using python's coverage package.* In ```test``` folder you will find ```test_creation.py```. From there you can run 
+``` 
+coverage run -m unittest tests/test_creation.py
+```
+**Models Testing:**
+* Focuses on internal logic of data models (User, Post, Comment).
+* Validates object creation and database persistence.
+* Ensures correct relationships and associations between models.
+
+**Routes Testing:**
+* Evaluates the application's endpoints without delving into internal workings.
+* Includes a test for the /save_post route, simulating a POST request and verifying the correct addition of posts to the database.
+* Utilizes mocked user sessions to bypass authentication for route testing.
 <!--
 Share in this section the results of the tests performed to attest to the quality of the developed product, including the coverage of the tests in relation to the written code. There is no minimum code coverage expectation for your tests, other than expecting "some" coverage through at least one white-box and one black-box test.
 -->
-## Unit testing coverage
-
-In test/ you will find ```test_creation.py```
-
-
-
 ## Black-box testing
 
 ## White-box testing
@@ -115,44 +119,8 @@ In test/ you will find ```test_creation.py```
 
 The final product must demonstrate the integrity of at least 5 of the 6 planned user stories. The final product must be packaged in the form of a docker image. In this section, describe the steps needed to generate that image so that others can deploy the product themselves. All files required for the deployment must be available, including the docker file, source/binary code, external package requirements, data files, images, etc. Instructions on how to create a container from the docker image with parameters such as port mapping, environment variables settings, etc., must be described (if needed). 
 
-<!--**We don't need this here, but just so we remember what we are getting graded on**-->
-# Rubric
 
-+5 Project's README file: mission statement
-
-
-+10 Project's README file: user stories (~ 6 x 1.5)
-
-
-
-+5 GitHub repository organization
-
-+20 Project's README file and Jira Project: evidences of using scrum. 
-
-+5 Code inspection: PEP8 compliance 
-
-+10 Code inspection: comments, naming, functions, formatting, OOP best practices, error handling, etc.
-
-+10 Code execution: white-box and black-box testing
-
-
-+5 Project's README file: deployment instructions
-
-
-Deductions: 
-
--10 user creation not available/working
-
--10 user authentication not available/working 
-
--5 for each user story not completed 
-
--5 **main** branch does not have consistent commits 
-
--5 **dev** branch does not have consistent commmits
-
--5 deployment does not work
-<!-- Here in case we need it
+<!-- Here in case we need to change anything delete before submission    *******
 ```
 ****Use Case Diagram:
 @startuml
