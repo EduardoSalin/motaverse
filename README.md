@@ -121,14 +121,14 @@ The final product must demonstrate the integrity of at least 5 of the 6 planned 
 
 ## Deployment Instructions
 
-Instructions for deploying this project are simple. All files necessary for image generation are present in the repository by default.
+Instructions for deploying this project are simple. All files necessary for image generation are present in the repository by default. Only some simple port mapping is required.
 
 ```
 sudo docker build -t motaverse .
-sudo docker run motaverse
+sudo docker run -p 5000:5000 motaverse
 ```
 
-No port mapping necessary, no environment variable settings required. 
+Then, when various urls are listed in the terminal, select `http://127.0.0.1:5000/`. 
 
 <!-- Here in case we need to change anything delete before submission    *******
 ```
