@@ -23,6 +23,10 @@
 **Additional Information**
 * Profiles should be created to demonstrate functionality.
 
+**For testing:**
+Preloaded user profiles are available for testing, all of the passwords are ```1```
+You can create a new one or choose one of this usernames: ```tmota```, ```a```, ```b```, ```c```, ```d```, or ```e```
+
 
 ## User Story #2 - Post submission
 *As a registered user, I want to log in to the online platform, so I can create new posts. Upon presenting valid credentials they are presented with the main page. User can create a new post in the given "New post" field, my post alongside other posts should appear in chronological order, showing the newest ones on top.*
