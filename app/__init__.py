@@ -33,24 +33,10 @@ from app.models import User, Post, Comment
 with app.app_context():
     db.create_all()
 
-'''
-This is where you will input your data.
-*id is what you will be using to login
-*passwd is the password, obviously
-*name is what will be displayed on the website
-***
-profile_picture is the path to the profile picture,
-if you want a default one, just name it picx.png where x = 1 to 8
-if you want to add a profile picture,
-put the image in app/static/pic and write the name here
-I found that it only reallybbbbbbbbbbbbbbbb works with .jpg files,
-so I would recommend using that,
-if you have a png I found that you can just rename it to .jpg and it will work
-'''
 
 # Check and add admin users
 users_to_add = [
-    {'id': 'tmota', 'passwd': '1', 'name': 'Thaygo Mota',
+    {'id': 'tmota', 'passwd': '1', 'name': 'Thyago Mota',
      'profile_picture': 'pic2.jpg'},
     {'id': 'a', 'passwd': '1', 'name': 'Eduardo',
      'profile_picture': 'picz.jpg'},

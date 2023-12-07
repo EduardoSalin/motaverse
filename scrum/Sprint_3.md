@@ -28,3 +28,9 @@ Ebenezer started working on implementing white and black box testing.
 Eduardo finished writing the scrum, modifying the read me and all diagrams.
 
 Brady worked on containerization and was able to make it work, marking on of the last tasks that need to be done for the project.
+
+Ebenezer finished with white and black box testing implementing everything into the project and adding to the readme
+
+### 12/07/2023 12:00 PM
+
+Team met one last time to double check everything was ready to submit
