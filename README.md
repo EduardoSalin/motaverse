@@ -124,9 +124,6 @@ coverage run -m unittest tests/test_creation.py
 - Evaluates the application's endpoints without delving into internal workings.
 - Includes a test for the /save_post route, simulating a POST request and verifying the correct addition of posts to the database.
 - Utilizes mocked user sessions to bypass authentication for route testing.
-<!--
-Share in this section the results of the tests performed to attest to the quality of the developed product, including the coverage of the tests in relation to the written code. There is no minimum code coverage expectation for your tests, other than expecting "some" coverage through at least one white-box and one black-box test.
--->
 
 ## Black-box testing
 
@@ -175,11 +172,8 @@ Check for the Password label
 Check for the Password input by its associated label's for attribute
 Check for the Log In button by its value
 
-# Deployment
 
-The final product must demonstrate the integrity of at least 5 of the 6 planned user stories. The final product must be packaged in the form of a docker image. In this section, describe the steps needed to generate that image so that others can deploy the product themselves. All files required for the deployment must be available, including the docker file, source/binary code, external package requirements, data files, images, etc. Instructions on how to create a container from the docker image with parameters such as port mapping, environment variables settings, etc., must be described (if needed).
-
-## Deployment Instructions
+# Deployment Instructions
 
 Instructions for deploying this project are simple. All files necessary for image generation are present in the repository by default. Only some simple port mapping is required.
 
@@ -190,84 +184,3 @@ sudo docker run -p 5000:5000 motaverse
 
 Then, when various urls are listed in the terminal, select `http://127.0.0.1:5000/`.
 
-<!-- Here in case we need to change anything delete before submission    *******
-```
-****Use Case Diagram:
-@startuml
-!theme amiga
-
-left to right direction
-actor User
-
-usecase "Sign Up" as UC1
-usecase "Log In" as UC2
-usecase "Create Post" as UC3
-usecase "Comment on Post" as UC4
-usecase "Like Post" as UC5
-usecase "Block User" as UC6
-usecase "Delete Post" as UC7
-
-User - -> UC1
-User - -> UC2
-User - -> UC3
-User - -> UC4
-User - -> UC5
-User - -> UC6
-User - -> UC7
-
-@enduml
-****Class Diagram
-@startuml
-!theme amiga
-title Class Diagram
-
-class User {
-  + id: String
-  + type: String
-  + name: String
-  + profile_picture: String
-  + passwd: LargeBinary
-  + posts: List<Post>
-  + comments: List<Comment>
-  + liked_posts: List<Post>
-  + blocked_users: List<User>
-  + blocking_users: List<User>
-  + block_user(User)
-}
-
-class Post {
-  + id: Integer
-  + user_id: Integer (Foreign Key)
-  + content: String
-  + comments: List<Comment>
-  + likes: List<User>
-  + user: User (Many-to-One)
-  + count_likes(): int
-}
-
-class Comment {
-  + id: Integer
-  + user_id: String (Foreign Key)
-  + post_id: Integer (Foreign Key)
-  + content: String
-  + user: User (Many-to-One)
-  + post: Post (Many-to-One)
-}
-
-User "1" -- "0.." Post : writes >
-User "1" -- "0.." Comment : makes >
-User "1" -- "*" User : blocks >
-Post "1" -- "0.." Comment : contains >
-
-@enduml
-*****Sequence Diagram
-User -> PostForm: Submit post content
-PostForm -> save_post: Invoke route
-save_post -> Post: Create new Post object
-save_post -> User: Associate Post with current_user
-User -> Database: Add Post to user's posts
-Post -> Database: Add new Post
-Database -> save_post: Commit session
-save_post -> motaverse: Redirect to motaverse page
-```
--->
