@@ -43,7 +43,7 @@ profile_picture is the path to the profile picture,
 if you want a default one, just name it picx.png where x = 1 to 8
 if you want to add a profile picture,
 put the image in app/static/pic and write the name here
-I found that it only really works with .jpg files,
+I found that it only reallybbbbbbbbbbbbbbbb works with .jpg files,
 so I would recommend using that,
 if you have a png I found that you can just rename it to .jpg and it will work
 '''
@@ -52,15 +52,15 @@ if you have a png I found that you can just rename it to .jpg and it will work
 users_to_add = [
     {'id': 'tmota', 'passwd': '1', 'name': 'Thaygo Mota',
      'profile_picture': 'pic2.jpg'},
-    {'id': 'e', 'passwd': '1', 'name': 'Eduardo',
+    {'id': 'a', 'passwd': '1', 'name': 'Eduardo',
      'profile_picture': 'picz.jpg'},
     {'id': 'b', 'passwd': '1', 'name': 'BL',
      'profile_picture': 'pic3.jpg'},
-    {'id': 'shrek', 'passwd': '1', 'name': 'Shrek',
+    {'id': 'c', 'passwd': '1', 'name': 'Shrek',
      'profile_picture': 'shrek.jpg'},
-    {'id': 'donkey', 'passwd': '1', 'name': 'Donkey',
+    {'id': 'd', 'passwd': '1', 'name': 'Donkey',
      'profile_picture': 'donkey.jpg'},
-    {'id': 'z', 'passwd': '1', 'name': 'Fiona',
+    {'id': 'e', 'passwd': '1', 'name': 'Fiona',
      'profile_picture': 'pic1.jpg'}
 ]
 
@@ -105,7 +105,8 @@ with app.app_context():
                 if not post.comments:
                     for other_user_data in users_to_add:
                         if other_user_data['id'] != user.id:
-                            # Create comments by other users on this user's post
+                            # Create comments by other users
+                            # on this user's post
                             comment_data = {
                                 'user_id': other_user_data['id'],
                                 'post_id': post.id,
@@ -114,7 +115,6 @@ with app.app_context():
                             comment = Comment(**comment_data)
                             db.session.add(comment)
     db.session.commit()
-
 
 
 # user_loader callback

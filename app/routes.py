@@ -94,15 +94,21 @@ def admin_signout():
 @app.route('/save_post', methods=['POST'])
 @login_required
 def save_post():
-    new_post_request = request.form['newPostContent']
-    new_post = Post(content=new_post_request, user=current_user)
+    new_post_content = request.form.get('newPostContent', '').strip()
 
-    # Add the post to the user and commit the change to the db
-    current_user.posts.append(new_post)
+    # Check if the post content is empty
+    if not new_post_content:
+        flash('Post content cannot be empty', 'danger')
+        return redirect(url_for('motaverse'))
+
+    # Create a new post
+    new_post = Post(content=new_post_content, user=current_user)
+
+    # Add the post to the database and commit the change
     db.session.add(new_post)
     db.session.commit()
 
-    print(f"New post created: {new_post.content}")
+    flash('Post created successfully!', 'success')
     return redirect(url_for('motaverse'))
 
 
@@ -232,6 +238,7 @@ def display_post(post_id):
 def get_post_by_id(post_id):
     return Post.query.get(post_id)
 
+
 # Route to delete a post and its associated comments
 @app.route('/delete_post/<int:post_id>', methods=['POST'])
 @login_required
@@ -251,6 +258,7 @@ def delete_post(post_id):
         flash('You do not have permission to delete this post!', 'danger')
 
     return redirect(url_for('motaverse'))  # Redirect to the main page
+
 
 # Route to delete a comment
 @app.route('/delete_comment/<int:comment_id>', methods=['POST'])

@@ -1,3 +1,10 @@
+'''
+CS3250 - Software Development Methods and Tools - Fall 2023
+Instructor: Thyago Mota
+Students:
+Brady Lamson, Emerson Hatton, Riley Moen, Ebenezer Addei, Eduardo Salinas
+Description: tests for motaverse functions
+'''
 import unittest
 from app import app, db
 from app.models import User, Post, Comment
@@ -37,14 +44,12 @@ class ModelsTestCase(unittest.TestCase):
     def test_comment_creation(self):
         user = User(id="testuser3",
                     name="Test User 3",
-                    rofile_picture="pic3.jpg")
+                    profile_picture="pic3.jpg")
         post = Post(content="Test Post for Comment", user=user)
         comment = Comment(content="Test Comment", user=user, post=post)
         db.session.add_all([user, post, comment])
         db.session.commit()
         self.assertEqual(len(post.comments), 1)
-
-    # Add more tests as needed
 
 
 class RoutesTestCase(unittest.TestCase):
