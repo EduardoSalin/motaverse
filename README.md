@@ -125,52 +125,61 @@ coverage run -m unittest tests/test_creation.py
 - Includes a test for the /save_post route, simulating a POST request and verifying the correct addition of posts to the database.
 - Utilizes mocked user sessions to bypass authentication for route testing.
 
-## Black-box testing
+# Black-box Testing Steps
 
-Sign up button test
-Visit the homepage before the test case
-Check if the Sign Up button is visible and then click it
-Visit the sign-up page before running the tests
-Fill out the form
-Submit the form
-Assert redirection to the index page
-Replace with the URL where the Log In button exists
-Assuming the sign up process or some other action is complete here and you need to wait for 3 seconds before clicking the Log In button
-Click the Log In button
-Visit the login page before each test
-Type 'test1' into the username field using the 'id' attribute
-Type '1234' into the password field using the 'id' attribute
-Wait for 2 seconds before clicking the login button
-Click the log in button using the 'id' attribute
-Check the current URL to be the expected one after redirection
+Black-box testing is performed without knowledge of the internal workings of the application. It's focused on testing the user interface and functionality against the requirements.
 
-## White-box testing
+**Setting Up Cypress for Black-box Testing:**
+1. Open the Cypress Test Runner using the command:
+    ```shell
+    node_modules/.bin/cypress open
+    ```
+2. Choose 'E2E Testing' from the Cypress dashboard.
+3. Select your preferred browser; Chrome is recommended.
+4. Click 'Start E2E Testing in Chrome' to proceed.
 
-Test Suite: Accessing the Local Development Server
-This suite performs a simple test to verify that the local development server
-can be accessed through the specified URL.
-Test Case: Visit Homepage
-Ensures that the homepage at the local URL loads successfully.
-Test Suite: Homepage Content Verification
-This suite checks that essential content on the homepage is rendered correctly.
-Test Suite: Homepage Logo Display
-This suite confirms that the Motaverse logo is displayed as expected.
-Test Suite: Button Visibility Verification
-This suite ensures that interactive buttons are visible to the user.
-Nested Test Suite: Log In Button Visibility
-Checks specifically for the visibility of the Log In button.
-Test for visibility of the 'Sign Up' heading and labels
-Test for visibility of the 'Profile Picture' heading
-Verify that the URL is now the sign-up page
-Check for the existence of a user error message
-If the user exists, assert the URL did not change
-Check the URL to ensure it has been redirected to the login page
-Check for the Login heading
-Check for the Username label
-Check for the Username input by its associated label's for attribute
-Check for the Password label
-Check for the Password input by its associated label's for attribute
-Check for the Log In button by its value
+**Executing Black-box Test Scenarios:**
+- **Sign Up Verification:**
+  1. Ensure the 'Sign Up' button is visible on the homepage.
+  2. Click the 'Sign Up' button and confirm that you're redirected to the sign-up page.
+  3. Fill out the sign-up form with user details.
+  4. Submit the form and verify that you're redirected to the index page.
+
+- **Login Functionality Check:**
+  1. Wait for 3 seconds to simulate user interaction time before clicking the 'Log In' button.
+  2. Enter a valid username and password into the login form.
+  3. Click the 'Log In' button.
+  4. Confirm that the redirection to the motaverse page is successful after login.
+
+# White-box Testing Steps
+
+White-box testing examines the internal structures or workings of an application, which is mainly focused on the testing of the code.
+
+**Verifying Internal Functions and Logic:**
+- **Local Server Access Check:**
+  1. Confirm that the local development server is reachable through the given URL.
+
+- **Homepage Content Assessment:**
+  1. Ensure that the homepage loads successfully.
+  2. Verify that the correct onboarding text is displayed on the homepage.
+
+- **Logo and UI Element Visibility:**
+  1. Confirm the Motaverse logo is visible on the homepage.
+  2. Check the visibility of key interactive buttons like 'Sign Up' and 'Log In'.
+
+- **Form Functionality and Error Handling:**
+  1. Navigate to the sign-up page and confirm the visibility of text fields.
+  2. Input user details into the sign-up form fields.
+  3. Click the 'Confirm' button on the sign-up form.
+  4. Handle scenarios where the user already exists by checking the displayed error message.
+
+- **Redirection and Response Validation:**
+  1. Ensure that clicking the 'Log In' button redirects to the login page.
+  2. Verify that the correct headings and form labels are displayed on the login page.
+  3. Check the functionality of the login form by entering user credentials.
+  4. Validate that the application redirects to the correct page upon successful login.
+
+Each test suite in both black-box and white-box testing is designed to rigorously test different aspects of the application to ensure that all user-facing features and underlying code are functioning correctly.
 
 
 # Deployment Instructions
