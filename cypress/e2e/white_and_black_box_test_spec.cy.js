@@ -106,8 +106,8 @@ describe('Sign Up Form Functionality Test', () => {
   it('should handle both new user signup and existing user scenario', () => {
     cy.visit('http://127.0.0.1:5000/user/signup');
 
-    cy.get('input#id').type('test3');            
-    cy.get('input#name').type('test3');          
+    cy.get('input#id').type('test1');            
+    cy.get('input#name').type('test1');          
     cy.get('input#passwd').type('1234');         
     cy.get('input#passwd_confirm').type('1234'); 
     cy.get('img[src="/static/pic/pic1.jpg"]').parent().click();
