@@ -144,6 +144,8 @@ Black-box testing is performed without knowledge of the internal workings of the
 3. Select your preferred browser; Chrome is recommended.
 4. Click 'Start E2E Testing in Chrome' to proceed.
 
+*Side note: you might need to have the Flask app running while testing for cypress to be able to open the page*
+
 **Executing Black-box Test Scenarios:**
 - **Sign Up Verification:**
   1. Ensure the 'Sign Up' button is visible on the homepage.
