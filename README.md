@@ -134,6 +134,12 @@ Black-box testing is performed without knowledge of the internal workings of the
     ```shell
     node_modules/.bin/cypress open
     ```
+    if on mac you might have to run:
+    ```
+    yarn add cypress --dev
+    
+    sudo node_modules/.bin/cypress open
+    ```
 2. Choose 'E2E Testing' from the Cypress dashboard.
 3. Select your preferred browser; Chrome is recommended.
 4. Click 'Start E2E Testing in Chrome' to proceed.
